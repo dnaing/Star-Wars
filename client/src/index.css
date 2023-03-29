@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Filled";
+  src: local("Starjedi"),
+       url("./fonts/Starjedi.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hollow";
+  src: local("Starjhol"),
+       url("./fonts/Starjhol.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gothic";
+  src: local("FranklinGothic"),
+       url("./fonts/FranklinGothic.otf") format("truetype");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

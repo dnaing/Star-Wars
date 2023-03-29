@@ -1,0 +1,33 @@
+.welcome-container {
+    z-index: -1;
+}
+
+.welcome-hero {
+	width: 100%;
+	height: 100vh;
+    display: block;
+    margin-top:20px auto;  
+    z-index: -1; 
+}
+
+.films-hero {
+	width: 100%;
+	height: 100vh;
+    display: block;
+    margin:20px auto;
+    z-index: -1;
+}
+
+.welcome-hero-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    z-index: 0;
+}
+
+.welcome-hero-text {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+}
+

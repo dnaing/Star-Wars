@@ -17,6 +17,10 @@ p {
     
 }
 
+.hero-container {
+    position: relative;
+}
+
 .welcome-hero {
     position: relative;
     display: block;
@@ -29,7 +33,7 @@ p {
 
 .welcome-text {
     position: absolute;
-    top: 4%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -44,6 +48,17 @@ p {
     left: 0;
     height: 110vh;
     width: 100%; 
+    opacity: 60%;
+}
+
+.films-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .people-hero {
@@ -53,6 +68,7 @@ p {
     left: 0;
     height: 110vh;
     width: 100%;
+    opacity: 60%;
 }
 
 .species-hero {
@@ -62,6 +78,7 @@ p {
     left: 0;
     height: 110vh;
     width: 100%;
+    opacity: 60%;
 }
 
 .planets-hero {
@@ -71,6 +88,7 @@ p {
     left: 0;
     height: 110vh;
     width: 100%;
+    opacity: 60%;
 }
 
 .starships-hero {
@@ -80,6 +98,7 @@ p {
     left: 0;
     height: 110vh;
     width: 100%;
+    opacity: 60%;
 }
 
 .vehicles-hero {
@@ -89,4 +108,5 @@ p {
     left: 0;
     height: 110vh;
     width: 100%;
+    opacity: 60%;
 }

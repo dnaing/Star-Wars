@@ -31,7 +31,7 @@ function Home() {
         <div className='heros-container'> 
 
           {/* Container for the Welcome hero banner */}
-          <div>
+          <div className='hero-container'>
             <img className='welcome-hero' src={welcomeImage} alt='Welcome Hero Image'/>
             <div className='welcome-text'>
               <h1>STAR WARS COMPENDIUM</h1>
@@ -42,36 +42,54 @@ function Home() {
           </div>
 
           {/* Container for the Films hero banner */}
-          <div id='startOfContent'>
+          <div id='startOfContent' className='hero-container'>
             <img className='films-hero' src={filmsImage} alt='Films Hero Image'/>
+            <div className='films-text'>
+              <h1>Hello</h1>
+            </div>
+            
           </div>
 
           {/* Container for the People hero banner */}
-          <div>
+          <div className='hero-container'>
             <img className='people-hero' src={peopleImage} alt='People Hero Image'/>
+            <div className='films-text'>
+              <h1>Hello</h1>
+            </div>
           </div>
 
           {/* Container for the Species hero banner */}
-          <div>
+          <div className='hero-container'>
             <img className='species-hero' src={speciesImage} alt='Species Hero Image'/>
+            <div className='films-text'>
+              <h1>Hello</h1>
+            </div>
           </div>
 
           {/* Container for the Planets hero banner */}
-          <div>
+          <div className='hero-container'>
             <img className='planets-hero' src={planetsImage} alt='Planets Hero Image'/>
+            <div className='films-text'>
+              <h1>Hello</h1>
+            </div>
           </div>
 
           {/* Container for the Starships hero banner */}
-          <div>
+          <div className='hero-container'>
             <img className='starships-hero' src={starshipsImage} alt='Starships Hero Image'/>
+            <div className='films-text'>
+              <h1>Hello</h1>
+            </div>
           </div>
 
           {/* Container for the Vehicles hero banner */}
-          <div>
+          <div className='hero-container'>
             <img className='vehicles-hero' src={vehiclesImage} alt='Vehicles Hero Image'/>
+            <div className='films-text'>
+              <h1>Hello</h1>
+            </div>
           </div>
-          
-          
+             
         </div>
 
       </div>

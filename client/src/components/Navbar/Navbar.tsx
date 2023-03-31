@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import './Navbar.css';
 
+import navBarLogo from '../../assets/images/jedi_order.png';
 
 function NavBar() {
 

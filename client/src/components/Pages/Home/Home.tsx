@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import WelcomeSection from '../../WelcomeSection/WelcomeSection';
 import Button from 'react-bootstrap/Button';
@@ -21,9 +21,30 @@ function scrollToContent() {
   }
 }
 
+
+
 function Home() {
+
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+          } 
+          // else {
+          //     entry.target.classList.remove('show');
+          // }
+      });
+    });
+  
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((element) => observer.observe(element));
+  }, []);
+
   return (
     <>
+      
       {/* Div to hold the entire body */}
       <div className = 'body'>
 
@@ -34,7 +55,7 @@ function Home() {
           <div className='hero-container'>
             <img className='welcome-hero' src={welcomeImage} alt='Welcome Hero Image'/>
             <div className='welcome-text'>
-              <h1>STAR WARS COMPENDIUM</h1>
+              <h1 className='heading'>STAR WARS COMPENDIUM</h1>
               <p>Here you can find all sorts of information about the first 6 Star Wars movies</p>
               {/* Button here */}
               <Button onClick={scrollToContent}>GET STARTED</Button>
@@ -44,8 +65,8 @@ function Home() {
           {/* Container for the Films hero banner */}
           <div id='startOfContent' className='hero-container'>
             <img className='films-hero' src={filmsImage} alt='Films Hero Image'/>
-            <div className='films-text'>
-              <h1>Hello</h1>
+            <div className='films-text hidden'>
+              <h1 className='heading'>FILMS</h1>
             </div>
             
           </div>
@@ -53,46 +74,47 @@ function Home() {
           {/* Container for the People hero banner */}
           <div className='hero-container'>
             <img className='people-hero' src={peopleImage} alt='People Hero Image'/>
-            <div className='films-text'>
-              <h1>Hello</h1>
+            <div className='films-text hidden'>
+              <h1 className='heading'>PEOPLE</h1>
             </div>
           </div>
 
           {/* Container for the Species hero banner */}
           <div className='hero-container'>
             <img className='species-hero' src={speciesImage} alt='Species Hero Image'/>
-            <div className='films-text'>
-              <h1>Hello</h1>
+            <div className='films-text hidden'>
+              <h1 className='heading'>SPECIES</h1>
             </div>
           </div>
 
           {/* Container for the Planets hero banner */}
           <div className='hero-container'>
             <img className='planets-hero' src={planetsImage} alt='Planets Hero Image'/>
-            <div className='films-text'>
-              <h1>Hello</h1>
+            <div className='films-text hidden'>
+              <h1 className='heading'>PLANETS</h1>
             </div>
           </div>
 
           {/* Container for the Starships hero banner */}
           <div className='hero-container'>
             <img className='starships-hero' src={starshipsImage} alt='Starships Hero Image'/>
-            <div className='films-text'>
-              <h1>Hello</h1>
+            <div className='films-text hidden'>
+              <h1 className='heading'>STARSHIPS</h1>
             </div>
           </div>
 
           {/* Container for the Vehicles hero banner */}
           <div className='hero-container'>
             <img className='vehicles-hero' src={vehiclesImage} alt='Vehicles Hero Image'/>
-            <div className='films-text'>
-              <h1>Hello</h1>
+            <div className='films-text hidden'>
+              <h1 className='heading'>VEHICLES</h1>
             </div>
           </div>
              
         </div>
 
       </div>
+     
     </>
   );
 }

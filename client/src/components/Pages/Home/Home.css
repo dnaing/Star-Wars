@@ -1,12 +1,33 @@
-h1 {
+p {
+    font-size: 1.2rem;
+}
+
+.heading {
+    font-size: 2rem;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 20%;
-    font-size: 1.2rem;   
 }
 
-p {
-    font-size: 1.2rem;
+@keyframes slide-in {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(3px);
+    transition: all 0.8s;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0px);
+    animation: slide-in 1s ease-out;
 }
 
 .heros-container {
@@ -55,7 +76,8 @@ p {
     position: absolute;
     top: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
+    transform: translateX(-50%);
     width: 100%;
     color: rgb(255, 255, 255);
     text-align: center;

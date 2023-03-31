@@ -22,14 +22,14 @@ p {
     display: block;
     bottom: 0;
     left: 0;
-    height: 120vh;
+    height: 110vh;
     width: 100%;
     opacity: 60%;
 }
 
 .welcome-text {
     position: absolute;
-    top: 7%;
+    top: 4%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -42,7 +42,7 @@ p {
     display: block;
     bottom: 100%;
     left: 0;
-    height: 120vh;
+    height: 110vh;
     width: 100%; 
 }
 
@@ -51,6 +51,42 @@ p {
     display: block;
     bottom: 100%;
     left: 0;
-    height: 120vh;
+    height: 110vh;
+    width: 100%;
+}
+
+.species-hero {
+    position: relative;
+    display: block;
+    bottom: 100%;
+    left: 0;
+    height: 110vh;
+    width: 100%;
+}
+
+.planets-hero {
+    position: relative;
+    display: block;
+    bottom: 100%;
+    left: 0;
+    height: 110vh;
+    width: 100%;
+}
+
+.starships-hero {
+    position: relative;
+    display: block;
+    bottom: 100%;
+    left: 0;
+    height: 110vh;
+    width: 100%;
+}
+
+.vehicles-hero {
+    position: relative;
+    display: block;
+    bottom: 100%;
+    left: 0;
+    height: 110vh;
     width: 100%;
 }

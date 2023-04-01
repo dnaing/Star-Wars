@@ -13,18 +13,23 @@ import speciesImage from '../../../assets/images/species.jpg';
 import planetsImage from '../../../assets/images/planets.jpg';
 import starshipsImage from '../../../assets/images/starships.jpg';
 import vehiclesImage from '../../../assets/images/vehicles.jpg';
-
-function scrollToContent() {
-  const filmsHero = document.getElementById('startOfContent')
-  if (filmsHero) {
-    filmsHero.scrollIntoView({behavior: 'smooth'});
-  }
-}
-
-
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+      navigate('/films')
+  };
+
+  function scrollToContent() {
+    const filmsHero = document.getElementById('startOfContent')
+    if (filmsHero) {
+      filmsHero.scrollIntoView({behavior: 'smooth'});
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -79,8 +84,11 @@ function Home() {
             <img className='films-hero' src={filmsImage} alt='Films Hero Image'/>
             <div className='films-text hidden'>
               <h1 className='heading'>FILMS</h1>
-              <p>Learn about the amazing 6 Star Wars movies</p>
+              <p>The first 6 Star Wars movies are legendary works of fiction</p>
+              <p>Learn more about the Star Wars Prequel and Original trilogies</p>
+              <Button onClick={handleSubmit}>LEARN MORE</Button>
             </div>
+            
             
           </div>
 
@@ -98,7 +106,7 @@ function Home() {
             <img className='species-hero' src={speciesImage} alt='Species Hero Image'/>
             <div className='species-text hidden'>
               <h1 className='heading'>SPECIES</h1>
-              <p>Learn about the amazing characters found within the star wars galaxy</p>
+              <p>Learn about the amazing species found within the star wars galaxy</p>
             </div>
           </div>
 
@@ -107,7 +115,7 @@ function Home() {
             <img className='planets-hero' src={planetsImage} alt='Planets Hero Image'/>
             <div className='planets-text hidden'>
               <h1 className='heading'>PLANETS</h1>
-              <p>Learn about the amazing characters found within the star wars galaxy</p>
+              <p>Learn about the amazing planets found within the star wars galaxy</p>
             </div>
           </div>
 
@@ -116,7 +124,7 @@ function Home() {
             <img className='starships-hero' src={starshipsImage} alt='Starships Hero Image'/>
             <div className='starships-text hidden'>
               <h1 className='heading'>STARSHIPS</h1>
-              <p>Learn about the amazing characters found within the star wars galaxy</p>
+              <p>Learn about the amazing starships found within the star wars galaxy</p>
             </div>
           </div>
 
@@ -125,7 +133,7 @@ function Home() {
             <img className='vehicles-hero' src={vehiclesImage} alt='Vehicles Hero Image'/>
             <div className='vehicles-text hidden'>
               <h1 className='heading'>VEHICLES</h1>
-              <p>Learn about the amazing characters found within the star wars galaxy</p>
+              <p>Learn about the amazing vehicles found within the star wars galaxy</p>
             </div>
           </div>
              

@@ -9,12 +9,21 @@ p {
     text-underline-offset: 20%;
 }
 
-@keyframes slide-in {
+@keyframes slide-to-left {
     0% {
-        transform: translateX(0);
+        transform: translateX(-50%);
     }
     100% {
+        transform: translateX(-70%);
+    }
+}
+
+@keyframes slide-to-right {
+    0% {
         transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(-30%);
     }
 }
 
@@ -24,10 +33,22 @@ p {
     transition: all 0.8s;
 }
 
-.show {
+/* .show {
     opacity: 1;
     filter: blur(0px);
     animation: slide-in 1s ease-out;
+} */
+
+.slide-left {
+    opacity: 1;
+    filter: blur(0px);
+    animation: slide-to-left 1s ease-out;
+}
+
+.slide-right {
+    opacity: 1;
+    filter: blur(0px);
+    animation: slide-to-right 1s ease-out;
 }
 
 .heros-container {
@@ -76,8 +97,7 @@ p {
     position: absolute;
     top: 20%;
     left: 50%;
-    /* transform: translate(-50%, -50%); */
-    transform: translateX(-50%);
+    transform: translateX(-70%);
     width: 100%;
     color: rgb(255, 255, 255);
     text-align: center;
@@ -93,6 +113,16 @@ p {
     opacity: 60%;
 }
 
+.people-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-30%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
 .species-hero {
     position: relative;
     display: block;
@@ -101,6 +131,16 @@ p {
     height: 110vh;
     width: 100%;
     opacity: 60%;
+}
+
+.species-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-70%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .planets-hero {
@@ -113,6 +153,16 @@ p {
     opacity: 60%;
 }
 
+.planets-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-30%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
 .starships-hero {
     position: relative;
     display: block;
@@ -123,6 +173,16 @@ p {
     opacity: 60%;
 }
 
+.starships-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-70%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
 .vehicles-hero {
     position: relative;
     display: block;
@@ -131,4 +191,14 @@ p {
     height: 110vh;
     width: 100%;
     opacity: 60%;
+}
+
+.vehicles-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-30%);
+    width: 100%;
+    color: rgb(255, 255, 255);
+    text-align: center;
 }

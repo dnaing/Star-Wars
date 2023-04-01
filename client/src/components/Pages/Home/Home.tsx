@@ -29,12 +29,24 @@ function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+          const classList = entry.target.classList;
           if (entry.isIntersecting) {
-              entry.target.classList.add('show');
+              if (classList.contains('films-text') || classList.contains('species-text') || classList.contains('starships-text')) {
+                entry.target.classList.add('slide-left');
+              }
+
+              else {
+                entry.target.classList.add('slide-right');
+              }
           } 
-          // else {
-          //     entry.target.classList.remove('show');
-          // }
+          else {
+              if (classList.contains('slide-left')) {
+                entry.target.classList.remove('slide-left');
+              }
+              if (classList.contains('slide-right')) {
+                entry.target.classList.remove('slide-right');
+              }
+          }
       });
     });
   
@@ -67,6 +79,7 @@ function Home() {
             <img className='films-hero' src={filmsImage} alt='Films Hero Image'/>
             <div className='films-text hidden'>
               <h1 className='heading'>FILMS</h1>
+              <p>Learn about the amazing 6 Star Wars movies</p>
             </div>
             
           </div>
@@ -74,40 +87,45 @@ function Home() {
           {/* Container for the People hero banner */}
           <div className='hero-container'>
             <img className='people-hero' src={peopleImage} alt='People Hero Image'/>
-            <div className='films-text hidden'>
+            <div className='people-text hidden'>
               <h1 className='heading'>PEOPLE</h1>
+              <p>Learn about the amazing characters found within the star wars galaxy</p>
             </div>
           </div>
 
           {/* Container for the Species hero banner */}
           <div className='hero-container'>
             <img className='species-hero' src={speciesImage} alt='Species Hero Image'/>
-            <div className='films-text hidden'>
+            <div className='species-text hidden'>
               <h1 className='heading'>SPECIES</h1>
+              <p>Learn about the amazing characters found within the star wars galaxy</p>
             </div>
           </div>
 
           {/* Container for the Planets hero banner */}
           <div className='hero-container'>
             <img className='planets-hero' src={planetsImage} alt='Planets Hero Image'/>
-            <div className='films-text hidden'>
+            <div className='planets-text hidden'>
               <h1 className='heading'>PLANETS</h1>
+              <p>Learn about the amazing characters found within the star wars galaxy</p>
             </div>
           </div>
 
           {/* Container for the Starships hero banner */}
           <div className='hero-container'>
             <img className='starships-hero' src={starshipsImage} alt='Starships Hero Image'/>
-            <div className='films-text hidden'>
+            <div className='starships-text hidden'>
               <h1 className='heading'>STARSHIPS</h1>
+              <p>Learn about the amazing characters found within the star wars galaxy</p>
             </div>
           </div>
 
           {/* Container for the Vehicles hero banner */}
           <div className='hero-container'>
             <img className='vehicles-hero' src={vehiclesImage} alt='Vehicles Hero Image'/>
-            <div className='films-text hidden'>
+            <div className='vehicles-text hidden'>
               <h1 className='heading'>VEHICLES</h1>
+              <p>Learn about the amazing characters found within the star wars galaxy</p>
             </div>
           </div>
              

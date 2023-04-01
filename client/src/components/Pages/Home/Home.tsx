@@ -20,8 +20,8 @@ function Home() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-      navigate('/films')
+  const handleSubmit = (p: string) => {
+      navigate('/' + p);
   };
 
   function scrollToContent() {
@@ -85,8 +85,8 @@ function Home() {
             <div className='films-text hidden'>
               <h1 className='heading'>FILMS</h1>
               <p>The first 6 Star Wars movies are legendary works of fiction</p>
-              <p>Learn more about the Star Wars Prequel and Original trilogies</p>
-              <Button onClick={handleSubmit}>LEARN MORE</Button>
+              <p>Learn more about the Star Wars prequel and original trilogies</p>
+              <Button onClick={() => handleSubmit('films')}>EXPLORE</Button>
             </div>
             
             
@@ -97,7 +97,9 @@ function Home() {
             <img className='people-hero' src={peopleImage} alt='People Hero Image'/>
             <div className='people-text hidden'>
               <h1 className='heading'>PEOPLE</h1>
-              <p>Learn about the amazing characters found within the star wars galaxy</p>
+              <p>Star Wars is full of amazing characters that truly give it life</p>
+              <p>Learn more about these various characters found throughout the galaxy </p>
+              <Button onClick={() => handleSubmit('people')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -106,7 +108,9 @@ function Home() {
             <img className='species-hero' src={speciesImage} alt='Species Hero Image'/>
             <div className='species-text hidden'>
               <h1 className='heading'>SPECIES</h1>
-              <p>Learn about the amazing species found within the star wars galaxy</p>
+              <p>Star Wars is filled with all kinds of species</p>
+              <p>Learn more about the many diverse species found throughout the universe</p>
+              <Button onClick={() => handleSubmit('species')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -115,7 +119,9 @@ function Home() {
             <img className='planets-hero' src={planetsImage} alt='Planets Hero Image'/>
             <div className='planets-text hidden'>
               <h1 className='heading'>PLANETS</h1>
-              <p>Learn about the amazing planets found within the star wars galaxy</p>
+              <p>The Star Wars universe is massive and full of all kinds of planets</p>
+              <p>Learn more about these many fascinating planets found throughout the galaxy</p>
+              <Button onClick={() => handleSubmit('planets')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -124,7 +130,9 @@ function Home() {
             <img className='starships-hero' src={starshipsImage} alt='Starships Hero Image'/>
             <div className='starships-text hidden'>
               <h1 className='heading'>STARSHIPS</h1>
-              <p>Learn about the amazing starships found within the star wars galaxy</p>
+              <p>Star ships are used to traverse the ever so massive Star Wars universe</p>
+              <p>Learn more about these high-speed starships used to fly across space</p>
+              <Button onClick={() => handleSubmit('starships')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -133,7 +141,9 @@ function Home() {
             <img className='vehicles-hero' src={vehiclesImage} alt='Vehicles Hero Image'/>
             <div className='vehicles-text hidden'>
               <h1 className='heading'>VEHICLES</h1>
-              <p>Learn about the amazing vehicles found within the star wars galaxy</p>
+              <p>There are many vehicles in the Star Wars universe that come in many shapes and forms</p>
+              <p>Learn more about these spectacular vehicles used to travel and get around places</p>
+              <Button onClick={() => handleSubmit('vehicles')}>EXPLORE</Button>
             </div>
           </div>
              

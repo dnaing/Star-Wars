@@ -31,7 +31,7 @@ function NavBar() {
           {/* Navbar logo */}
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             Star Wars Compendium 
-            <i className='fab fa-typo3'/>
+            {/* <i className='fab fa-typo3'/> */}
           </Link>
 
           {/* Navbar hamburger menu */}

@@ -131,7 +131,7 @@ function Home() {
             <div className='starships-text hidden'>
               <h1 className='heading'>STARSHIPS</h1>
               <p>Star ships are used to traverse the ever so massive Star Wars universe</p>
-              <p>Learn more about these high-speed starships used to fly across space</p>
+              <p>Learn more about these high-speed starships used to blitz across space</p>
               <Button onClick={() => handleSubmit('starships')}>EXPLORE</Button>
             </div>
           </div>

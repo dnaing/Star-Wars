@@ -1,52 +1,60 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const filmsSchema = new Schema({
-    title: {
+const charactersSchema = new Schema({
+    name: {
         type: String,
         required: true 
     },
-    episode_id: {
+    height: {
         type: Number,
         required: true
     },
-    opening_crawl: {
+    mass: {
         type: String,
         required: true
     },
-    director: {
+    hair_color: {
         type: String,
         required: true
     },
-    producer: {
+    skin_color: {
         type: String,
         required: true
     },
-    release_date: {
+    eye_color: {
         type: String,
         required: true
     },
-    characters: {
+    birth_year: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    homeworld: {
+        type: String,
+        required: true
+    },
+    films: {
         type: [],
-        required: true
+        required: false
     },
     species: {
         type: [],
-        required: true
-    },
-    planets: {
-        type: [],
-        required: true
+        required: false
     },
     starships: {
         type: [],
-        required: true
+        required: false
     },
     vehicles: {
         type: [],
-        required: true
+        required: false
     }
 }, { timestamps: true });
 
-const Film = mongoose.model('Film', filmsSchema);
-module.exports = Film;
+const Character = mongoose.model('Character', charactersSchema);
+module.exports = Character;

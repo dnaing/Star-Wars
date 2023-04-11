@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const Film = require('./schemas/films');
 const Character = require('./schemas/characters');
 const Species = require('./schemas/species');
+const Planet = require('./schemas/planets');
 
 const app = express();
 
@@ -33,6 +34,8 @@ async function fetchData(url, dataType) {
                 break;
             case "species":
                 insertSpecies(data);
+            case "planets":
+                insertPlanets(data);
         }
 
         if (data["next"]) {
@@ -190,6 +193,36 @@ async function insertSpecies(data) {
     }
 }
 
+async function insertPlanets(data) {
+    var planetData = data["results"];
+    for (let i = 0; i < planetData.length; i++) {
+        let filmNames = await(fetchAllData(planetData[i]["films"], true));
+        let residentNames = await(fetchAllData(planetData[i]["residents"], false));
+
+        let planet = new Planet({
+            name: planetData[i]["name"],
+            rotation_period: planetData[i]["rotation_period"],
+            orbital_period: planetData[i]["orbital_period"],
+            diameter: planetData[i]["diameter"],
+            climate: planetData[i]["climate"],
+            gravity: planetData[i]["gravity"],
+            terrain: planetData[i]["terrain"],
+            surface_water: planetData[i]["surface_water"],
+            population: planetData[i]["population"],
+            films: filmNames,
+            residents: residentNames
+        });
+
+        planet.save()
+            .then((result) => {
+                console.log("Planet " + planetData[i]["name"] + " was saved to the database");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+}
+
 // Extract Star Wars API data into MongoDB Database
 
 baseURL = "https://swapi.dev/api/"
@@ -230,6 +263,18 @@ db.once('open', () => {
             }
             else {
                 console.log("SPECIES DATA ALREADY COLLECTED");
+            }
+        })
+        .catch((error) => console.log(error)); 
+
+    Planet.countDocuments()
+        .then((count) => {
+            if (count == 0) {
+                console.log("ADDING PLANET DATA");
+                fetchData(baseURL + "planets/", "planets");
+            }
+            else {
+                console.log("PLANET DATA ALREADY COLLECTED");
             }
         })
         .catch((error) => console.log(error)); 

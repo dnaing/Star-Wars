@@ -13,10 +13,11 @@ const app = express();
 const dbURI = 'mongodb+srv://dereknaing01:DarkChaosLord123@starwarsdatabase.gejidxc.mongodb.net/StarWarsDatabase?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
     .then((result) => {
-        app.listen(8080);
-        console.log("Connected to Star Wars Database");
+        app.listen(4000, () => console.log("Server Started"));
     })
     .catch((error) => console.error(error));
+
+const db = mongoose.connection;
 
 function fetchData(url, dataType) {
     return fetch(url)
@@ -67,6 +68,10 @@ async function fetchSingleData(url, isMovie) {
 
 // Returns an array of names of all films, characters, planets, species, vehicles, or starships
 async function fetchAllData(array, isMovie) {
+    if (array.length == 0) {
+        return [];
+    }
+
     let resArray = [];
     for (let i = 0; i < array.length; i++) {
         let dataPoint = fetchSingleData(array[i], isMovie);
@@ -114,10 +119,15 @@ async function insertFilms(data) {
 }
 
 // Inserts all data about people into the database
-function insertPeople(data) {
+async function insertPeople(data) {
     var characterData = data["results"];
-
     for (let i = 0; i < characterData.length; i++) {
+        let homeworldName = await(fetchSingleData(characterData[i]["homeworld"], false));
+        let filmNames = await(fetchAllData(characterData[i]["films"], true));
+        let speciesNames = await(fetchAllData(characterData[i]["species"], false));
+        let starshipNames = await(fetchAllData(characterData[i]["starships"], false));
+        let vehicleNames = await(fetchAllData(characterData[i]["vehicles"], false));
+
         let character = new Character({
             name: characterData[i]["name"],
             height: characterData[i]["height"],
@@ -127,11 +137,11 @@ function insertPeople(data) {
             eye_color: characterData[i]["eye_color"],
             birth_year: characterData[i]["birth_year"],
             gender: characterData[i]["gender"],
-            homeworld: characterData[i]["homeworld"],
-            films: characterData[i]["films"],
-            species: characterData[i]["species"],
-            starships: characterData[i]["starships"],
-            vehicles: characterData[i]["vehicles"]
+            homeworld: homeworldName,
+            films: filmNames,
+            species: speciesNames,
+            starships: starshipNames,
+            vehicles: vehicleNames
         });
 
         character.save()
@@ -144,32 +154,35 @@ function insertPeople(data) {
     }
 }
 
-
 // Extract Star Wars API data into MongoDB Database
 
 baseURL = "https://swapi.dev/api/"
 
-const db = mongoose.connection;
-db.once('open', async () => {
-    if (!db.collections['films']) {
-        console.log("ADDING FILM DATA");
-        fetchData(baseURL + "films/", "films");        
-    }
+db.on('error', (error) => console.error(error));
 
-    if (!db.collections['characters']) {
-        console.log("ADDING PEOPLE DATA");
-        fetchData(baseURL + "people/", "people");     
-    }
+db.once('open', () => {
+
+    Film.countDocuments()
+        .then((count) => {
+            if (count == 0) {
+                console.log("ADDING FILM DATA TO MONGODB");
+                fetchData(baseURL + "films/", "films");
+            }
+            else {
+                console.log("FILM DATA ALREADY COLLECTED");
+            }
+        })
+        .catch((error) => console.log(error));
+
+    Character.countDocuments()
+        .then((count) => {
+            if (count == 0) {
+                console.log("ADDING PEOPLE DATA");
+                fetchData(baseURL + "people/", "people");
+            }
+            else {
+                console.log("CHARACTER DATA ALREADY COLLECTED");
+            }
+        })
+        .catch((error) => console.log(error));   
 });
-
-
-
-
-
-
-
-
-
-
-
-

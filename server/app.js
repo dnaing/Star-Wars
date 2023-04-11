@@ -45,12 +45,19 @@ function fetchData(url, dataType) {
       });
 }
 
-function fetchSingleData(url) {
+// Fetches a single film, character, planet, species, starship, vehicle and returns their name
+async function fetchSingleData(url, isMovie) {
     return fetch(url)
       .then(response => response.json())
     
       .then(data => {
-        return data["name"];
+        if (isMovie) {
+            return data["title"];
+        }
+        else {
+            return data["name"];
+        }
+        
       })
       .catch(error => {
         console.error(error);
@@ -58,10 +65,11 @@ function fetchSingleData(url) {
       });
 }
 
-function fetchAllData(array) {
+// Returns an array of names of all films, characters, planets, species, vehicles, or starships
+async function fetchAllData(array, isMovie) {
     let resArray = [];
     for (let i = 0; i < array.length; i++) {
-        let dataPoint = fetchSingleData(array[i]);
+        let dataPoint = fetchSingleData(array[i], isMovie);
         resArray.push(dataPoint); 
     }
     return Promise.all(resArray)
@@ -71,11 +79,16 @@ function fetchAllData(array) {
 
 // Functions for putting data into MongoDB
 
+// Inserts all data about films into the database
 async function insertFilms(data) {
     var filmData = data["results"];
     for (let i = 0; i < filmData.length; i++) {
-        let charNames = await(fetchAllData(filmData[i]["characters"]));
-        console.log(charNames);
+        let characterNames = await(fetchAllData(filmData[i]["characters"], false));
+        let speciesNames = await(fetchAllData(filmData[i]["species"], false));
+        let planetNames = await(fetchAllData(filmData[i]["planets"], false));
+        let starshipNames = await(fetchAllData(filmData[i]["starships"], false));
+        let vehicleNames = await(fetchAllData(filmData[i]["vehicles"], false));
+
         let film = new Film({
             title: filmData[i]["title"],
             episode_id: filmData[i]["episode_id"],
@@ -83,11 +96,11 @@ async function insertFilms(data) {
             director: filmData[i]["director"],
             producer: filmData[i]["producer"],
             release_date: filmData[i]["release_date"],
-            characters: charNames,
-            species: filmData[i]["species"],
-            planets: filmData[i]["planets"],
-            starships: filmData[i]["starships"],
-            vehicles: filmData[i]["vehicles"]
+            characters: characterNames,
+            species: speciesNames,
+            planets: planetNames,
+            starships: starshipNames,
+            vehicles: vehicleNames
         });
 
         film.save()
@@ -100,6 +113,7 @@ async function insertFilms(data) {
     }
 }
 
+// Inserts all data about people into the database
 function insertPeople(data) {
     var characterData = data["results"];
 
@@ -135,8 +149,19 @@ function insertPeople(data) {
 
 baseURL = "https://swapi.dev/api/"
 
-fetchData(baseURL + "films/", "films");
-// fetchData(baseURL + "people/", "people");
+const db = mongoose.connection;
+db.once('open', async () => {
+    if (!db.collections['films']) {
+        console.log("ADDING FILM DATA");
+        fetchData(baseURL + "films/", "films");        
+    }
+
+    if (!db.collections['characters']) {
+        console.log("ADDING PEOPLE DATA");
+        fetchData(baseURL + "people/", "people");     
+    }
+});
+
 
 
 

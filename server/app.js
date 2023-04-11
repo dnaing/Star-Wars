@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Film = require('./schemas/films');
 const Character = require('./schemas/characters');
+const Species = require('./schemas/species');
 
 const app = express();
 
@@ -19,12 +20,10 @@ mongoose.connect(dbURI)
 
 const db = mongoose.connection;
 
-function fetchData(url, dataType) {
-    return fetch(url)
-      .then(response => response.json())
-    
-      .then(data => {
-
+async function fetchData(url, dataType) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
         switch (dataType) {
             case "films":
                 insertFilms(data);
@@ -32,22 +31,27 @@ function fetchData(url, dataType) {
             case "people":
                 insertPeople(data);
                 break;
+            case "species":
+                insertSpecies(data);
         }
 
         if (data["next"]) {
             console.log("Found next page");
             fetchData(data["next"], dataType);
         }
-        
-      })
-      .catch(error => {
+    } catch (error) {
         console.error(error);
-        return null; // return null to the caller of fetchData() if an error occurs
-      });
+        return null;
+    }
 }
 
 // Fetches a single film, character, planet, species, starship, vehicle and returns their name
 async function fetchSingleData(url, isMovie) {
+
+    if (url == null) {
+        return "null";
+    }
+
     return fetch(url)
       .then(response => response.json())
     
@@ -154,6 +158,38 @@ async function insertPeople(data) {
     }
 }
 
+async function insertSpecies(data) {
+    var speciesData = data["results"];
+    for (let i = 0; i < speciesData.length; i++) {
+        let homeworldName = await(fetchSingleData(speciesData[i]["homeworld"], false));
+        let filmNames = await(fetchAllData(speciesData[i]["films"], true));
+        let peopleNames = await(fetchAllData(speciesData[i]["people"], false));
+
+        let species = new Species({
+            name: speciesData[i]["name"],
+            classification: speciesData[i]["classification"],
+            designation: speciesData[i]["designation"],
+            average_height: speciesData[i]["average_height"],
+            hair_colors: speciesData[i]["hair_colors"],
+            skin_colors: speciesData[i]["skin_colors"],
+            eye_colors: speciesData[i]["eye_colors"],
+            average_lifespan: speciesData[i]["average_lifespan"],
+            language: speciesData[i]["language"],
+            homeworld: homeworldName,
+            films: filmNames,
+            people: peopleNames
+        });
+
+        species.save()
+            .then((result) => {
+                console.log("Species " + speciesData[i]["name"] + " was saved to the database");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+}
+
 // Extract Star Wars API data into MongoDB Database
 
 baseURL = "https://swapi.dev/api/"
@@ -184,5 +220,17 @@ db.once('open', () => {
                 console.log("CHARACTER DATA ALREADY COLLECTED");
             }
         })
-        .catch((error) => console.log(error));   
+        .catch((error) => console.log(error));  
+    
+    Species.countDocuments()
+        .then((count) => {
+            if (count == 0) {
+                console.log("ADDING SPECIES DATA");
+                fetchData(baseURL + "species/", "species");
+            }
+            else {
+                console.log("SPECIES DATA ALREADY COLLECTED");
+            }
+        })
+        .catch((error) => console.log(error)); 
 });

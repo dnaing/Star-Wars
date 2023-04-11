@@ -9,6 +9,7 @@ const Character = require('./schemas/characters');
 const Species = require('./schemas/species');
 const Planet = require('./schemas/planets');
 const Starship = require('./schemas/starships');
+const Vehicle = require('./schemas/vehicles');
 
 const app = express();
 
@@ -41,6 +42,8 @@ async function fetchData(url, dataType) {
                 break;
             case "starships":
                 insertStarships(data);
+            case "vehicles":
+                insertVehicles(data);
         }
 
         if (data["next"]) {
@@ -262,6 +265,38 @@ async function insertStarships(data) {
     }
 }
 
+async function insertVehicles(data) {
+    var vehicleData = data["results"];
+    for (let i = 0; i < vehicleData.length; i++) {
+        let filmNames = await(fetchAllData(vehicleData[i]["films"], true));
+        let pilotNames = await(fetchAllData(vehicleData[i]["pilots"], false));
+
+        let vehicle = new Vehicle({
+            name: vehicleData[i]["name"],
+            model: vehicleData[i]["model"],
+            manufacturer: vehicleData[i]["manufacturer"],
+            cost_in_credits: vehicleData[i]["cost_in_credits"],
+            length: vehicleData[i]["length"],
+            max_atmosphering_speed: vehicleData[i]["max_atmosphering_speed"],
+            crew: vehicleData[i]["crew"],
+            passengers: vehicleData[i]["passengers"],
+            cargo_capacity: vehicleData[i]["cargo_capacity"],
+            consumables: vehicleData[i]["consumables"],
+            vehicle_class: vehicleData[i]["vehicle_class"],
+            films: filmNames,
+            pilots: pilotNames
+        });
+
+        vehicle.save()
+            .then((result) => {
+                console.log("Vehicle " + vehicleData[i]["name"] + " was saved to the database");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+}
+
 // Extract Star Wars API data into MongoDB Database
 
 baseURL = "https://swapi.dev/api/"
@@ -326,6 +361,18 @@ db.once('open', () => {
             }
             else {
                 console.log("STARSHIP DATA ALREADY COLLECTED");
+            }
+        })
+        .catch((error) => console.log(error)); 
+    
+    Vehicle.countDocuments()
+        .then((count) => {
+            if (count == 0) {
+                console.log("ADDING VEHICLE DATA");
+                fetchData(baseURL + "vehicles/", "vehicles");
+            }
+            else {
+                console.log("VEHICLE DATA ALREADY COLLECTED");
             }
         })
         .catch((error) => console.log(error)); 

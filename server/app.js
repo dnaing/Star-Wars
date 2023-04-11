@@ -45,12 +45,37 @@ function fetchData(url, dataType) {
       });
 }
 
+function fetchSingleData(url) {
+    return fetch(url)
+      .then(response => response.json())
+    
+      .then(data => {
+        return data["name"];
+      })
+      .catch(error => {
+        console.error(error);
+        return null; // return null to the caller of fetchData() if an error occurs
+      });
+}
+
+function fetchAllData(array) {
+    let resArray = [];
+    for (let i = 0; i < array.length; i++) {
+        let dataPoint = fetchSingleData(array[i]);
+        resArray.push(dataPoint); 
+    }
+    return Promise.all(resArray)
+        .then((values) => {return values})
+        .catch((error) => console.log(error));
+}
+
 // Functions for putting data into MongoDB
 
-function insertFilms(data) {
+async function insertFilms(data) {
     var filmData = data["results"];
     for (let i = 0; i < filmData.length; i++) {
-        // console.log(filmsJson["results"][i]["title"]);
+        let charNames = await(fetchAllData(filmData[i]["characters"]));
+        console.log(charNames);
         let film = new Film({
             title: filmData[i]["title"],
             episode_id: filmData[i]["episode_id"],
@@ -58,7 +83,7 @@ function insertFilms(data) {
             director: filmData[i]["director"],
             producer: filmData[i]["producer"],
             release_date: filmData[i]["release_date"],
-            characters: filmData[i]["characters"],
+            characters: charNames,
             species: filmData[i]["species"],
             planets: filmData[i]["planets"],
             starships: filmData[i]["starships"],
@@ -110,7 +135,7 @@ function insertPeople(data) {
 
 baseURL = "https://swapi.dev/api/"
 
-// fetchData(baseURL + "films/", "films");
+fetchData(baseURL + "films/", "films");
 // fetchData(baseURL + "people/", "people");
 
 

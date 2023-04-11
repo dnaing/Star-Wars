@@ -8,6 +8,7 @@ const Film = require('./schemas/films');
 const Character = require('./schemas/characters');
 const Species = require('./schemas/species');
 const Planet = require('./schemas/planets');
+const Starship = require('./schemas/starships');
 
 const app = express();
 
@@ -34,8 +35,12 @@ async function fetchData(url, dataType) {
                 break;
             case "species":
                 insertSpecies(data);
+                break;
             case "planets":
                 insertPlanets(data);
+                break;
+            case "starships":
+                insertStarships(data);
         }
 
         if (data["next"]) {
@@ -223,6 +228,40 @@ async function insertPlanets(data) {
     }
 }
 
+async function insertStarships(data) {
+    var starshipData = data["results"];
+    for (let i = 0; i < starshipData.length; i++) {
+        let filmNames = await(fetchAllData(starshipData[i]["films"], true));
+        let pilotNames = await(fetchAllData(starshipData[i]["pilots"], false));
+
+        let starship = new Starship({
+            name: starshipData[i]["name"],
+            model: starshipData[i]["model"],
+            manufacturer: starshipData[i]["manufacturer"],
+            cost_in_credits: starshipData[i]["cost_in_credits"],
+            length: starshipData[i]["length"],
+            max_atmosphering_speed: starshipData[i]["max_atmosphering_speed"],
+            crew: starshipData[i]["crew"],
+            passengers: starshipData[i]["passengers"],
+            cargo_capacity: starshipData[i]["cargo_capacity"],
+            consumables: starshipData[i]["consumables"],
+            hyperdrive_rating: starshipData[i]["hyperdrive_rating"],
+            MGLT: starshipData[i]["MGLT"],
+            starship_class: starshipData[i]["starship_class"],
+            films: filmNames,
+            pilots: pilotNames
+        });
+
+        starship.save()
+            .then((result) => {
+                console.log("Starship " + starshipData[i]["name"] + " was saved to the database");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+}
+
 // Extract Star Wars API data into MongoDB Database
 
 baseURL = "https://swapi.dev/api/"
@@ -275,6 +314,18 @@ db.once('open', () => {
             }
             else {
                 console.log("PLANET DATA ALREADY COLLECTED");
+            }
+        })
+        .catch((error) => console.log(error)); 
+
+    Starship.countDocuments()
+        .then((count) => {
+            if (count == 0) {
+                console.log("ADDING STARSHIP DATA");
+                fetchData(baseURL + "starships/", "starships");
+            }
+            else {
+                console.log("STARSHIP DATA ALREADY COLLECTED");
             }
         })
         .catch((error) => console.log(error)); 

@@ -18,45 +18,6 @@ mongoose.connect(dbURI)
     })
     .catch((error) => console.error(error));
 
-// // Mongoose and Mongo Routes
-// app.get('/', (req, res) => {
-//     console.log("WE are in films");
-
-//     const film = new Film({
-//         title: 'Phantom Menace',
-//         episode_id: 1,
-//         opening_crawl: 'Lorem ipsum',
-//         director: 'George Lucas',
-//         producer: 'Derek Naing',
-//         release_date: '1999-02-28'
-//     });
-
-//     res.send(film);
-
-//     // film.save()
-//     //     .then((result) => {
-//     //         res.send(result);
-//     //     })
-//     //     .catch((error) => {
-//     //         console.log(error);
-//     //     });
-// })
-
-
-// Define Fetch Data Functions
-// function fetchFilmData(url) {
-//     return fetch(url)
-//       .then(response => response.json())
-    
-//       .then(data => {
-//         insertFilms(data);
-//       })
-//       .catch(error => {
-//         console.error(error);
-//         return null; // return null to the caller of fetchData() if an error occurs
-//       });
-// }
-
 function fetchData(url, dataType) {
     return fetch(url)
       .then(response => response.json())
@@ -73,7 +34,8 @@ function fetchData(url, dataType) {
         }
 
         if (data["next"]) {
-            fetchData(data["next"]);
+            console.log("Found next page");
+            fetchData(data["next"], dataType);
         }
         
       })
@@ -128,7 +90,7 @@ function insertPeople(data) {
             gender: characterData[i]["gender"],
             homeworld: characterData[i]["homeworld"],
             films: characterData[i]["films"],
-            species: characterDataa[i]["species"],
+            species: characterData[i]["species"],
             starships: characterData[i]["starships"],
             vehicles: characterData[i]["vehicles"]
         });
@@ -143,19 +105,14 @@ function insertPeople(data) {
     }
 }
 
-// Add Film information from SWAPI into MongoDB Database
+
+// Extract Star Wars API data into MongoDB Database
+
 baseURL = "https://swapi.dev/api/"
 
-// fetchFilmData(baseURL + "films/")
-//     .then(data => {
-//         insertFilms(data)
-// });
+// fetchData(baseURL + "films/", "films");
+// fetchData(baseURL + "people/", "people");
 
-// console.log("==================== CODE SEPARATOR =======================");
-
-// fetchOtherData(baseURL + "people/");
-
-fetchData(baseURL + "films/", "films");
 
 
 

@@ -7,7 +7,7 @@ const charactersSchema = new Schema({
         required: true 
     },
     height: {
-        type: Number,
+        type: String,
         required: true
     },
     mass: {

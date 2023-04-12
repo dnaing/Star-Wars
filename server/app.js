@@ -376,4 +376,84 @@ db.once('open', () => {
             }
         })
         .catch((error) => console.log(error)); 
+    
+    
+    Character.find({ species: [] }).countDocuments()
+    .then((count) => {
+        if (count != 0) {
+            console.log("There are " + count + " missing species fields for the characters");
+            // We must fix the droid, "R4-P17"
+            Character.updateOne( { name: "R4-P17" }, { $set: {species: ["Droid"]} } )
+                .then(res => {
+                    console.log("R4-P17 fixed");
+                })
+            Species.updateOne( { name: "Droid"}, { $push: {people: 'R4-P17'} } )
+                .then(res => {
+                    console.log("R4-P17 added to Droid species");
+                });
+
+            // Now we have to fix "Sly Moore"
+            Character.updateOne( { name: "Sly Moore" }, { $set: {species: ["Umbaran"]} } )
+                .then(res => {
+                    console.log("Sly Moore fixed");
+                })
+            
+            const umbaran = new Species({
+                name: "Umbaran",
+                classification: "near-human",
+                designation: "sentient",
+                average_height: "unknown",
+                hair_colors: "black, silver, white",
+                skin_colors: "pale, bluish",
+                eye_colors: "gray, pale blue, white",
+                average_lifespan: "unknown",
+                language: "Umbarese",
+                homeworld: "Umbara",
+                films: ["Attack of the Clones", "Revenge of the Sith"],
+                people: ["Sly Moore"]
+            });
+
+            umbaran.save()
+            .then((result) => {
+                console.log("Species " + "Umbaran" + " was saved to the database");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+            // Now we have to fix all humans
+            Character.find( { species: [] }).select( "name" )
+                .then(res => {
+                    const humanNames = res.map(result => result.name);
+                    Character.updateMany( { species: [] }, { $set: {species: ["Human"]} } )
+                        .then(res => {
+                            console.log("Human species added to all humans");
+                        })
+                    Species.updateOne( { name: "Human" }, { $push: {people: { $each: humanNames} } } )
+                        .then(res => {
+                            console.log("All human names added into human species");
+                        });
+                })
+
+        }
+        else {
+            console.log("DATABASE UPDATED");
+        }
+    })
+    
 });
+
+// Add additional information to database
+//=====================================================================
+
+
+// Add human as the species to all humans who currently don't have it
+// Add the names of every human to the name field in the human species
+
+// Add droid as the species to R4-P17
+// Add that droid's name to the name field in the droid species
+
+// Add Umbaran to Sly Moore
+// Add Umbaran species and give it information
+//         Add Sly Moore's name in the Umbaran species's name field
+// Add more info to the Umbaran planet

@@ -1,4 +1,4 @@
-// The purpose of app.js in my codebase is to take all the API data from the 
+// The purpose of extract_data.js in my codebase is to take all the API data from the 
 // Star Wars API and put it all into a MongoDB database that I have running on the cloud
 
 // Imports

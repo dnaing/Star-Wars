@@ -14,21 +14,28 @@ interface Props {
 function FilmCard(props: Props) {
   return (
     <>
-      <Card sx={{ maxWidth: 200 }}>
+    {/* sx={{ maxWidth: 1000 }} */}
+      <Card style={{ maxWidth: "70%", maxHeight: "100%", margin: "auto" }}>
+        
         <CardActionArea>
           <CardMedia
             component="img"
-            height="300"
             image={props.imageURL}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              width: "auto",
+              height: "auto",
+              objectFit: 'contain'
+            }}
             alt={props.name}
-            style={{ objectFit: 'contain' }} // this will resize the image to fit within the CardMedia component
           />
           <CardContent>
-            {/* <Typography gutterBottom variant="h1" component="div">
-            Episode 1 (A Phantom Menace)
-            </Typography> */}
-            {props.name}
+              <div className='card-content'>
+                {props.name}
+              </div>
           </CardContent>
+
         </CardActionArea>
       </Card>
     </>

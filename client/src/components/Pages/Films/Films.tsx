@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import {Grid} from '@mui/material';
 import axios from 'axios';
 
 import MyCard from '../../MyCard/MyCard';
@@ -37,27 +33,26 @@ function Films() {
     //     setImage(imageURL);
     // }, []);
 
+    filmData.sort((a,b) => a.episode_id - b.episode_id);
+
     if (filmData.length == 0) {
         return <div className='loading'>Loading Film Data...</div>;
     }
     const myProps: Props = { imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode1.jpg", name: "The Phantom Menace" };
     return (  
-        <>
-          {/* <div>
-            <img src={imageURL} alt="My Image" />
-          </div>
-          <div>
-          {filmData.map((item) => (
-              <div className='loading' key={item._id}>
-                <h2>{item.title}</h2>
-                <p>{item.opening_crawl}</p>
-              </div>
-          ))}
-          </div> */}
+        <div className='film-cards-grid'>
 
-          <MyCard {...myProps} /> 
-        </>
+          <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} justifyContent="center" alignItems="center">
+            {Array.from(filmData).map((filmItem, index) => (
+              <Grid item xs={2} sm={4} md={4} key={filmItem._id}>
+                <MyCard {...{imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + filmItem.episode_id + ".jpg", name: filmItem.title}} />
+              </Grid>
+            ))}
+          </Grid>   
+        </div>
     );
 }
 
 export default Films;
+
+// <MyCard {...{imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode1.jpg", name: "The Phantom Menace"}} />

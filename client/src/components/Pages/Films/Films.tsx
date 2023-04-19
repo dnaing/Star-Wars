@@ -33,7 +33,7 @@ function Films() {
           <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} justifyContent="center" alignItems="center">
             {Array.from(filmData).map((filmItem, index) => (
               <Grid item xs={2} sm={4} md={4} key={filmItem._id}>
-                <MyCard {...{imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + filmItem.episode_id + ".jpg", name: filmItem.title}} />
+                <MyCard {...{filmObject: filmItem, imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + filmItem.episode_id + ".jpg"}} />
               </Grid>
             ))}
           </Grid>   

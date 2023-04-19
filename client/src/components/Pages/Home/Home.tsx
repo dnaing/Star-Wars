@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 
 import '../../Navbar/Navbar.css';
 import './Home.css';
@@ -74,7 +75,7 @@ function Home() {
               <h1 className='heading'>STAR WARS COMPENDIUM</h1>
               <p>Here you can find all sorts of information about the first 6 Star Wars movies</p>
               {/* Button here */}
-              <Button onClick={scrollToContent}>GET STARTED</Button>
+              <Button variant="contained" onClick={scrollToContent}>GET STARTED</Button>
             </div>
           </div>
 
@@ -85,7 +86,7 @@ function Home() {
               <h1 className='heading'>FILMS</h1>
               <p>The first 6 Star Wars movies are legendary works of fiction</p>
               <p>Learn more about the Star Wars prequel and original trilogies</p>
-              <Button onClick={() => handleSubmit('films')}>EXPLORE</Button>
+              <Button variant="contained" onClick={() => handleSubmit('films')}>EXPLORE</Button>
             </div>
             
             
@@ -98,7 +99,7 @@ function Home() {
               <h1 className='heading'>PEOPLE</h1>
               <p>Star Wars is full of amazing characters that truly give it life</p>
               <p>Learn more about these various characters found throughout the galaxy </p>
-              <Button onClick={() => handleSubmit('people')}>EXPLORE</Button>
+              <Button variant="contained" onClick={() => handleSubmit('people')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -109,7 +110,7 @@ function Home() {
               <h1 className='heading'>SPECIES</h1>
               <p>Star Wars is filled with all kinds of species</p>
               <p>Learn more about the many diverse species found throughout the universe</p>
-              <Button onClick={() => handleSubmit('species')}>EXPLORE</Button>
+              <Button variant="contained" onClick={() => handleSubmit('species')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -120,7 +121,7 @@ function Home() {
               <h1 className='heading'>PLANETS</h1>
               <p>The Star Wars universe is massive and full of all kinds of planets</p>
               <p>Learn more about these many fascinating planets found throughout the galaxy</p>
-              <Button onClick={() => handleSubmit('planets')}>EXPLORE</Button>
+              <Button variant="contained" onClick={() => handleSubmit('planets')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -131,7 +132,7 @@ function Home() {
               <h1 className='heading'>STARSHIPS</h1>
               <p>Star ships are used to traverse the ever so massive Star Wars universe</p>
               <p>Learn more about these high-speed starships used to blitz across space</p>
-              <Button onClick={() => handleSubmit('starships')}>EXPLORE</Button>
+              <Button variant="contained" onClick={() => handleSubmit('starships')}>EXPLORE</Button>
             </div>
           </div>
 
@@ -142,7 +143,7 @@ function Home() {
               <h1 className='heading'>VEHICLES</h1>
               <p>There are many vehicles in the Star Wars universe that come in many shapes and forms</p>
               <p>Learn more about these spectacular vehicles used to travel and get around places</p>
-              <Button onClick={() => handleSubmit('vehicles')}>EXPLORE</Button>
+              <Button variant="contained" onClick={() => handleSubmit('vehicles')}>EXPLORE</Button>
             </div>
           </div>
              

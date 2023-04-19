@@ -19,24 +19,7 @@ function Films() {
 
     }, []);
 
-    useEffect(() => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            const classList = entry.target.classList;
-            console.log(entry);
-            console.log(classList);
-            if (entry.isIntersecting) { 
-                entry.target.classList.add('materialize');
-            } 
-            else {
-                entry.target.classList.remove('materialize');
-            }
-        });
-      });
     
-      const hiddenElements = document.querySelectorAll('.hidden-2');
-      hiddenElements.forEach((element) => observer.observe(element));
-    }, []);
 
     filmData.sort((a,b) => a.episode_id - b.episode_id);
 

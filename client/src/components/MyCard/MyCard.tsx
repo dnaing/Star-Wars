@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,7 +10,29 @@ interface Props {
     name: string;
 }
 
+
+
 function MyCard(props: Props) {
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+          const classList = entry.target.classList;
+          console.log(entry);
+          console.log(classList);
+          if (entry.isIntersecting) { 
+              entry.target.classList.add('materialize');
+          } 
+          else {
+              entry.target.classList.remove('materialize');
+          }
+      });
+    });
+  
+    const hiddenElements = document.querySelectorAll('.hidden-2');
+    hiddenElements.forEach((element) => observer.observe(element));
+  }, []);
+
   return (
     <>
       <div className='card-container hidden-2'>

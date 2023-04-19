@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './MyCard.css';
 
 
@@ -31,11 +31,11 @@ function MyCard(props: Props) {
 		hiddenElements.forEach((element) => observer.observe(element));
 	}, []);
 
-	const navigate = useNavigate();
-	function handleClick(filmObject: any) {
-		// console.log("Card clicked with name of " + filmObject.title);
-		navigate('/films/' + filmObject.episode_id.toString());
-	}
+	// const navigate = useNavigate();
+	// function handleClick(filmObject: any) {
+	// 	// console.log("Card clicked with name of " + filmObject.title);
+	// 	navigate(`/films/${filmObject.episode_id}`);
+	// }
 
 
 	function intToRomanNum(num: number) {
@@ -58,29 +58,31 @@ function MyCard(props: Props) {
 	return (
 		<>
 		<div className='card-container hidden-2'>
-			<Card onClick={() => handleClick(props.filmObject)} style={{ maxWidth: "70%", maxHeight: "100%", margin: "auto" }}>
-			
-			<CardActionArea>
-				<CardMedia
-				component="img"
-				image={props.imageURL}
-				style={{
-					maxWidth: "100%",
-					maxHeight: "100%",
-					width: "auto",
-					height: "auto",
-					objectFit: 'cover'
-				}}
-				alt={props.filmObject.title}
-				/>
-				<CardContent>
-					<div className='card-content'>
-					Episode {intToRomanNum(props.filmObject.episode_id)}: {props.filmObject.title}
-					</div>
-				</CardContent>
+			<Link to={`/films/${props.filmObject.episode_id}`} state={ { film: props.filmObject } }>
+        <Card style={{ maxWidth: "70%", maxHeight: "100%", margin: "auto" }}>
+        
+        <CardActionArea>
+          <CardMedia
+          component="img"
+          image={props.imageURL}
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            width: "auto",
+            height: "auto",
+            objectFit: 'cover'
+          }}
+          alt={props.filmObject.title}
+          />
+          <CardContent>
+            <div className='card-content'>
+            Episode {intToRomanNum(props.filmObject.episode_id)}: {props.filmObject.title}
+            </div>
+          </CardContent>
 
-			</CardActionArea>
-			</Card>
+        </CardActionArea>
+        </Card>
+      </Link>
 		</div>
 
 		</>

@@ -10,6 +10,8 @@ import Planets from './components/Pages/Planets';
 import Starships from './components/Pages/Starships';
 import Vehicles from './components/Pages/Vehicles';
 
+import SingleFilm from './components/Pages/SingleFilm/SingleFilm';
+
 
 import './App.css';
 
@@ -27,6 +29,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/films' element={<Films/>} />
+          <Route path='/films/:id' element={<SingleFilm/>} />
           <Route path='/people' element={<People/>} />
           <Route path='/species' element={<Species/>} />
           <Route path='/planets' element={<Planets/>} />

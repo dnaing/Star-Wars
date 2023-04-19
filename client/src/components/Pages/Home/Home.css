@@ -33,12 +33,6 @@ p {
     transition: all 0.8s;
 }
 
-/* .show {
-    opacity: 1;
-    filter: blur(0px);
-    animation: slide-in 1s ease-out;
-} */
-
 .slide-left {
     opacity: 1;
     filter: blur(0px);

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import {Grid} from '@mui/material';
 import axios from 'axios';
 
@@ -7,38 +6,44 @@ import MyCard from '../../MyCard/MyCard';
 
 import './Films.css';
 
-interface Props {
-    imageURL: string;
-    name: string;
-}
-
 function Films() {
 
     const [filmData, setFilmData] = useState<any[]>([]);
-    // const [image, setImage] = useState("");
-    // const location = useLocation();
     const hostName = 'http://localhost:4000';
-    const imageURL = "https://storage.cloud.google.com/starwars_films_imgs/episode1.jpg";
 
     useEffect(() => {
         // Retrieve data from backend API
         axios.get(hostName + '/films').then((res) => {
-            // console.log(res);
             setFilmData(res.data);
         });
 
     }, []);
 
-    // useEffect(() => {
-    //     setImage(imageURL);
-    // }, []);
+    useEffect(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const classList = entry.target.classList;
+            console.log(entry);
+            console.log(classList);
+            if (entry.isIntersecting) { 
+                entry.target.classList.add('materialize');
+            } 
+            else {
+                entry.target.classList.remove('materialize');
+            }
+        });
+      });
+    
+      const hiddenElements = document.querySelectorAll('.hidden-2');
+      hiddenElements.forEach((element) => observer.observe(element));
+    }, []);
 
     filmData.sort((a,b) => a.episode_id - b.episode_id);
 
-    if (filmData.length == 0) {
+    if (filmData.length === 0) {
         return <div className='loading'>Loading Film Data...</div>;
     }
-    const myProps: Props = { imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode1.jpg", name: "The Phantom Menace" };
+
     return (  
         <div className='film-cards-grid'>
 
@@ -54,5 +59,3 @@ function Films() {
 }
 
 export default Films;
-
-// <MyCard {...{imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode1.jpg", name: "The Phantom Menace"}} />

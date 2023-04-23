@@ -34,11 +34,11 @@ db.on('error', (error) => console.error(error));
 app.get('/films', async(req,res) => {
     try {
         const films = await Film.find();
-        // res.setHeader("Access-Control-Allow-Origin", "*")
-        // res.setHeader("Access-Control-Allow-Credentials", "true");
-        // res.setHeader("Access-Control-Max-Age", "1800");
-        // res.setHeader("Access-Control-Allow-Headers", "content-type");
-        // res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
         res.json(films);
     }
     catch(err) {

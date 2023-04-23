@@ -9,24 +9,34 @@ import './Films.css';
 
 function Films() {
 
-    const [filmData, setFilmData] = useState<any[]>([]);
-    const [sortOption, setSortOption] = useState('');
+    let [filmData, setFilmData] = useState<any[]>([]);
+    const [filmDataOrig, setFilmDataOrig] = useState<any[]>([]);
+    const [sortOption, setSortOption] = useState('release');
     const hostName = 'http://localhost:4000';
 
     useEffect(() => {
         // Retrieve data from backend API
         axios.get(hostName + '/films').then((res) => {
             setFilmData(res.data);
+            setFilmDataOrig(res.data);
         });
 
     }, []);
 
     function handleChange(event: SelectChangeEvent) {
-		setSortOption(event.target.value as string);
+        setSortOption(event.target.value as string);
 	}
+
+    useEffect(() => {
+        if (sortOption === "chronological") {
+            
+            const sortedData = [...filmDataOrig].sort((a, b) => a.episode_id - b.episode_id);
+            setFilmData(sortedData);
+        } else {
+            setFilmData(filmDataOrig);
+        }
+    }, [sortOption]);
 	
-	
-	filmData.sort((a,b) => a.episode_id - b.episode_id);
 	if (filmData.length === 0) {
         return <div className='loading'>Loading Film Data...</div>;
     }
@@ -46,8 +56,9 @@ function Films() {
               onChange={handleChange}
 			  style={{color: 'white', backgroundColor: 'gray'}}
             >
-              <MenuItem value={'chronological'}>Chronological Order</MenuItem>
               <MenuItem value={'release'}>Release Order</MenuItem>
+              <MenuItem value={'chronological'}>Chronological Order</MenuItem>
+              
             </Select>
           </FormControl>
         </div>

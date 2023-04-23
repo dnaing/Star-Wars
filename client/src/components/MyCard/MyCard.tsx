@@ -59,7 +59,7 @@ function MyCard(props: Props) {
 		<>
 		<div className='card-container hidden-2'>
 			<Link to={`/films/${props.filmObject.episode_id}`} state={ { film: props.filmObject } }>
-        <Card style={{ maxWidth: "70%", maxHeight: "100%", margin: "auto" }}>
+        <Card style={{ maxWidth: "60%", maxHeight: "100%", margin: "auto" }}>
         
         <CardActionArea>
           <CardMedia

@@ -9,27 +9,29 @@ import './Films.css';
 
 function Films() {
 
-    let [filmData, setFilmData] = useState<any[]>([]);
-    const [filmDataOrig, setFilmDataOrig] = useState<any[]>([]);
-    const [sortOption, setSortOption] = useState('release');
-    const hostName = 'http://localhost:4000';
-
-    useEffect(() => {
-        // Retrieve data from backend API
-        axios.get(hostName + '/films').then((res) => {
-            setFilmData(res.data);
-            setFilmDataOrig(res.data);
-        });
-
-    }, []);
-
     function handleChange(event: SelectChangeEvent) {
         setSortOption(event.target.value as string);
 	}
 
+    let [filmData, setFilmData] = useState<any[]>([]);
+    const [filmDataOrig, setFilmDataOrig] = useState<any[]>([]);
+    const [sortOption, setSortOption] = useState('chronological');
+    const hostName = 'http://localhost:4000';
+
+    
+    useEffect(() => {
+        // Retrieve data from backend API
+        axios.get(hostName + '/films').then((res) => {
+            setFilmDataOrig(res.data);
+            setFilmData(res.data.slice().sort((a: any, b: any) => a.episode_id - b.episode_id));
+        });
+
+    }, []);
+
+    
+
     useEffect(() => {
         if (sortOption === "chronological") {
-            
             const sortedData = [...filmDataOrig].sort((a, b) => a.episode_id - b.episode_id);
             setFilmData(sortedData);
         } else {
@@ -56,9 +58,8 @@ function Films() {
               onChange={handleChange}
 			  style={{color: 'white', backgroundColor: 'gray'}}
             >
-              <MenuItem value={'release'}>Release Order</MenuItem>
               <MenuItem value={'chronological'}>Chronological Order</MenuItem>
-              
+              <MenuItem value={'release'}>Release Order</MenuItem>
             </Select>
           </FormControl>
         </div>

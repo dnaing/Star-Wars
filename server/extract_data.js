@@ -16,26 +16,31 @@ async function fetchData(url, dataType) {
         const data = await response.json();
         switch (dataType) {
             case "films":
-                insertFilms(data);
+                await insertFilms(data);
                 break;
             case "people":
-                insertPeople(data);
+                await insertPeople(data);
                 break;
             case "species":
-                insertSpecies(data);
+                await insertSpecies(data);
                 break;
             case "planets":
-                insertPlanets(data);
+                await insertPlanets(data);
                 break;
             case "starships":
-                insertStarships(data);
+                await insertStarships(data);
+                break;
             case "vehicles":
-                insertVehicles(data);
+                await insertVehicles(data);
+                break;
         }
 
         if (data["next"]) {
-            console.log("Found next page");
-            fetchData(data["next"], dataType);
+            // console.log("Found next page");
+            await fetchData(data["next"], dataType);
+        }
+        else {
+            return Promise.resolve();
         }
     } catch (error) {
         console.error(error);
@@ -89,13 +94,14 @@ async function fetchAllData(array, isMovie) {
 // Inserts all data about films into the database
 async function insertFilms(data) {
     var filmData = data["results"];
+    var promises = [];
+   
     for (let i = 0; i < filmData.length; i++) {
         let characterNames = await(fetchAllData(filmData[i]["characters"], false));
         let speciesNames = await(fetchAllData(filmData[i]["species"], false));
         let planetNames = await(fetchAllData(filmData[i]["planets"], false));
         let starshipNames = await(fetchAllData(filmData[i]["starships"], false));
         let vehicleNames = await(fetchAllData(filmData[i]["vehicles"], false));
-
         let film = new Film({
             title: filmData[i]["title"],
             episode_id: filmData[i]["episode_id"],
@@ -110,19 +116,19 @@ async function insertFilms(data) {
             vehicles: vehicleNames
         });
 
-        film.save()
-            .then((result) => {
-                console.log("Film " + filmData[i]["title"] + " was saved to the database");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        promises.push(film.save().then((result) => {
+            console.log("Film " + filmData[i]["title"] + " was saved to the database");
+        }));
     }
+
+    return Promise.all(promises);
 }
 
 // Inserts all data about people into the database
 async function insertPeople(data) {
     var characterData = data["results"];
+    var promises = [];
+
     for (let i = 0; i < characterData.length; i++) {
         let homeworldName = await(fetchSingleData(characterData[i]["homeworld"], false));
         let filmNames = await(fetchAllData(characterData[i]["films"], true));
@@ -146,18 +152,18 @@ async function insertPeople(data) {
             vehicles: vehicleNames
         });
 
-        character.save()
-            .then((result) => {
-                console.log("Character " + characterData[i]["name"] + " was saved to the database");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        promises.push(character.save().then((result) => {
+            console.log("Character " + characterData[i]["name"] + " was saved to the database");
+        }));
     }
+
+    return Promise.all(promises);
 }
 
 async function insertSpecies(data) {
     var speciesData = data["results"];
+    var promises = [];
+
     for (let i = 0; i < speciesData.length; i++) {
         let homeworldName = await(fetchSingleData(speciesData[i]["homeworld"], false));
         let filmNames = await(fetchAllData(speciesData[i]["films"], true));
@@ -178,18 +184,18 @@ async function insertSpecies(data) {
             people: peopleNames
         });
 
-        species.save()
-            .then((result) => {
-                console.log("Species " + speciesData[i]["name"] + " was saved to the database");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        promises.push(species.save().then((result) => {
+            console.log("Species " + speciesData[i]["name"] + " was saved to the database");
+        }));
     }
+
+    return Promise.all(promises);
 }
 
 async function insertPlanets(data) {
     var planetData = data["results"];
+    var promises = [];
+
     for (let i = 0; i < planetData.length; i++) {
         let filmNames = await(fetchAllData(planetData[i]["films"], true));
         let residentNames = await(fetchAllData(planetData[i]["residents"], false));
@@ -208,18 +214,18 @@ async function insertPlanets(data) {
             residents: residentNames
         });
 
-        planet.save()
-            .then((result) => {
-                console.log("Planet " + planetData[i]["name"] + " was saved to the database");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        promises.push(planet.save().then((result) => {
+            console.log("Planet " + planetData[i]["name"] + " was saved to the database");
+        }));
     }
+
+    return Promise.all(promises);
 }
 
 async function insertStarships(data) {
     var starshipData = data["results"];
+    var promises = [];
+
     for (let i = 0; i < starshipData.length; i++) {
         let filmNames = await(fetchAllData(starshipData[i]["films"], true));
         let pilotNames = await(fetchAllData(starshipData[i]["pilots"], false));
@@ -242,18 +248,18 @@ async function insertStarships(data) {
             pilots: pilotNames
         });
 
-        starship.save()
-            .then((result) => {
-                console.log("Starship " + starshipData[i]["name"] + " was saved to the database");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        promises.push(starship.save().then((result) => {
+            console.log("Starship " + starshipData[i]["name"] + " was saved to the database");
+        }));
     }
+
+    return Promise.all(promises);
 }
 
 async function insertVehicles(data) {
     var vehicleData = data["results"];
+    var promises = [];
+
     for (let i = 0; i < vehicleData.length; i++) {
         let filmNames = await(fetchAllData(vehicleData[i]["films"], true));
         let pilotNames = await(fetchAllData(vehicleData[i]["pilots"], false));
@@ -274,14 +280,12 @@ async function insertVehicles(data) {
             pilots: pilotNames
         });
 
-        vehicle.save()
-            .then((result) => {
-                console.log("Vehicle " + vehicleData[i]["name"] + " was saved to the database");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        promises.push(vehicle.save().then((result) => {
+            console.log("Vehicle " + vehicleData[i]["name"] + " was saved to the database");
+        }));
     }
+
+    return Promise.all(promises);
 }
 
 async function runDataExtraction() {
@@ -303,150 +307,185 @@ async function runDataExtraction() {
 
     db.once('open', async () => {
 
-        op1 = Film.countDocuments()
-            .then((count) => {
-                if (count == 0) {
-                    console.log("ADDING FILM DATA TO MONGODB");
-                    fetchData(baseURL + "films/", "films");
-                }
-                else {
-                    console.log("FILM DATA ALREADY COLLECTED");
-                }
-            })
-            .catch((error) => console.log(error));
+        // op1 = Film.countDocuments()
+        //     .then(async (count) => {
+        //         if (count == 0) {
+        //             console.log("ADDING FILM DATA");
+        //             await fetchData(baseURL + "films/", "films")
+        //             console.log("Film data added successfully");
+
+                    
+        //         }
+        //         else {
+        //             console.log("FILM DATA ALREADY COLLECTED");
+                    
+        //         }
+        //         return Promise.resolve();
+        //     })
+        //     .catch((error) => console.log(error));
 
         op2 = Character.countDocuments()
-            .then((count) => {
+            .then(async (count) => {
                 if (count == 0) {
                     console.log("ADDING PEOPLE DATA");
-                    fetchData(baseURL + "people/", "people");
+                    await fetchData(baseURL + "people/", "people")
+                    console.log("People data added successfully")
+                    
+
                 }
                 else {
                     console.log("CHARACTER DATA ALREADY COLLECTED");
                 }
+                
             })
             .catch((error) => console.log(error));  
         
         op3 = Species.countDocuments()
-            .then((count) => {
+            .then(async (count) => {
                 if (count == 0) {
                     console.log("ADDING SPECIES DATA");
-                    fetchData(baseURL + "species/", "species");
+                    await fetchData(baseURL + "species/", "species");
+                    console.log("Species data added successfully");
                 }
                 else {
                     console.log("SPECIES DATA ALREADY COLLECTED");
                 }
+                return Promise.resolve();
             })
             .catch((error) => console.log(error)); 
 
-        op4 = Planet.countDocuments()
-            .then((count) => {
-                if (count == 0) {
-                    console.log("ADDING PLANET DATA");
-                    fetchData(baseURL + "planets/", "planets");
-                }
-                else {
-                    console.log("PLANET DATA ALREADY COLLECTED");
-                }
-            })
-            .catch((error) => console.log(error)); 
+        // op4 = Planet.countDocuments()
+        //     .then(async (count) => {
+        //         if (count == 0) {
+        //             console.log("ADDING PLANET DATA");
+        //             await fetchData(baseURL + "planets/", "planets");
+        //             console.log("Planet data added successfully");
+        //         }
+        //         else {
+        //             console.log("PLANET DATA ALREADY COLLECTED");
+        //         }
+        //         return Promise.resolve();
+        //     })
+        //     .catch((error) => console.log(error)); 
 
-        op5 = Starship.countDocuments()
+        // op5 = Starship.countDocuments()
+        //     .then(async (count) => {
+        //         if (count == 0) {
+        //             console.log("ADDING STARSHIP DATA");
+        //             await fetchData(baseURL + "starships/", "starships");
+        //             console.log("Starship data added successfully");
+        //         }
+        //         else {
+        //             console.log("STARSHIP DATA ALREADY COLLECTED");
+        //         }
+        //         return Promise.resolve();
+        //     })
+        //     .catch((error) => console.log(error)); 
+        
+        // op6 = Vehicle.countDocuments()
+        //     .then(async (count) => {
+        //         if (count == 0) {
+        //             console.log("ADDING VEHICLE DATA");
+        //             await fetchData(baseURL + "vehicles/", "vehicles");
+        //             console.log("Vehicle data added successfully");
+        //         }
+        //         else {
+        //             console.log("VEHICLE DATA ALREADY COLLECTED");
+        //         }
+        //         return Promise.resolve();
+        //     })
+        //     .catch((error) => console.log(error)); 
+        
+        
+
+
+        return Promise.all([op2, op3])
+        .then(() => {
+            console.log("PROMISES ALL RESOLVED");
+
+            op7 = Character.find({ species: [] }).countDocuments()
             .then((count) => {
-                if (count == 0) {
-                    console.log("ADDING STARSHIP DATA");
-                    fetchData(baseURL + "starships/", "starships");
-                }
-                else {
-                    console.log("STARSHIP DATA ALREADY COLLECTED");
-                }
-            })
-            .catch((error) => console.log(error)); 
+                if (count != 0) {
+                    console.log("There are " + count + " missing species fields for the characters");
+                    // We must fix the droid, "R4-P17"
+                    const o1 = Character.updateOne({ name: "R4-P17" }, { $set: { species: ["Droid"] } })
+                        .then(res => {
+                            console.log("R4-P17 fixed");
+                        })
+                    const o2 = Species.updateOne({ name: "Droid" }, { $push: { people: 'R4-P17' } })
+                        .then(res => {
+                            console.log("R4-P17 added to Droid species");
+                        });
         
-        op6 = Vehicle.countDocuments()
-            .then((count) => {
-                if (count == 0) {
-                    console.log("ADDING VEHICLE DATA");
-                    fetchData(baseURL + "vehicles/", "vehicles");
-                }
-                else {
-                    console.log("VEHICLE DATA ALREADY COLLECTED");
-                }
-            })
-            .catch((error) => console.log(error)); 
+                    // Now we have to fix "Sly Moore"
+                    const o3 = Character.updateOne({ name: "Sly Moore" }, { $set: { species: ["Umbaran"] } })
+                        .then(res => {
+                            console.log("Sly Moore fixed");
+                        })
         
-        
-        op7 = Character.find({ species: [] }).countDocuments()
-        .then((count) => {
-            if (count != 0) {
-                console.log("There are " + count + " missing species fields for the characters");
-                // We must fix the droid, "R4-P17"
-                Character.updateOne( { name: "R4-P17" }, { $set: {species: ["Droid"]} } )
-                    .then(res => {
-                        console.log("R4-P17 fixed");
-                    })
-                Species.updateOne( { name: "Droid"}, { $push: {people: 'R4-P17'} } )
-                    .then(res => {
-                        console.log("R4-P17 added to Droid species");
+                    const umbaran = new Species({
+                        name: "Umbaran",
+                        classification: "near-human",
+                        designation: "sentient",
+                        average_height: "unknown",
+                        hair_colors: "black, silver, white",
+                        skin_colors: "pale, bluish",
+                        eye_colors: "gray, pale blue, white",
+                        average_lifespan: "unknown",
+                        language: "Umbarese",
+                        homeworld: "Umbara",
+                        films: ["Attack of the Clones", "Revenge of the Sith"],
+                        people: ["Sly Moore"]
                     });
+        
+                    const o4 = umbaran.save()
+                        .then((result) => {
+                            console.log("Species " + "Umbaran" + " was saved to the database");
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+        
+                    // Now we have to fix all humans
+                    const o5 = Character.find({ species: [] }).select("name")
+                        .then(res => {
+                            const humanNames = res.map(result => result.name);
+                            const o6 = Character.updateMany({ species: [] }, { $set: { species: ["Human"] } })
+                                .then(res => {
+                                    console.log("Human species added to all humans");
+                                })
+                            const o7 = Species.updateOne({ name: "Human" }, { $push: { people: { $each: humanNames } } })
+                                .then(res => {
+                                    console.log("All human names added into human species");
+                                });
+                            return Promise.all([o6, o7]);
+                        })
+        
+                    return Promise.all([o1, o2, o3, o4, o5])
+                        .then(() => {
+                            console.log("DATABASE UPDATED BY FILLING MISSING FIELDS");
+                            return Promise.resolve();
+                        });
+                } else {
+                    console.log("DATABASE ALREADY UPDATED (THERE ARE NO MISSING FIELDS)");
+                    return Promise.resolve();
+                }
+            })
+            .catch((error) => console.log(error));
 
-                // Now we have to fix "Sly Moore"
-                Character.updateOne( { name: "Sly Moore" }, { $set: {species: ["Umbaran"]} } )
-                    .then(res => {
-                        console.log("Sly Moore fixed");
-                    })
-                
-                const umbaran = new Species({
-                    name: "Umbaran",
-                    classification: "near-human",
-                    designation: "sentient",
-                    average_height: "unknown",
-                    hair_colors: "black, silver, white",
-                    skin_colors: "pale, bluish",
-                    eye_colors: "gray, pale blue, white",
-                    average_lifespan: "unknown",
-                    language: "Umbarese",
-                    homeworld: "Umbara",
-                    films: ["Attack of the Clones", "Revenge of the Sith"],
-                    people: ["Sly Moore"]
-                });
-
-                umbaran.save()
-                .then((result) => {
-                    console.log("Species " + "Umbaran" + " was saved to the database");
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-
-                // Now we have to fix all humans
-                Character.find( { species: [] }).select( "name" )
-                    .then(res => {
-                        const humanNames = res.map(result => result.name);
-                        Character.updateMany( { species: [] }, { $set: {species: ["Human"]} } )
-                            .then(res => {
-                                console.log("Human species added to all humans");
-                            })
-                        Species.updateOne( { name: "Human" }, { $push: {people: { $each: humanNames} } } )
-                            .then(res => {
-                                console.log("All human names added into human species");
-                            });
-                    })
-
-            }
-            else {
-                console.log("DATABASE ALREADY UPDATED");
-            }
-        })
-
-        return Promise.all([op1,op2,op3,op4,op5,op6,op7]).then(() => {
-            console.log("======================================");
-            console.log("Data Collection Completed");
-            console.log("Shutting down connection to database");
-            db.close();
             
-            return Promise.resolve(1);
+            op7.then(() => {
+                console.log("======================================");
+                console.log("Data Collection Completed");
+                console.log("Shutting down connection to database");
+                db.close();
+                return Promise.resolve(1);
+            })
+            
         })
+        .catch((error) => {
+            console.error('One or more promises were rejected or threw an error:', error);
+        });
         
     });
 }

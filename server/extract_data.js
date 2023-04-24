@@ -307,22 +307,22 @@ async function runDataExtraction() {
 
     db.once('open', async () => {
 
-        // op1 = Film.countDocuments()
-        //     .then(async (count) => {
-        //         if (count == 0) {
-        //             console.log("ADDING FILM DATA");
-        //             await fetchData(baseURL + "films/", "films")
-        //             console.log("Film data added successfully");
+        op1 = Film.countDocuments()
+            .then(async (count) => {
+                if (count == 0) {
+                    console.log("ADDING FILM DATA");
+                    await fetchData(baseURL + "films/", "films")
+                    console.log("Film data added successfully");
 
                     
-        //         }
-        //         else {
-        //             console.log("FILM DATA ALREADY COLLECTED");
+                }
+                else {
+                    console.log("FILM DATA ALREADY COLLECTED");
                     
-        //         }
-        //         return Promise.resolve();
-        //     })
-        //     .catch((error) => console.log(error));
+                }
+                return Promise.resolve();
+            })
+            .catch((error) => console.log(error));
 
         op2 = Character.countDocuments()
             .then(async (count) => {
@@ -354,52 +354,52 @@ async function runDataExtraction() {
             })
             .catch((error) => console.log(error)); 
 
-        // op4 = Planet.countDocuments()
-        //     .then(async (count) => {
-        //         if (count == 0) {
-        //             console.log("ADDING PLANET DATA");
-        //             await fetchData(baseURL + "planets/", "planets");
-        //             console.log("Planet data added successfully");
-        //         }
-        //         else {
-        //             console.log("PLANET DATA ALREADY COLLECTED");
-        //         }
-        //         return Promise.resolve();
-        //     })
-        //     .catch((error) => console.log(error)); 
+        op4 = Planet.countDocuments()
+            .then(async (count) => {
+                if (count == 0) {
+                    console.log("ADDING PLANET DATA");
+                    await fetchData(baseURL + "planets/", "planets");
+                    console.log("Planet data added successfully");
+                }
+                else {
+                    console.log("PLANET DATA ALREADY COLLECTED");
+                }
+                return Promise.resolve();
+            })
+            .catch((error) => console.log(error)); 
 
-        // op5 = Starship.countDocuments()
-        //     .then(async (count) => {
-        //         if (count == 0) {
-        //             console.log("ADDING STARSHIP DATA");
-        //             await fetchData(baseURL + "starships/", "starships");
-        //             console.log("Starship data added successfully");
-        //         }
-        //         else {
-        //             console.log("STARSHIP DATA ALREADY COLLECTED");
-        //         }
-        //         return Promise.resolve();
-        //     })
-        //     .catch((error) => console.log(error)); 
+        op5 = Starship.countDocuments()
+            .then(async (count) => {
+                if (count == 0) {
+                    console.log("ADDING STARSHIP DATA");
+                    await fetchData(baseURL + "starships/", "starships");
+                    console.log("Starship data added successfully");
+                }
+                else {
+                    console.log("STARSHIP DATA ALREADY COLLECTED");
+                }
+                return Promise.resolve();
+            })
+            .catch((error) => console.log(error)); 
         
-        // op6 = Vehicle.countDocuments()
-        //     .then(async (count) => {
-        //         if (count == 0) {
-        //             console.log("ADDING VEHICLE DATA");
-        //             await fetchData(baseURL + "vehicles/", "vehicles");
-        //             console.log("Vehicle data added successfully");
-        //         }
-        //         else {
-        //             console.log("VEHICLE DATA ALREADY COLLECTED");
-        //         }
-        //         return Promise.resolve();
-        //     })
-        //     .catch((error) => console.log(error)); 
+        op6 = Vehicle.countDocuments()
+            .then(async (count) => {
+                if (count == 0) {
+                    console.log("ADDING VEHICLE DATA");
+                    await fetchData(baseURL + "vehicles/", "vehicles");
+                    console.log("Vehicle data added successfully");
+                }
+                else {
+                    console.log("VEHICLE DATA ALREADY COLLECTED");
+                }
+                return Promise.resolve();
+            })
+            .catch((error) => console.log(error)); 
         
         
 
 
-        return Promise.all([op2, op3])
+        return Promise.all([op1, op2, op3, op4, op5, op6])
         .then(() => {
             console.log("PROMISES ALL RESOLVED");
 
@@ -473,7 +473,7 @@ async function runDataExtraction() {
             })
             .catch((error) => console.log(error));
 
-            
+
             op7.then(() => {
                 console.log("======================================");
                 console.log("Data Collection Completed");

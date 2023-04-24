@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import './People.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import PeopleCard from '../../PeopleCard/PeopleCard';
+import GeneralCard from '../../GeneralCard/GeneralCard';
 
 
 function People() {
@@ -16,7 +16,7 @@ function People() {
       // Retrieve data from backend API
       axios.get(hostName + '/people').then((res) => {
           setPeopleData(res.data)
-          console.log(peopleData);
+         
       });
 
     }, []);
@@ -28,10 +28,10 @@ function People() {
     return (  
           <div>
             <div className='people-cards-grid'>
-              <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} justifyContent="center" alignItems="center">
+              <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} >
                   {Array.from(peopleData).map((peopleItem, index) => (
                   <Grid item xs={2} sm={4} md={4} key={peopleItem._id}>
-                      <PeopleCard {...{object: peopleItem, imageURL: "https://storage.cloud.google.com/starwars_people_imgs/luke" + "" + ".jpg"}} />
+                      <GeneralCard {...{object: peopleItem, imageURL: "https://storage.cloud.google.com/starwars_people_imgs/luke" + "" + ".jpg", type:"people"}} />
                   </Grid>
               ))}
               </Grid>   

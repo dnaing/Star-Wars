@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './PeopleCard.css';
+import './GeneralCard.css';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import { CardActionArea, CardContent, CardMedia } from '@mui/material';
@@ -7,10 +7,11 @@ import { CardActionArea, CardContent, CardMedia } from '@mui/material';
 interface Props {
     object: any;
     imageURL: string;
+    type: string;
 }
 
 
-function PeopleCard(props: Props) {
+function GeneralCard(props: Props) {
 
   useEffect(() => {
 		const observer = new IntersectionObserver((entries) => {
@@ -34,7 +35,7 @@ function PeopleCard(props: Props) {
   return (
 		<>
       <div className='card-container hidden-2'>
-        <Link to={`/people/${props.object.name}`} state={ { film: props.object, imageURL: props.imageURL } }>
+        <Link to={`/${props.type}/${props.object.name}`} state={ { film: props.object, imageURL: props.imageURL } }>
           <Card style={{ maxWidth: "60%", maxHeight: "100%", margin: "auto" }}>
           
           <CardActionArea>
@@ -65,4 +66,4 @@ function PeopleCard(props: Props) {
   )
 }
 
-export default PeopleCard
+export default GeneralCard

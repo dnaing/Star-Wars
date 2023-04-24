@@ -1,0 +1,9 @@
+.loading {
+    color: white;
+}
+
+.species-cards-grid {
+    padding-top: 5%;
+    padding-bottom: 3.5%;
+    overflow: hidden;
+}

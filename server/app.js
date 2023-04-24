@@ -47,6 +47,22 @@ app.get('/films', async(req,res) => {
     }
 })
 
+app.get('/people', async(req,res) => {
+    try {
+        const people = await Character.find();
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        res.json(people);
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 
 
 

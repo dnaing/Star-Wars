@@ -1,0 +1,35 @@
+@keyframes appear {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-5%);
+    }
+}
+
+.card-content {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.card-container {
+    transform: translateY(-5%);
+    transition: transform .25s;
+  }
+  
+.card-container:hover {
+    transform: scale(1.08) translateY(-5%);
+}
+
+.hidden-2 {
+    opacity: 0;
+    transition: all 0.4s;
+    filter: blur(2px);
+}
+
+.materialize {
+    filter: blur(0px);
+    opacity: 1;
+    animation: appear 1s ease-in-out;
+}

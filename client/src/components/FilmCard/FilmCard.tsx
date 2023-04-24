@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import './MyCard.css';
+import './FilmCard.css';
 
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
     imageURL: string
 };
 
-function MyCard(props: Props) {
+function FilmCard(props: Props) {
 
 	useEffect(() => {
 		const observer = new IntersectionObserver((entries) => {
@@ -58,7 +58,7 @@ function MyCard(props: Props) {
 	return (
 		<>
 		<div className='card-container hidden-2'>
-			<Link to={`/films/${props.filmObject.episode_id}`} state={ { film: props.filmObject } }>
+			<Link to={`/films/${props.filmObject.episode_id}`} state={ { film: props.filmObject, imageURL: props.imageURL } }>
         <Card style={{ maxWidth: "60%", maxHeight: "100%", margin: "auto" }}>
         
         <CardActionArea>
@@ -89,4 +89,4 @@ function MyCard(props: Props) {
 	)
 }
 
-export default MyCard
+export default FilmCard

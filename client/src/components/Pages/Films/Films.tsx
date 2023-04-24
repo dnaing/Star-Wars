@@ -3,7 +3,7 @@ import {FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent} from
 import axios from 'axios';
 import Button from '@mui/material/Button';
 
-import MyCard from '../../MyCard/MyCard';
+import FilmCard from '../../FilmCard/FilmCard';
 
 import './Films.css';
 
@@ -41,7 +41,7 @@ function Films() {
 	
 	if (filmData.length === 0) {
         return <div className='loading'>Loading Film Data...</div>;
-    }
+  }
 
     return (  
 
@@ -68,7 +68,7 @@ function Films() {
           <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} justifyContent="center" alignItems="center">
             {Array.from(filmData).map((filmItem, index) => (
               <Grid item xs={2} sm={4} md={4} key={filmItem._id}>
-                <MyCard {...{filmObject: filmItem, imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + filmItem.episode_id + ".jpg"}} />
+                <FilmCard {...{filmObject: filmItem, imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + filmItem.episode_id + ".jpg"}} />
               </Grid>
             ))}
           </Grid>   

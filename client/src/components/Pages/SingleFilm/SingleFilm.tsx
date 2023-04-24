@@ -3,11 +3,15 @@ import { useLocation } from 'react-router-dom';
 
 import "./SingleFilm.css";
 
+
+
 function SingleFilm() {
 
   const location = useLocation();
-  const { film } = location.state;
+  const { film, imageURL } = location.state;
 
+
+  
   if (film == null) {
     return (
       <div>
@@ -17,8 +21,12 @@ function SingleFilm() {
   }
 
   return (
-    <div style={{color: "white"}}>
-      {film.title}
+    <div>
+      
+      <div className="screen">
+        {film.title}
+      </div>
+
     </div>
   )
 }

@@ -1,0 +1,9 @@
+.loading {
+    color: white;
+}
+
+.starship-cards-grid {
+    padding-top: 5%;
+    padding-bottom: 3.5%;
+    overflow: hidden;
+}

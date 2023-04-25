@@ -11,7 +11,7 @@ function Films() {
 
     function handleChange(event: SelectChangeEvent) {
         setSortOption(event.target.value as string);
-	}
+	  }
 
     let [filmData, setFilmData] = useState<any[]>([]);
     const [filmDataOrig, setFilmDataOrig] = useState<any[]>([]);
@@ -27,8 +27,6 @@ function Films() {
         });
 
     }, []);
-
-    
 
     useEffect(() => {
         if (sortOption === "chronological") {

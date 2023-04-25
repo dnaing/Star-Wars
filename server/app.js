@@ -33,6 +33,7 @@ db.on('error', (error) => console.error(error));
 // Define routes
 app.get('/films', async(req,res) => {
     try {
+        console.log(req.query);
         const films = await Film.find();
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -48,6 +49,8 @@ app.get('/films', async(req,res) => {
 })
 
 app.get('/people', async(req,res) => {
+
+    console.log(req.query.sortType);
     try {
         const people = await Character.find();
         res.setHeader("Access-Control-Allow-Origin", "*")

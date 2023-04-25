@@ -7,3 +7,10 @@
     padding-bottom: 3.5%;
     overflow: hidden;
 }
+
+.sort-options {
+    padding-top: 2%;
+    width: 25%;
+    position: relative;
+    left: 37.5%;
+}

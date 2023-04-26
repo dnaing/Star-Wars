@@ -1,0 +1,15 @@
+#footer {
+    background-color: rgb(0, 0, 0);
+}
+
+#footer > #footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer-container > p {
+    padding-top: 12px;
+    font-size: 0.8rem;
+    color: whitesmoke;
+}

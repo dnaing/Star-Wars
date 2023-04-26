@@ -17,6 +17,8 @@ import SinglePlanet from './components/Pages/SinglePlanet/SinglePlanet';
 import SingleStarship from './components/Pages/SingleStarship/SingleStarship';
 import SingleVehicle from './components/Pages/SingleVehicle/SingleVehicle';
 
+import MyFooter from './components/MyFooter/MyFooter';
+
 import './App.css';
 
 
@@ -46,6 +48,7 @@ function App() {
           <Route path='/vehicles/:id' element={<SingleVehicle/>} />
         </Routes>
       </Router>
+      <MyFooter/>
     </div> 
     
   );

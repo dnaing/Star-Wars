@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 
 import '../../Navbar/Navbar.css';
 import './Home.css';
+import '../../../stylesheets/root.css';
 
 import welcomeImage from '../../../assets/images/starwars.jpg';
 import filmsImage from '../../../assets/images/films.jpg';
@@ -14,6 +15,8 @@ import planetsImage from '../../../assets/images/planets.jpg';
 import starshipsImage from '../../../assets/images/starships.jpg';
 import vehiclesImage from '../../../assets/images/vehicles.jpg';
 import { useNavigate } from 'react-router-dom';
+import { IconButton } from '@mui/material';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
 function Home() {
 
@@ -29,6 +32,10 @@ function Home() {
     if (filmsHero) {
       filmsHero.scrollIntoView({behavior: 'smooth'});
     }
+  }
+
+  function scrollToTop() {
+    window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
   }
 
   useEffect(() => {
@@ -64,7 +71,7 @@ function Home() {
       
       {/* Div to hold the entire body */}
       <div className = 'body'>
-
+        
         {/* Container for all hero containers */}
         <div className='heros-container'> 
 
@@ -148,7 +155,10 @@ function Home() {
           </div>
              
         </div>
-
+      
+        <IconButton id='to-top-button' onClick={scrollToTop}>
+              <ExpandLessRoundedIcon/>
+        </IconButton>
       </div>
      
     </>

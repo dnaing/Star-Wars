@@ -1,11 +1,17 @@
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
 import './Vehicles.css';
+import '../../../stylesheets/root.css';
 
 function Vehicles() {
+
+    function scrollToTop() {
+      window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
+    }
 
     let [vehicleData, setVehicleData] = useState<any[]>([]);
     // const [peopleDataOrig, setFilmDataOrig] = useState<any[]>([]);
@@ -38,6 +44,11 @@ function Vehicles() {
           ))}
           </Grid>   
         </div>
+
+
+        <IconButton id='to-top-button' onClick={scrollToTop}>
+              <ExpandLessRoundedIcon/>
+        </IconButton>
       </div>        
   );
 }

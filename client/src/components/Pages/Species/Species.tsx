@@ -1,12 +1,18 @@
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+
 
 import './Species.css';
+import '../../../stylesheets/root.css';
 
 function Species() {
 
+    function scrollToTop() {
+      window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
+    }
 
     let [speciesData, setSpeciesData] = useState<any[]>([]);
     // const [peopleDataOrig, setFilmDataOrig] = useState<any[]>([]);
@@ -38,6 +44,11 @@ function Species() {
             ))}
             </Grid>   
           </div>
+
+
+          <IconButton id='to-top-button' onClick={scrollToTop}>
+              <ExpandLessRoundedIcon/>
+          </IconButton>
         </div>        
     );
 }

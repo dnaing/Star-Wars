@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import {FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
 
 import './People.css';
+import '../../../stylesheets/root.css';
 
 
 function People() {
@@ -22,6 +24,10 @@ function People() {
 
     function handleOrdering(event: SelectChangeEvent) {
         setSortOrdering(event.target.value as string);
+    }
+
+    function scrollToTop() {
+        window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
     }
 
     // useEffect(() => {
@@ -79,6 +85,7 @@ function People() {
     return (  
 
           <div>
+
             <div className='sort-options-container'>
               <div className='sort-options-1'>
                       <FormControl fullWidth variant="filled">
@@ -116,8 +123,6 @@ function People() {
               </div>
             </div>
 
-
-
             <div className='people-cards-grid'>
               <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} >
                   {Array.from(peopleData).map((peopleItem, index) => (
@@ -127,6 +132,12 @@ function People() {
               ))}
               </Grid>   
             </div>
+
+
+            <IconButton id='to-top-button' onClick={scrollToTop}>
+              <ExpandLessRoundedIcon/>
+            </IconButton>
+            
           </div>
     );
 }

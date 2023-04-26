@@ -11,13 +11,9 @@
 
 .sort-options-container {
     padding-top: 2%;
-    /* position: relative;
-    left: 30%; */
     display: flex;
     justify-content: center;
     flex-direction: row;
-    /* align-items: center; */
-    /* width: 100%; */
 }
 
 .sort-options-1 {
@@ -29,3 +25,5 @@
     width: 10%;
     padding-left: 0.5%;
 }
+
+

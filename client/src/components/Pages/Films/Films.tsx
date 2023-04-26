@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import {FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 
 import FilmCard from '../../FilmCard/FilmCard';
 
 import './Films.css';
+import '../../../stylesheets/root.css';
 
 function Films() {
 
     function handleChange(event: SelectChangeEvent) {
         setSortOption(event.target.value as string);
 	  }
+
+    function scrollToTop() {
+      window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
+    }
 
     let [filmData, setFilmData] = useState<any[]>([]);
     const [filmDataOrig, setFilmDataOrig] = useState<any[]>([]);
@@ -54,7 +60,7 @@ function Films() {
               value={sortOption}
               label="Sort By:"
               onChange={handleChange}
-			  style={{color: 'white', backgroundColor: 'gray'}}
+			        style={{color: 'white', backgroundColor: 'gray'}}
             >
               <MenuItem value={'chronological'}>Chronological Order</MenuItem>
               <MenuItem value={'release'}>Release Order</MenuItem>
@@ -71,6 +77,13 @@ function Films() {
             ))}
           </Grid>   
         </div>
+
+
+
+        <IconButton id='to-top-button' onClick={scrollToTop}>
+              <ExpandLessRoundedIcon/>
+        </IconButton>
+
       </div>
 
     );

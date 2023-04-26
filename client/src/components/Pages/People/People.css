@@ -8,9 +8,24 @@
     overflow: hidden;
 }
 
-.sort-options {
+
+.sort-options-container {
     padding-top: 2%;
+    /* position: relative;
+    left: 30%; */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    /* align-items: center; */
+    /* width: 100%; */
+}
+
+.sort-options-1 {
     width: 25%;
-    position: relative;
-    left: 37.5%;
+    padding-right: 0.5%;
+}
+
+.sort-options-2 {
+    width: 10%;
+    padding-left: 0.5%;
 }

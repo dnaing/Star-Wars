@@ -59,20 +59,24 @@ app.get('/people', async(req,res) => {
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
 
         let sortType = req.query.sortType;
+        let sortOrdering = req.query.sortOrdering;
+        let sortOrderingVal;
 
-        if (sortType === undefined || sortType == "Default") {
-            const people = await Character.find();
-            res.json(people);
+        if (sortOrdering == "ascending") {
+            sortOrderingVal = 1;
+        } else {
+            sortOrderingVal = -1;
         }
 
-        else if (sortType == "Alpha") {
-            const people = await Character.find().sort({name: 1});
+
+        if (sortType === undefined || sortType == "Alpha") {
+            const people = await Character.find().sort({name: sortOrderingVal});
             res.json(people);
         }
 
         else if (sortType == "Height") {
 
-            const people = await Character.find({ height: {$ne: "unknown"} }).sort({height: 1}).collation({locale:"en_US", numericOrdering:true});
+            const people = await Character.find({ height: {$ne: "unknown"} }).sort({height: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
             res.json(people);
         }
         else if (sortType == "Mass") {
@@ -80,7 +84,7 @@ app.get('/people', async(req,res) => {
             const people = await Character.aggregate([
                 { $match: { mass: {$ne: "unknown"} } },
                 { $addFields: { massDouble: { $toDouble: { $replaceAll: { input: "$mass", find: ",", replacement: "" } } } } },
-                { $sort: { massDouble: 1 } }                        
+                { $sort: { massDouble: sortOrderingVal } }                        
             ], { collation: { locale: "en_US", numericOrdering: true } });
             // const people = await Character.find({ mass: {$ne: "unknown"} }).sort({mass: 1}).collation({locale:"en_US", numericOrdering:true});
             res.json(people);

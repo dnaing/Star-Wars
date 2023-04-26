@@ -11,13 +11,17 @@ function People() {
     
     
     let [peopleData, setPeopleData] = useState<any[]>([]);
-    const [peopleDataOrig, setPeopleDataOrig] = useState<any[]>([]);
     const [sortOption, setSortOption] = useState('alpha');
+    const [sortOrdering, setSortOrdering] = useState('ascending');
     const hostName = 'http://localhost:4000';
 
 
     function handleChange(event: SelectChangeEvent) {
         setSortOption(event.target.value as string);
+    }
+
+    function handleOrdering(event: SelectChangeEvent) {
+        setSortOrdering(event.target.value as string);
     }
 
     // useEffect(() => {
@@ -34,7 +38,8 @@ function People() {
         if (sortOption == 'alpha') {
             axios.get(hostName + '/people', {
                 params: {
-                    sortType: 'Alpha'
+                    sortType: 'Alpha',
+                    sortOrdering: sortOrdering
                 }
             })
             .then((res) => {
@@ -44,7 +49,8 @@ function People() {
         else if (sortOption == 'height') {
             axios.get(hostName + '/people', {
                 params: {
-                    sortType: 'Height'
+                    sortType: 'Height',
+                    sortOrdering: sortOrdering
                 }
             })
             .then((res) => {
@@ -54,7 +60,8 @@ function People() {
         else if (sortOption == 'mass') {
             axios.get(hostName + '/people', {
                 params: {
-                    sortType: 'Mass'
+                    sortType: 'Mass',
+                    sortOrdering: sortOrdering
                 }
             })
             .then((res) => {
@@ -62,7 +69,7 @@ function People() {
             })            
         }
       
-    }, [sortOption]);
+    }, [sortOption, sortOrdering]);
 
 
     if (peopleData.length === 0) {
@@ -72,24 +79,43 @@ function People() {
     return (  
 
           <div>
-
-            <div className='sort-options'>
+            <div className='sort-options-container'>
+              <div className='sort-options-1'>
                       <FormControl fullWidth variant="filled">
-                        <InputLabel id="demo-simple-select-label"><p style={{color:'white'}}>Order By:</p></InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
+                          <InputLabel id="label"><p style={{color:'white'}}>Sort By:</p></InputLabel>
+                          <Select
+                          labelId="label"
+                          id="select"
                           value={sortOption}
                           label="Sort By:"
                           onChange={handleChange}
-                    style={{color: 'white', backgroundColor: 'gray'}}
-                        >
+                          style={{color: 'white', backgroundColor: 'gray'}}
+                          >
                           <MenuItem value={'alpha'}>Alphabetical</MenuItem>
                           <MenuItem value={'height'}>Height</MenuItem>
-                          <MenuItem value={'mass'}>Mass</MenuItem>
-                        </Select>
+                          <MenuItem value={'mass'}>Weight</MenuItem>
+                          </Select>
                       </FormControl>
+              </div>
+
+              <div className='sort-options-2'>
+                      <FormControl fullWidth variant="filled">
+                          <InputLabel id="label"><p style={{color:'white'}}>Order By:</p></InputLabel>
+                          <Select
+                          labelId="label"
+                          id="select"
+                          value={sortOrdering}
+                          label="Order By:"
+                          onChange={handleOrdering}
+                          style={{color: 'white', backgroundColor: 'gray'}}
+                          >
+                          <MenuItem value={'ascending'}>Increasing</MenuItem>
+                          <MenuItem value={'descending'}>Decreasing</MenuItem>
+                          </Select>
+                      </FormControl>
+              </div>
             </div>
+
 
 
             <div className='people-cards-grid'>

@@ -12,7 +12,7 @@ function People() {
     
     let [peopleData, setPeopleData] = useState<any[]>([]);
     const [peopleDataOrig, setPeopleDataOrig] = useState<any[]>([]);
-    const [sortOption, setSortOption] = useState('default');
+    const [sortOption, setSortOption] = useState('alpha');
     const hostName = 'http://localhost:4000';
 
 
@@ -20,34 +20,46 @@ function People() {
         setSortOption(event.target.value as string);
     }
 
-    useEffect(() => {
-      // Retrieve data from backend API
-      axios.get(hostName + '/people')
-      .then((res) => {
-          setPeopleData(res.data);
-          setPeopleDataOrig(res.data);
-         
-      });
+    // useEffect(() => {
+    //   // Retrieve data from backend API
+    //   axios.get(hostName + '/people')
+    //   .then((res) => {
+    //       setPeopleData(res.data);      
+    //   });
 
-    }, []);
+    // }, []);
 
     useEffect(() => {
-        console.log(sortOption);
-        //TODO
 
-        if (sortOption == 'default') {
+        if (sortOption == 'alpha') {
             axios.get(hostName + '/people', {
                 params: {
-                    sortType: 'Default'
+                    sortType: 'Alpha'
                 }
             })
+            .then((res) => {
+                setPeopleData(res.data);
+            })
         }
-        else {
+        else if (sortOption == 'height') {
             axios.get(hostName + '/people', {
                 params: {
                     sortType: 'Height'
                 }
             })
+            .then((res) => {
+                setPeopleData(res.data);
+            })
+        }
+        else if (sortOption == 'mass') {
+            axios.get(hostName + '/people', {
+                params: {
+                    sortType: 'Mass'
+                }
+            })
+            .then((res) => {
+                setPeopleData(res.data);
+            })            
         }
       
     }, [sortOption]);
@@ -72,8 +84,9 @@ function People() {
                           onChange={handleChange}
                     style={{color: 'white', backgroundColor: 'gray'}}
                         >
-                          <MenuItem value={'default'}>Default Order</MenuItem>
-                          <MenuItem value={'height'}>Height Order</MenuItem>
+                          <MenuItem value={'alpha'}>Alphabetical</MenuItem>
+                          <MenuItem value={'height'}>Height</MenuItem>
+                          <MenuItem value={'mass'}>Mass</MenuItem>
                         </Select>
                       </FormControl>
             </div>

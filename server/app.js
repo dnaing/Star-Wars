@@ -28,6 +28,7 @@ mongoose.connect(dbURI)
 
 const db = mongoose.connection;
 
+
 db.on('error', (error) => console.error(error));
 
 // Define routes
@@ -50,15 +51,41 @@ app.get('/films', async(req,res) => {
 
 app.get('/people', async(req,res) => {
 
-    console.log(req.query.sortType);
     try {
-        const people = await Character.find();
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
         res.setHeader("Access-Control-Max-Age", "1800");
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
-        res.json(people);
+
+        let sortType = req.query.sortType;
+
+        if (sortType === undefined || sortType == "Default") {
+            const people = await Character.find();
+            res.json(people);
+        }
+
+        else if (sortType == "Alpha") {
+            const people = await Character.find().sort({name: 1});
+            res.json(people);
+        }
+
+        else if (sortType == "Height") {
+
+            const people = await Character.find({ height: {$ne: "unknown"} }).sort({height: 1}).collation({locale:"en_US", numericOrdering:true});
+            res.json(people);
+        }
+        else if (sortType == "Mass") {
+
+            const people = await Character.aggregate([
+                { $match: { mass: {$ne: "unknown"} } },
+                { $addFields: { massDouble: { $toDouble: { $replaceAll: { input: "$mass", find: ",", replacement: "" } } } } },
+                { $sort: { massDouble: 1 } }                        
+            ], { collation: { locale: "en_US", numericOrdering: true } });
+            // const people = await Character.find({ mass: {$ne: "unknown"} }).sort({mass: 1}).collation({locale:"en_US", numericOrdering:true});
+            res.json(people);
+        }
+        
     }
     catch(err) {
         console.error(err);

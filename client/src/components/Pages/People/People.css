@@ -7,23 +7,3 @@
     padding-bottom: 3.5%;
     overflow: hidden;
 }
-
-
-.sort-options-container {
-    padding-top: 2%;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.sort-options-1 {
-    width: 25%;
-    padding-right: 0.5%;
-}
-
-.sort-options-2 {
-    width: 10%;
-    padding-left: 0.5%;
-}
-
-

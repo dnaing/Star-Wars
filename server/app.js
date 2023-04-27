@@ -99,13 +99,27 @@ app.get('/people', async(req,res) => {
 
 app.get('/species', async(req,res) => {
     try {
-        const species = await Species.find();
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
         res.setHeader("Access-Control-Max-Age", "1800");
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
-        res.json(species);
+
+        let sortType = req.query.sortType;
+        let sortOrdering = req.query.sortOrdering;
+        let sortOrderingVal;
+
+        if (sortOrdering == "ascending") {
+            sortOrderingVal = 1;
+        } else {
+            sortOrderingVal = -1;
+        }
+        
+        if (sortType === undefined || sortType == "Alpha") {
+            const species = await Species.find().sort({name: sortOrderingVal});
+            res.json(species);
+        }       
+
     }
     catch(err) {
         console.error(err);
@@ -115,13 +129,28 @@ app.get('/species', async(req,res) => {
 
 app.get('/planets', async(req,res) => {
     try {
-        const planets = await Planet.find();
+        
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
         res.setHeader("Access-Control-Max-Age", "1800");
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
-        res.json(planets);
+        
+
+        let sortType = req.query.sortType;
+        let sortOrdering = req.query.sortOrdering;
+        let sortOrderingVal;
+
+        if (sortOrdering == "ascending") {
+            sortOrderingVal = 1;
+        } else {
+            sortOrderingVal = -1;
+        }
+        
+        if (sortType === undefined || sortType == "Alpha") {
+            const planets = await Planet.find().sort({name: sortOrderingVal});
+            res.json(planets);
+        } 
     }
     catch(err) {
         console.error(err);
@@ -131,13 +160,28 @@ app.get('/planets', async(req,res) => {
 
 app.get('/starships', async(req,res) => {
     try {
-        const starships = await Starship.find();
+        
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
         res.setHeader("Access-Control-Max-Age", "1800");
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
-        res.json(starships);
+        
+        let sortType = req.query.sortType;
+        let sortOrdering = req.query.sortOrdering;
+        let sortOrderingVal;
+
+        if (sortOrdering == "ascending") {
+            sortOrderingVal = 1;
+        } else {
+            sortOrderingVal = -1;
+        }
+
+        if (sortType === undefined || sortType == "Alpha") {
+            const starships = await Starship.find().sort({name: sortOrderingVal});
+            res.json(starships);
+        } 
+
     }
     catch(err) {
         console.error(err);
@@ -147,13 +191,28 @@ app.get('/starships', async(req,res) => {
 
 app.get('/vehicles', async(req,res) => {
     try {
-        const vehicles = await Vehicle.find();
+        
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
         res.setHeader("Access-Control-Max-Age", "1800");
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
-        res.json(vehicles);
+       
+
+        let sortType = req.query.sortType;
+        let sortOrdering = req.query.sortOrdering;
+        let sortOrderingVal;
+
+        if (sortOrdering == "ascending") {
+            sortOrderingVal = 1;
+        } else {
+            sortOrderingVal = -1;
+        }
+
+        if (sortType === undefined || sortType == "Alpha") {
+            const vehicles = await Vehicle.find().sort({name: sortOrderingVal});
+            res.json(vehicles);
+        } 
     }
     catch(err) {
         console.error(err);

@@ -10,13 +10,10 @@ import '../../../stylesheets/root.css';
 
 function People() {
   
-    
-    
     let [peopleData, setPeopleData] = useState<any[]>([]);
     const [sortOption, setSortOption] = useState('alpha');
     const [sortOrdering, setSortOrdering] = useState('ascending');
     const hostName = 'http://localhost:4000';
-
 
     function handleChange(event: SelectChangeEvent) {
         setSortOption(event.target.value as string);

@@ -7,10 +7,12 @@
     }
 }
 
+
 .card-content {
     justify-content: center;
     align-items: center;
     display: flex;
+    max-height: 10px;
 }
 
 .card-container {
@@ -20,6 +22,9 @@
   
 .card-container:hover {
     transform: scale(1.08) translateY(-5%);
+    background-color: transparent;
+    text-decoration: none;
+    text-decoration-color: none;
 }
 
 .hidden-2 {

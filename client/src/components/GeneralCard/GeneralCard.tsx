@@ -35,8 +35,8 @@ function GeneralCard(props: Props) {
   return (
 		<>
       <div className='card-container hidden-2'>
-        <Link to={`/${props.type}/${props.object.name}`} state={ { film: props.object, imageURL: props.imageURL } }>
-          <Card style={{ maxWidth: "60%", maxHeight: "100%", margin: "auto" }}>
+        <Link to={`/${props.type}/${props.object.name.replace(/\s+/g, '')}`} state={ { film: props.object, imageURL: props.imageURL } } style={{ textDecoration: 'none' }}>
+          <Card style={{ maxWidth: "85%", maxHeight: "100%", margin: "auto" }}>
           
           <CardActionArea>
             <CardMedia

@@ -58,7 +58,7 @@ function FilmCard(props: Props) {
 	return (
 		<>
 		<div className='card-container hidden-2'>
-			<Link to={`/films/${props.filmObject.episode_id}`} state={ { film: props.filmObject, imageURL: props.imageURL } }>
+			<Link to={`/films/${props.filmObject.episode_id}`} state={ { film: props.filmObject, imageURL: props.imageURL } } style={{ textDecoration: 'none' }}>
         <Card style={{ maxWidth: "60%", maxHeight: "100%", margin: "auto" }}>
         
         <CardActionArea>

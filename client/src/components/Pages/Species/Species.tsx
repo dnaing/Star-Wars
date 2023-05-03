@@ -120,10 +120,10 @@ function Species() {
 
 
           <div className='species-cards-grid'>
-            <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} >
+            <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
                 {Array.from(speciesData).map((speciesItem, index) => (
                 <Grid item xs={2} sm={4} md={4} key={speciesItem._id}>
-                    <GeneralCard {...{object: speciesItem, imageURL: "https://storage.cloud.google.com/starwars_people_imgs/luke" + "" + ".jpg", type:"species"}} />
+                    <GeneralCard {...{object: speciesItem, imageURL: "https://storage.cloud.google.com/starwars_species_imgs/" + speciesItem.name.replace(/\s+/g, '') + ".jpg", type:"species"}} />
                 </Grid>
             ))}
             </Grid>   

@@ -118,10 +118,10 @@ function Vehicles() {
         </div>
 
         <div className='vehicle-cards-grid'>
-          <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} >
+          <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} >
               {Array.from(vehicleData).map((vehicleItem, index) => (
               <Grid item xs={2} sm={4} md={4} key={vehicleItem._id}>
-                  <GeneralCard {...{object: vehicleItem, imageURL: "https://storage.cloud.google.com/starwars_people_imgs/luke" + "" + ".jpg", type:"vehicles"}} />
+                  <GeneralCard {...{object: vehicleItem, imageURL: "https://storage.cloud.google.com/starwars_vehicles_imgs/" + vehicleItem.name.replace(/[ /]+/g, '') + ".jpg", type:"vehicles"}} />
               </Grid>
           ))}
           </Grid>   

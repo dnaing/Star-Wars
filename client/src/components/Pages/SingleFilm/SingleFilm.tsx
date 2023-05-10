@@ -24,7 +24,14 @@ function SingleFilm() {
     <div>
       
       <div className="screen">
-        {film.title}
+        {/* {film.title} */}
+        <div className="leftside">
+          {film.title}
+        </div>
+
+        <div className="rightside">
+          <img id="img" src={imageURL}></img>
+        </div>
       </div>
 
     </div>

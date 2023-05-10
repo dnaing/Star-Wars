@@ -8,8 +8,19 @@
     justify-content: center;
 }
 
-#footer-container > p {
+p {
     padding-top: 12px;
     font-size: 0.8rem;
     color: whitesmoke;
+}
+
+#footer > #footer-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding-top: 20px;
+}
+
+#footer > #footer-header p {
+    font-size: 1.2rem;
 }

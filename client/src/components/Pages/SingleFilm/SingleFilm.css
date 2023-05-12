@@ -1,17 +1,23 @@
 .screen {
     display: block;
     background-color: rgb(116, 116, 116);
-    margin: 20px;
-    /* border-radius: 20px; */
+    margin: 1%;
+    border-radius: 20px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 200px;
 }
 
 .leftside {
+    width: 72.28%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
+.leftside .innerleftside {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
 }
 
 .rightside {
@@ -19,6 +25,21 @@
 }
 
 #img {
-    width: 100px;
-    height: 180px;
+    width: 345px;
+    height: 520px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+#opening {
+    font-size: 1.3rem;
+    font-style: italic;
+}
+
+.innerleftside h1 {
+    font-size: 3rem;
+    color: whitesmoke;
+}
+
+.innerleftside p {
+    font-size: 1.2rem;
 }

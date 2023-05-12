@@ -24,9 +24,14 @@ function SingleFilm() {
     <div>
       
       <div className="screen">
-        {/* {film.title} */}
         <div className="leftside">
-          {film.title}
+          <div className="innerleftside">
+            <h1>{film.title}</h1>
+            <p>Directed By: {film.director}</p>
+            <p>Produced By: {film.producer}</p>
+            <p>Release Date: {film.release_date}</p>
+            <p id='opening'>{film.opening_crawl}</p>
+          </div>
         </div>
 
         <div className="rightside">

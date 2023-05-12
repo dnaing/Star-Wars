@@ -3,8 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 import "./SingleFilm.css";
 
-
-
 function SingleFilm() {
 
   const location = useLocation();
@@ -24,8 +22,8 @@ function SingleFilm() {
     <div>
       
       <div className="screen">
-        <div className="leftside">
-          <div className="innerleftside">
+        <div className="leftsidefilm">
+          <div className="innerleftsidefilm">
             <h1>{film.title}</h1>
             <p>Directed By: {film.director}</p>
             <p>Produced By: {film.producer}</p>
@@ -34,8 +32,8 @@ function SingleFilm() {
           </div>
         </div>
 
-        <div className="rightside">
-          <img id="img" src={imageURL}></img>
+        <div className="rightsidefilm">
+          <img id="filmimg" src={imageURL}></img>
         </div>
       </div>
 

@@ -1,0 +1,33 @@
+.screen {
+    display: block;
+    background-image: linear-gradient(to right, rgb(70, 70, 70) , rgb(0, 0, 0));
+    margin: 1%;
+    border-radius: 20px;
+    display: flex;
+}
+
+.leftsideplanet {
+    width: 100%;
+}
+
+.innerleftsideplanet {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+#planetimg {
+    width: 480px;
+    height: 480px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.innerleftsideplanet h1 {
+    font-size: 2.5rem;
+    color: whitesmoke;
+}
+
+.innerleftsideplanet p {
+    font-size: 0.84rem;
+}

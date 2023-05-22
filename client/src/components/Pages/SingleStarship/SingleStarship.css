@@ -1,0 +1,33 @@
+.screen {
+    display: block;
+    background-image: linear-gradient(to right, rgb(70, 70, 70) , rgb(0, 0, 0));
+    margin: 1%;
+    border-radius: 20px;
+    display: flex;
+}
+
+.leftsidestarship {
+    width: 100%;
+}
+
+.innerleftsidestarship {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+#starshipimg {
+    width: 600px;
+    height: 342px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.innerleftsidestarship h1 {
+    font-size: 2.5rem;
+    color: whitesmoke;
+}
+
+.innerleftsidestarship p {
+    font-size: 0.84rem;
+}

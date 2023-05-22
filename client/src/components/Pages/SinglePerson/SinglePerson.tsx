@@ -31,7 +31,7 @@ function SinglePerson() {
             <p>Hair Color: {people.hair_color}</p>
             <p>Skin Color: {people.skin_color}</p>
             <p>Eye Color: {people.eye_color}</p>
-            <p>Home World:{people.homeworld}</p>
+            <p>Home World: {people.homeworld}</p>
           </div>
         </div>
 

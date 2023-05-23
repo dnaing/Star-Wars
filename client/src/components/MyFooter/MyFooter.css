@@ -8,7 +8,7 @@
     justify-content: center;
 }
 
-p {
+.footer-text {
     padding-top: 12px;
     font-size: 0.8rem;
     color: whitesmoke;
@@ -21,6 +21,6 @@ p {
     padding-top: 20px;
 }
 
-#footer > #footer-header p {
+#footer > #footer-header .footer-text {
     font-size: 1.2rem;
 }

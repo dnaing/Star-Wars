@@ -27,14 +27,6 @@ function Species() {
     const [sortOrdering, setSortOrdering] = useState('ascending');
     const hostName = 'http://localhost:4000';
 
-    // useEffect(() => {
-    //   // Retrieve data from backend API
-    //   axios.get(hostName + '/species').then((res) => {
-    //       setSpeciesData(res.data)
-    //   });
-
-    // }, []);
-
     useEffect(() => {
 
       if (sortOption == 'alpha') {
@@ -48,28 +40,28 @@ function Species() {
               setSpeciesData(res.data);
           })
       }
-      // else if (sortOption == 'height') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Height',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })
-      // }
-      // else if (sortOption == 'mass') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Mass',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })            
-      // }
+      else if (sortOption == 'height') {
+          axios.get(hostName + '/species', {
+              params: {
+                  sortType: 'Height',
+                  sortOrdering: sortOrdering
+              }
+          })
+          .then((res) => {
+              setSpeciesData(res.data);
+          })
+      }
+      else if (sortOption == 'lifespan') {
+          axios.get(hostName + '/species', {
+              params: {
+                  sortType: 'Lifespan',
+                  sortOrdering: sortOrdering
+              }
+          })
+          .then((res) => {
+              setSpeciesData(res.data);
+          })            
+      }
     
     }, [sortOption, sortOrdering]);
 
@@ -95,6 +87,8 @@ function Species() {
                         style={{color: 'white', backgroundColor: 'gray'}}
                         >
                         <MenuItem value={'alpha'}>Alphabetical</MenuItem>
+                        <MenuItem value={'height'}>Average Height</MenuItem>
+                          <MenuItem value={'lifespan'}>Average Lifespan</MenuItem>
                         </Select>
                     </FormControl>
             </div>

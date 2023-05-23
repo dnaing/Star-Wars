@@ -118,7 +118,18 @@ app.get('/species', async(req,res) => {
         if (sortType === undefined || sortType == "Alpha") {
             const species = await Species.find().sort({name: sortOrderingVal});
             res.json(species);
-        }       
+        }   
+        
+        else if (sortType == "Height") {
+
+            const species = await Species.find({ average_height: {$nin: ["unknown", "n/a"]} }).sort({average_height: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(species);
+        }
+        else if (sortType == "Lifespan") {
+
+            const species = await Species.find({ average_lifespan: {$nin: ["unknown", "indefinite"]} }).sort({average_lifespan: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(species);
+        }
 
     }
     catch(err) {
@@ -175,8 +186,9 @@ app.get('/planets/:id', async(req,res) => {
             const planet = await Planet.find({ name: planetName });
             res.json(planet);
         }
-        
- 
+        else {
+            res.json([]);
+        }
     }
     catch(err) {
         console.error(err);

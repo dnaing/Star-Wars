@@ -33,7 +33,7 @@ function SingleStarship() {
             <p>Cargo Capacity: {starships.cargo_capacity} kilograms</p>
             <p>Consumables: {starships.consumables}</p>
             <p>Hyperdrive Rating: {starships.hyperdrive_rating}</p>
-            <p>MGLT: {starships.MGLT} (maximum megalights per hour)</p>
+            <p>MGLT: {starships.MGLT} maximum megalights per hour</p>
           </div>
         </div>
 

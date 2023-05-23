@@ -27,15 +27,6 @@ function People() {
         window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
     }
 
-    // useEffect(() => {
-    //   // Retrieve data from backend API
-    //   axios.get(hostName + '/people')
-    //   .then((res) => {
-    //       setPeopleData(res.data);      
-    //   });
-
-    // }, []);
-
     useEffect(() => {
 
         if (sortOption == 'alpha') {

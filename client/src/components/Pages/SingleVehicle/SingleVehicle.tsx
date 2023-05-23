@@ -22,7 +22,7 @@ function SingleVehicle() {
         <div className="leftsidevehicle">
           <div className="innerleftsidevehicle">
             <h1>{vehicles.name}</h1>
-            <p>Model: {vehicles.name}</p>
+            <p>Model: {vehicles.model}</p>
             <p>Manufacturer: {vehicles.manufacturer}</p>
             <p>Vehicle Class: {vehicles.vehicle_class}</p>
             <p>Cost: {vehicles.cost_in_credits} credits</p>

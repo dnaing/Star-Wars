@@ -158,6 +158,32 @@ app.get('/planets', async(req,res) => {
     }
 })
 
+app.get('/planets/:id', async(req,res) => {
+    try {
+        
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+
+        const planetName = req.params.id;
+        console.log(planetName);
+
+        if (planetName != "unknown") {
+            // get single planet data from mongodb
+            const planet = await Planet.find({ name: planetName });
+            res.json(planet);
+        }
+        
+ 
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 app.get('/starships', async(req,res) => {
     try {
         

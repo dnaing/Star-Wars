@@ -162,6 +162,23 @@ app.get('/planets', async(req,res) => {
             const planets = await Planet.find().sort({name: sortOrderingVal});
             res.json(planets);
         } 
+        else if (sortType == "Population") {
+            const planets = await Planet.find({ population: {$ne: "unknown"} }).sort({population: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(planets);
+        }
+        else if (sortType == "Size") {
+            const planets = await Planet.find({ diameter: {$ne: "unknown"} }).sort({diameter: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(planets);
+        }
+        else if (sortType == "Rotation") {
+            const planets = await Planet.find({ rotation_period: {$ne: "unknown"} }).sort({rotation_period: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(planets);
+        }
+        else if (sortType == "Orbital") {
+            const planets = await Planet.find({ orbital_period: {$ne: "unknown"} }).sort({orbital_period: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(planets);
+        }
+
     }
     catch(err) {
         console.error(err);

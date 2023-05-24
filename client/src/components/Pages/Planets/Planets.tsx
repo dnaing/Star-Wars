@@ -27,13 +27,6 @@ function Planets() {
     const [sortOrdering, setSortOrdering] = useState('ascending');
     const hostName = 'http://localhost:4000';
 
-    // useEffect(() => {
-    //   // Retrieve data from backend API
-    //   axios.get(hostName + '/planets').then((res) => {
-    //       setPlanetData(res.data)
-    //   });
-
-    // }, []);
     useEffect(() => {
 
       if (sortOption == 'alpha') {
@@ -47,28 +40,50 @@ function Planets() {
               setPlanetData(res.data);
           })
       }
-      // else if (sortOption == 'height') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Height',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })
-      // }
-      // else if (sortOption == 'mass') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Mass',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })            
-      // }
+      else if (sortOption == 'population') {
+          axios.get(hostName + '/planets', {
+              params: {
+                  sortType: 'Population',
+                  sortOrdering: sortOrdering
+              }
+          })
+          .then((res) => {
+              setPlanetData(res.data);
+          })
+      }
+      else if (sortOption == 'size') {
+          axios.get(hostName + '/planets', {
+              params: {
+                  sortType: 'Size',
+                  sortOrdering: sortOrdering
+              }
+          })
+          .then((res) => {
+              setPlanetData(res.data);
+          })            
+      }
+      else if (sortOption == 'rotation') {
+        axios.get(hostName + '/planets', {
+            params: {
+                sortType: 'Rotation',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setPlanetData(res.data);
+        })            
+      }
+      else if (sortOption == 'orbital') {
+        axios.get(hostName + '/planets', {
+            params: {
+                sortType: 'Orbital',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setPlanetData(res.data);
+        })            
+      }
     
     }, [sortOption, sortOrdering]);
 
@@ -92,6 +107,11 @@ function Planets() {
                       style={{color: 'white', backgroundColor: 'gray'}}
                       >
                       <MenuItem value={'alpha'}>Alphabetical</MenuItem>
+                      <MenuItem value={'population'}>Population</MenuItem>
+                      <MenuItem value={'size'}>Size</MenuItem>
+                      <MenuItem value={'rotation'}>Rotation Period</MenuItem>
+                      <MenuItem value={'orbital'}>Orbital Period</MenuItem>
+
                       </Select>
                   </FormControl>
           </div>

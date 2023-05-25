@@ -34,7 +34,7 @@ db.on('error', (error) => console.error(error));
 // Define routes
 app.get('/films', async(req,res) => {
     try {
-        console.log(req.query);
+        // console.log(req.query);
         const films = await Film.find();
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -87,7 +87,34 @@ app.get('/people', async(req,res) => {
                 { $sort: { massDouble: sortOrderingVal } }                        
             ], { collation: { locale: "en_US", numericOrdering: true } });
             res.json(people);
-        }
+        }  
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
+app.get('/people/featured', async(req,res) => {
+    try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        
+        let data = req.query.data;
+        console.log("==================");
+        console.log(data);
+
+        let resData = [];
+
+        // for (let i = 0; i < data.length; i++) {
+        //     let dataObject =  await Character.findOne({ name: data[i] });
+        //     resData.push(dataObject);
+        // }
+
+        // res.json(resData);
         
     }
     catch(err) {
@@ -195,7 +222,7 @@ app.get('/planets/:id', async(req,res) => {
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
 
         const planetName = req.params.id;
-        console.log(planetName);
+        // console.log(planetName);
 
         if (planetName != "unknown") {
             // get single planet data from mongodb

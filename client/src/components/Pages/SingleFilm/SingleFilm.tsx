@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import "./SingleFilm.css";
+import { Grid } from '@mui/material';
+import FilmCard from '../../FilmCard/FilmCard';
+import axios from 'axios';
 
 function SingleFilm() {
 
   const location = useLocation();
   const { film, imageURL } = location.state;
+  const hostName = 'http://localhost:4000';
+
+  let [peopleData, setPeopleData] = useState<any[]>([]);
+
+  // Get featured character data
+  // useEffect(() => {
+  //   axios.get(hostName + '/people/featured', {
+  //     params: {
+  //         data: film.characters
+  //     }
+  //   })
+  //   .then((res) => {
+  //       setPeopleData(res.data);
+  //   })
+  // })
+
+  //TODO: Get all the other featured data
+  //...
 
 
   
@@ -17,6 +38,8 @@ function SingleFilm() {
       </div>
     )
   }
+
+
 
   return (
     <div>
@@ -35,6 +58,23 @@ function SingleFilm() {
         <div className="rightsidefilm">
           <img id="filmimg" src={imageURL}></img>
         </div>
+      </div>
+
+      {/* Insert routings */}
+
+      <div className="characterNavigation">
+      </div>
+
+      <div className="speciesNavigation">
+      </div>
+
+      <div className="planetNavigation"> 
+      </div>
+
+      <div className="starshipNavigation">
+      </div>
+
+      <div className="vehicleNavigation">
       </div>
 
     </div>

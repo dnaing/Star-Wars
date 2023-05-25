@@ -27,7 +27,7 @@ function SingleStarship() {
             <p>Starship Class: {starships.starship_class}</p>
             <p>Cost: {starships.cost_in_credits} credits</p>
             <p>Length: {starships.length} meters</p>
-            <p>Max Atmosphering Speed: {starships.max_atmosphering_speed}</p>
+            <p>Max Atmosphering Speed: {starships.max_atmosphering_speed} kilometers per hour</p>
             <p>Crew: {starships.crew}</p>
             <p>Passengers: {starships.passengers}</p>
             <p>Cargo Capacity: {starships.cargo_capacity} kilograms</p>

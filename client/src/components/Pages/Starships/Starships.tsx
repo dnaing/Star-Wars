@@ -26,14 +26,6 @@ function Starships() {
     const [sortOrdering, setSortOrdering] = useState('ascending');
     const hostName = 'http://localhost:4000';
 
-    // useEffect(() => {
-    //   // Retrieve data from backend API
-    //   axios.get(hostName + '/starships').then((res) => {
-    //       setStarshipData(res.data)
-    //   });
-
-    // }, []);
-
     useEffect(() => {
 
       if (sortOption == 'alpha') {
@@ -47,28 +39,84 @@ function Starships() {
               setStarshipData(res.data);
           })
       }
-      // else if (sortOption == 'height') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Height',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })
-      // }
-      // else if (sortOption == 'mass') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Mass',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })            
-      // }
+      else if (sortOption == 'cost') {
+          axios.get(hostName + '/starships', {
+              params: {
+                  sortType: 'Cost',
+                  sortOrdering: sortOrdering
+              }
+          })
+          .then((res) => {
+              setStarshipData(res.data);
+          })
+      }
+      else if (sortOption == 'atmosphere') {
+        axios.get(hostName + '/starships', {
+            params: {
+                sortType: 'Atmosphere',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setStarshipData(res.data);
+        })
+      }
+      else if (sortOption == 'space') {
+        axios.get(hostName + '/starships', {
+            params: {
+                sortType: 'Space',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setStarshipData(res.data);
+        })
+      }
+      else if (sortOption == 'length') {
+        axios.get(hostName + '/starships', {
+            params: {
+                sortType: 'Length',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setStarshipData(res.data);
+        })
+      }
+      else if (sortOption == 'crew') {
+        axios.get(hostName + '/starships', {
+            params: {
+                sortType: 'Crew',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setStarshipData(res.data);
+        })
+      }
+      else if (sortOption == 'passenger') {
+        axios.get(hostName + '/starships', {
+            params: {
+                sortType: 'Passenger',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setStarshipData(res.data);
+        })
+      }
+      else if (sortOption == 'cargo') {
+        axios.get(hostName + '/starships', {
+            params: {
+                sortType: 'Cargo',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setStarshipData(res.data);
+        })
+      }
+
     
     }, [sortOption, sortOrdering]);
 
@@ -93,6 +141,14 @@ function Starships() {
                       style={{color: 'white', backgroundColor: 'gray'}}
                       >
                       <MenuItem value={'alpha'}>Alphabetical</MenuItem>
+                      <MenuItem value={'cost'}>Cost</MenuItem>
+                      <MenuItem value={'atmosphere'}>Atmosphering Speed</MenuItem>
+                      <MenuItem value={'space'}>Space Travel Speed</MenuItem>
+                      <MenuItem value={'length'}>Length</MenuItem>
+                      <MenuItem value={'crew'}>Crew Count</MenuItem>
+                      <MenuItem value={'passenger'}>Passenger Count</MenuItem>
+                      <MenuItem value={'cargo'}>Cargo Capacity</MenuItem>
+
                       </Select>
                   </FormControl>
           </div>

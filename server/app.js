@@ -86,7 +86,6 @@ app.get('/people', async(req,res) => {
                 { $addFields: { massDouble: { $toDouble: { $replaceAll: { input: "$mass", find: ",", replacement: "" } } } } },
                 { $sort: { massDouble: sortOrderingVal } }                        
             ], { collation: { locale: "en_US", numericOrdering: true } });
-            // const people = await Character.find({ mass: {$ne: "unknown"} }).sort({mass: 1}).collation({locale:"en_US", numericOrdering:true});
             res.json(people);
         }
         
@@ -236,7 +235,56 @@ app.get('/starships', async(req,res) => {
             const starships = await Starship.find().sort({name: sortOrderingVal});
             res.json(starships);
         } 
-
+        else if (sortType == "Cost") {
+            const starships = await Starship.find({ cost_in_credits: {$ne: "unknown"} }).sort({cost_in_credits: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(starships);
+        }
+        else if (sortType == "Atmosphere") {
+            const starships = await Starship.aggregate([
+                { $match: { max_atmosphering_speed: {$nin: ["unknown", "n/a"]} } },
+                // Added fixedAtmosphere field that excludes km as a suffix from the numbers
+                { $addFields: { fixedAtmosphere: { $substr: ["$max_atmosphering_speed", 0, {$indexOfCP: ["$max_atmosphering_speed", "km"]}] } } },
+                { $sort: { fixedAtmosphere: sortOrderingVal } }                        
+            ], { collation: { locale: "en_US", numericOrdering: true } });
+            res.json(starships);
+        }
+        else if (sortType == "Space") {
+            const starships = await Starship.find({ MGLT: {$ne: "unknown"} }).sort({MGLT: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(starships);
+        }
+        else if (sortType == "Length") {
+            const starships = await Starship.aggregate([
+                { $addFields: { lengthDouble: { $toDouble: { $replaceAll: { input: "$length", find: ",", replacement: "" } } } } },
+                { $sort: { lengthDouble: sortOrderingVal } }                        
+            ], { collation: { locale: "en_US", numericOrdering: true } });
+            res.json(starships);
+        }
+        else if (sortType == "Crew") {
+            const starships = await Starship.aggregate([
+                { $match: { crew: {$ne: "unknown"} } },
+                { $addFields: { crewDouble: { $toDouble: 
+                    { 
+                    $replaceAll: { 
+                        input: {$replaceAll: { input: "$crew", find: ",", replacement: "" }}, 
+                        find: "30-165", 
+                        replacement: "165" } 
+                    } } } },
+                { $sort: { crewDouble: sortOrderingVal } }                        
+            ], { collation: { locale: "en_US", numericOrdering: true } });
+            res.json(starships);
+        }
+        else if (sortType == "Passenger") {
+            const starships = await Starship.aggregate([
+                { $match: { passengers: {$nin: ["unknown", "n/a"]} } },
+                { $addFields: { lengthDouble: { $toDouble: { $replaceAll: { input: "$length", find: ",", replacement: "" } } } } },
+                { $sort: { lengthDouble: sortOrderingVal } }                        
+            ], { collation: { locale: "en_US", numericOrdering: true } });
+            res.json(starships);
+        }
+        else if (sortType == "Cargo") {
+            const starships = await Starship.find({ cargo_capacity: {$ne: "unknown"} }).sort({cargo_capacity: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(starships);
+        }
     }
     catch(err) {
         console.error(err);

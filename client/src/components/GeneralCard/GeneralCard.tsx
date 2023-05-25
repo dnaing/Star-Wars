@@ -35,7 +35,8 @@ function GeneralCard(props: Props) {
   return (
 		<>
       <div className='card-container hidden-2'>
-        <Link to={`/${props.type}/${props.object.name.replace(/\s+/g, '')}`} state={ { [props.type]: props.object, imageURL: props.imageURL } } style={{ textDecoration: 'none' }}>
+        {/* Regular expression used here to replace all spaces and forward slashes with empty string for url building of single pages */}
+        <Link to={`/${props.type}/${props.object.name.replace(/\s+|\//g, '')}`} state={ { [props.type]: props.object, imageURL: props.imageURL } } style={{ textDecoration: 'none' }}>
           <Card style={{ maxWidth: "85%", maxHeight: "100%", margin: "auto" }}>
           
           <CardActionArea>

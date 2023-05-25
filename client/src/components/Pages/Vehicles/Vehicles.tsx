@@ -26,14 +26,6 @@ function Vehicles() {
     const [sortOrdering, setSortOrdering] = useState('ascending');
     const hostName = 'http://localhost:4000';
 
-    // useEffect(() => {
-    //   // Retrieve data from backend API
-    //   axios.get(hostName + '/vehicles').then((res) => {
-    //       setVehicleData(res.data)
-    //   });
-
-    // }, []);
-
     useEffect(() => {
 
       if (sortOption == 'alpha') {
@@ -47,29 +39,73 @@ function Vehicles() {
               setVehicleData(res.data);
           })
       }
-      // else if (sortOption == 'height') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Height',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })
-      // }
-      // else if (sortOption == 'mass') {
-      //     axios.get(hostName + '/people', {
-      //         params: {
-      //             sortType: 'Mass',
-      //             sortOrdering: sortOrdering
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setPeopleData(res.data);
-      //     })            
-      // }
-    
+      else if (sortOption == 'cost') {
+          axios.get(hostName + '/vehicles', {
+              params: {
+                  sortType: 'Cost',
+                  sortOrdering: sortOrdering
+              }
+          })
+          .then((res) => {
+              setVehicleData(res.data);
+          })
+      }
+      else if (sortOption == 'atmosphere') {
+        axios.get(hostName + '/vehicles', {
+            params: {
+                sortType: 'Atmosphere',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setVehicleData(res.data);
+        })
+      }
+      else if (sortOption == 'length') {
+        axios.get(hostName + '/vehicles', {
+            params: {
+                sortType: 'Length',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setVehicleData(res.data);
+        })
+      }
+      else if (sortOption == 'crew') {
+        axios.get(hostName + '/vehicles', {
+            params: {
+                sortType: 'Crew',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setVehicleData(res.data);
+        })
+      }
+      else if (sortOption == 'passenger') {
+        axios.get(hostName + '/vehicles', {
+            params: {
+                sortType: 'Passenger',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setVehicleData(res.data);
+        })
+      }
+      else if (sortOption == 'cargo') {
+        axios.get(hostName + '/vehicles', {
+            params: {
+                sortType: 'Cargo',
+                sortOrdering: sortOrdering
+            }
+        })
+        .then((res) => {
+            setVehicleData(res.data);
+        })
+      }
+
     }, [sortOption, sortOrdering]);
 
     if (vehicleData.length === 0) {
@@ -95,6 +131,12 @@ function Vehicles() {
                       style={{color: 'white', backgroundColor: 'gray'}}
                       >
                       <MenuItem value={'alpha'}>Alphabetical</MenuItem>
+                      <MenuItem value={'cost'}>Cost</MenuItem>
+                      <MenuItem value={'atmosphere'}>Atmosphering Speed</MenuItem>
+                      <MenuItem value={'length'}>Length</MenuItem>
+                      <MenuItem value={'crew'}>Crew Count</MenuItem>
+                      <MenuItem value={'passenger'}>Passenger Count</MenuItem>
+                      <MenuItem value={'cargo'}>Cargo Capacity</MenuItem>
                       </Select>
                   </FormControl>
           </div>

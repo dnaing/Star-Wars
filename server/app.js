@@ -316,6 +316,38 @@ app.get('/vehicles', async(req,res) => {
             const vehicles = await Vehicle.find().sort({name: sortOrderingVal});
             res.json(vehicles);
         } 
+        else if (sortType == "Cost") {
+            const vehicles = await Vehicle.find({ cost_in_credits: {$ne: "unknown"} }).sort({cost_in_credits: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(vehicles);
+        }
+        else if (sortType == "Atmosphere") {
+            const vehicles = await Vehicle.find({ max_atmosphering_speed: {$ne: "unknown"} }).sort({max_atmosphering_speed: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(vehicles);
+        }
+        else if (sortType == "Length") {
+            const vehicles = await Vehicle.find({ length: {$ne: "unknown"} }).sort({length: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(vehicles);
+        }
+        else if (sortType == "Crew") {
+            const vehicles = await Vehicle.find().sort({crew: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(vehicles);
+        }
+        else if (sortType == "Passenger") {
+            const vehicles = await Vehicle.find({ passengers: {$ne: "unknown"} }).sort({passengers: sortOrderingVal}).collation({locale:"en_US", numericOrdering:true});
+            res.json(vehicles);
+        }
+        else if (sortType == "Cargo") {
+            const vehicles = await Vehicle.aggregate([
+                { $match: { cargo_capacity: {$ne: "unknown"} } },
+                { $addFields: { fixedCargo: { $replaceAll: { input: "$cargo_capacity", find: "none", replacement: "0" } } } },
+                { $sort: { fixedCargo: sortOrderingVal } }                        
+            ], { collation: { locale: "en_US", numericOrdering: true } });
+            res.json(vehicles);
+        }
+
+
+
+
     }
     catch(err) {
         console.error(err);

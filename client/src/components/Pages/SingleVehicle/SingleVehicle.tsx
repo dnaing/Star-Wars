@@ -27,10 +27,15 @@ function SingleVehicle() {
             <p>Vehicle Class: {vehicles.vehicle_class}</p>
             <p>Cost: {vehicles.cost_in_credits} credits</p>
             <p>Length: {vehicles.length} meters</p>
-            <p>Max Atmosphering Speed: {vehicles.max_atmosphering_speed}</p>
+            <p>Max Atmosphering Speed: {vehicles.max_atmosphering_speed} kilometers per hour</p>
             <p>Crew: {vehicles.crew}</p>
             <p>Passengers: {vehicles.passengers}</p>
-            <p>Cargo Capacity: {vehicles.cargo_capacity} kilograms</p>
+
+            {vehicles.cargo_capacity == "none"
+            ? <p>Cargo Capacity: 0 kilograms</p>
+            : <p>Cargo Capacity: {vehicles.cargo_capacity} kilograms</p>
+            }
+            
             <p>Consumables: {vehicles.consumables}</p>
           </div>
         </div>

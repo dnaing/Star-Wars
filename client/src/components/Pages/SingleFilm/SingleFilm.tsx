@@ -15,6 +15,10 @@ function SingleFilm() {
   const hostName = 'http://localhost:4000';
 
   let [peopleData, setPeopleData] = useState<any[]>([]);
+  let [speciesData, setSpeciesData] = useState<any[]>([]);
+  let [planetData, setPlanetData] = useState<any[]>([]);
+  let [starshipData, setStarshipData] = useState<any[]>([]);
+  let [vehicleData, setVehicleData] = useState<any[]>([]);
 
   // Get featured character data
   useEffect(() => {
@@ -30,12 +34,69 @@ function SingleFilm() {
     }
   }, [film]);
 
-  //TODO: Get all the other featured data
-  //...
 
+  // Get featured species data
+  useEffect(() => {
+    if (film) {
+      axios.get(hostName + '/species/featured', {
+        params: {
+            data: film.species
+        }
+      })
+      .then((res) => {
+          setSpeciesData(res.data);
+      })
+    }
+  }, [film]);  
 
-  
-  if (film == null || peopleData.length == 0) {
+  // Get featured planet data
+  useEffect(() => {
+    if (film) {
+      axios.get(hostName + '/planets/featured', {
+        params: {
+            data: film.planets
+        }
+      })
+      .then((res) => {
+          setPlanetData(res.data);
+      })
+    }
+  }, [film]); 
+
+  // Get featured starship data
+  useEffect(() => {
+    if (film) {
+      axios.get(hostName + '/starships/featured', {
+        params: {
+            data: film.starships
+        }
+      })
+      .then((res) => {
+          setStarshipData(res.data);
+      })
+    }
+  }, [film]); 
+
+  // Get featured vehicle data
+  useEffect(() => {
+    if (film) {
+      axios.get(hostName + '/vehicles/featured', {
+        params: {
+            data: film.vehicles
+        }
+      })
+      .then((res) => {
+          setVehicleData(res.data);
+      })
+    }
+  }, [film]); 
+
+  if (film == null || 
+      peopleData.length == 0 || 
+      speciesData.length == 0 || 
+      planetData.length == 0 ||
+      starshipData.length == 0 ||
+      vehicleData.length == 0) {
     return (
       <div>
         LOADING
@@ -65,19 +126,23 @@ function SingleFilm() {
       {/* Insert routings */}
 
       <div className="characterNavigation">
-        <Carousel {...{dataList: peopleData}} />
+        <Carousel {...{dataList: peopleData, dataType: 'people'}} />
       </div>
 
       <div className="speciesNavigation">
+        <Carousel {...{dataList: speciesData, dataType: 'species'}} />
       </div>
 
       <div className="planetNavigation"> 
+        <Carousel {...{dataList: planetData, dataType: 'planets'}} />
       </div>
 
       <div className="starshipNavigation">
+        <Carousel {...{dataList: starshipData, dataType: 'starships'}} />
       </div>
 
       <div className="vehicleNavigation">
+        <Carousel {...{dataList: vehicleData, dataType: 'vehicles'}} />
       </div>
 
     </div>

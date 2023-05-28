@@ -7,6 +7,7 @@ import './Carousel.css';
 
 interface Props {
     dataList: any;
+    dataType: string;
 }
 
 // This component takes in a list of data like characters or starships
@@ -17,6 +18,7 @@ function Carousel(props: Props) {
     let [shownItems, setShownItems] = useState<any[]>([]);
     let [prevDisabled, setPrevDisabled] = useState(true);
     let [nextDisabled, setNextDisabled] = useState(false);
+    let carouselTitle;
     
     const itemsPerPage = 5;
     const lastPage = Math.ceil(props.dataList.length / itemsPerPage);
@@ -44,7 +46,7 @@ function Carousel(props: Props) {
     }, [currentPage]);
 
     useEffect(() => {
-        console.log(shownItems);
+        // console.log(shownItems);
     }, [shownItems]);
 
     function toNextPage() {
@@ -65,28 +67,39 @@ function Carousel(props: Props) {
         } 
     }
 
-    console.log(props.dataList);
     
-
-  if (shownItems.length === 0) {
-    return (
-        <div>
-            LOADING CAROUSEL ITEMS
-        </div>
-    )
-  }
+    if (props.dataType == 'people') {
+        carouselTitle = <h1 className='carouselTitle'>Featured Characters</h1>
+    } else if (props.dataType == 'species') {
+        carouselTitle = <h1 className='carouselTitle'>Featured Species</h1>
+    } else if (props.dataType == 'planets') {
+        carouselTitle = <h1 className='carouselTitle'>Featured Planets</h1>
+    } else if (props.dataType == 'starships') {
+        carouselTitle = <h1 className='carouselTitle'>Featured Starships</h1>
+    } else if (props.dataType == 'vehicles') {
+        carouselTitle = <h1 className='carouselTitle'>Featured Vehicles</h1>
+    }
+  
+  
+    if (shownItems.length === 0) {
+        return (
+            <div>
+                LOADING CAROUSEL ITEMS
+            </div>
+        )
+    }
 
   return (
     <div>
         <div className='carouselModal'>
 
-            <h1 className='carouselTitle'>Featured Characters</h1>
+            {carouselTitle}
 
             <div className='carouselItems'>
                 <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
-                {shownItems.map((peopleItem, index) => (
-                    <Grid item xs={2} sm={4} md={4} key={peopleItem._id}>
-                    <GeneralCard {...{object: peopleItem, imageURL: "https://storage.cloud.google.com/starwars_people_imgs/" + peopleItem.name.replace(/\s+/g, '') + ".jpg", type:"people"}} />
+                {shownItems.map((theItem, index) => (
+                    <Grid item xs={2} sm={4} md={4} key={theItem._id}>
+                    <GeneralCard {...{object: theItem, imageURL: "https://storage.cloud.google.com/starwars_" + props.dataType + "_imgs/" + theItem.name.replace(/[ /]+/g, '') + ".jpg", type: props.dataType}} />
                     </Grid>
                 ))}
                 </Grid> 

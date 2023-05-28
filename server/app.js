@@ -168,6 +168,38 @@ app.get('/species', async(req,res) => {
     }
 })
 
+app.get('/species/featured', async(req,res) => {
+    try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        
+        if (req.query.data && req.query.data.length > 0) {
+            let data = req.query.data;
+            console.log("==================");
+            console.log(data);
+    
+            let resData = [];
+    
+            for (let i = 0; i < data.length; i++) {
+                let dataObject =  await Species.findOne({ name: data[i] });
+                resData.push(dataObject);
+            }
+            console.log(resData);
+            res.json(resData);
+        }
+        else {
+            res.json([]);
+        }
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 app.get('/planets', async(req,res) => {
     try {
         
@@ -209,6 +241,38 @@ app.get('/planets', async(req,res) => {
             res.json(planets);
         }
 
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
+app.get('/planets/featured', async(req,res) => {
+    try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        
+        if (req.query.data && req.query.data.length > 0) {
+            let data = req.query.data;
+            console.log("==================");
+            console.log(data);
+    
+            let resData = [];
+    
+            for (let i = 0; i < data.length; i++) {
+                let dataObject =  await Planet.findOne({ name: data[i] });
+                resData.push(dataObject);
+            }
+            console.log(resData);
+            res.json(resData);
+        }
+        else {
+            res.json([]);
+        }
     }
     catch(err) {
         console.error(err);
@@ -323,6 +387,38 @@ app.get('/starships', async(req,res) => {
     }
 })
 
+app.get('/starships/featured', async(req,res) => {
+    try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        
+        if (req.query.data && req.query.data.length > 0) {
+            let data = req.query.data;
+            console.log("==================");
+            console.log(data);
+    
+            let resData = [];
+    
+            for (let i = 0; i < data.length; i++) {
+                let dataObject =  await Starship.findOne({ name: data[i] });
+                resData.push(dataObject);
+            }
+            console.log(resData);
+            res.json(resData);
+        }
+        else {
+            res.json([]);
+        }
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 app.get('/vehicles', async(req,res) => {
     try {
         
@@ -379,6 +475,38 @@ app.get('/vehicles', async(req,res) => {
 
 
 
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
+app.get('/vehicles/featured', async(req,res) => {
+    try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        
+        if (req.query.data && req.query.data.length > 0) {
+            let data = req.query.data;
+            console.log("==================");
+            console.log(data);
+    
+            let resData = [];
+    
+            for (let i = 0; i < data.length; i++) {
+                let dataObject =  await Vehicle.findOne({ name: data[i] });
+                resData.push(dataObject);
+            }
+            console.log(resData);
+            res.json(resData);
+        }
+        else {
+            res.json([]);
+        }
     }
     catch(err) {
         console.error(err);

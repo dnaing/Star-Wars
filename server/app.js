@@ -103,19 +103,23 @@ app.get('/people/featured', async(req,res) => {
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
         
-        let data = req.query.data;
-        console.log("==================");
-        console.log(data);
-
-        let resData = [];
-
-        // for (let i = 0; i < data.length; i++) {
-        //     let dataObject =  await Character.findOne({ name: data[i] });
-        //     resData.push(dataObject);
-        // }
-
-        // res.json(resData);
-        
+        if (req.query.data && req.query.data.length > 0) {
+            let data = req.query.data;
+            console.log("==================");
+            console.log(data);
+    
+            let resData = [];
+    
+            for (let i = 0; i < data.length; i++) {
+                let dataObject =  await Character.findOne({ name: data[i] });
+                resData.push(dataObject);
+            }
+            console.log(resData);
+            res.json(resData);
+        }
+        else {
+            res.json([]);
+        }
     }
     catch(err) {
         console.error(err);

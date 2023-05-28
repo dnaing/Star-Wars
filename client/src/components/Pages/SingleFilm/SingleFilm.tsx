@@ -5,6 +5,8 @@ import "./SingleFilm.css";
 import { Grid } from '@mui/material';
 import FilmCard from '../../FilmCard/FilmCard';
 import axios from 'axios';
+import GeneralCard from '../../GeneralCard/GeneralCard';
+import Carousel from '../../Carousel/Carousel';
 
 function SingleFilm() {
 
@@ -15,23 +17,25 @@ function SingleFilm() {
   let [peopleData, setPeopleData] = useState<any[]>([]);
 
   // Get featured character data
-  // useEffect(() => {
-  //   axios.get(hostName + '/people/featured', {
-  //     params: {
-  //         data: film.characters
-  //     }
-  //   })
-  //   .then((res) => {
-  //       setPeopleData(res.data);
-  //   })
-  // })
+  useEffect(() => {
+    if (film) {
+      axios.get(hostName + '/people/featured', {
+        params: {
+            data: film.characters
+        }
+      })
+      .then((res) => {
+          setPeopleData(res.data);
+      })
+    }
+  }, [film]);
 
   //TODO: Get all the other featured data
   //...
 
 
   
-  if (film == null) {
+  if (film == null || peopleData.length == 0) {
     return (
       <div>
         LOADING
@@ -40,10 +44,8 @@ function SingleFilm() {
   }
 
 
-
   return (
-    <div>
-      
+    <div> 
       <div className="screen">
         <div className="leftsidefilm">
           <div className="innerleftsidefilm">
@@ -63,6 +65,7 @@ function SingleFilm() {
       {/* Insert routings */}
 
       <div className="characterNavigation">
+        <Carousel {...{dataList: peopleData}} />
       </div>
 
       <div className="speciesNavigation">

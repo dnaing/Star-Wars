@@ -1,0 +1,44 @@
+.carouselModal {
+    display: block;
+    background-image: linear-gradient(to right, rgb(70, 70, 70) , rgb(0, 0, 0));
+    margin: 1%;
+    border-radius: 20px;
+}
+
+.carouselTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: whitesmoke;
+    padding: 20px;
+}
+
+.carouselButtons {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.button {
+    margin: 0 5%;
+}
+
+.carouselPageNumBackground {
+    display: block;
+    background-color: white;
+    z-index: 999;
+    border-radius: 20%;
+}
+
+.carouselPageNumBackground p {
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    color: black;
+}
+
+
+
+

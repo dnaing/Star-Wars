@@ -37,3 +37,9 @@
 .innerleftsidefilm p {
     font-size: 1.2rem;
 }
+
+.characterNavigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

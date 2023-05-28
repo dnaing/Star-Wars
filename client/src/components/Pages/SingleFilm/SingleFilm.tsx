@@ -126,23 +126,23 @@ function SingleFilm() {
       {/* Insert routings */}
 
       <div className="characterNavigation">
-        <Carousel {...{dataList: peopleData, dataType: 'people'}} />
+        <Carousel {...{dataList: peopleData, dataType: 'people', source: 'Films'}} />
       </div>
 
       <div className="speciesNavigation">
-        <Carousel {...{dataList: speciesData, dataType: 'species'}} />
+        <Carousel {...{dataList: speciesData, dataType: 'species', source: 'Films'}} />
       </div>
 
       <div className="planetNavigation"> 
-        <Carousel {...{dataList: planetData, dataType: 'planets'}} />
+        <Carousel {...{dataList: planetData, dataType: 'planets', source: 'Films'}} />
       </div>
 
       <div className="starshipNavigation">
-        <Carousel {...{dataList: starshipData, dataType: 'starships'}} />
+        <Carousel {...{dataList: starshipData, dataType: 'starships', source: 'Films'}} />
       </div>
 
       <div className="vehicleNavigation">
-        <Carousel {...{dataList: vehicleData, dataType: 'vehicles'}} />
+        <Carousel {...{dataList: vehicleData, dataType: 'vehicles', source: 'Films'}} />
       </div>
 
     </div>

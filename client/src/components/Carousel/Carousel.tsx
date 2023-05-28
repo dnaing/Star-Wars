@@ -9,6 +9,7 @@ import FilmCard from '../FilmCard/FilmCard';
 interface Props {
     dataList: any;
     dataType: string;
+    source: string;
 }
 
 // This component takes in a list of data like characters or starships
@@ -69,19 +70,35 @@ function Carousel(props: Props) {
     }
 
     
-    if (props.dataType == 'people') {
-        carouselTitle = <h1 className='carouselTitle'>Featured Characters</h1>
-    } else if (props.dataType == 'species') {
-        carouselTitle = <h1 className='carouselTitle'>Featured Species</h1>
-    } else if (props.dataType == 'planets') {
-        carouselTitle = <h1 className='carouselTitle'>Featured Planets</h1>
-    } else if (props.dataType == 'starships') {
-        carouselTitle = <h1 className='carouselTitle'>Featured Starships</h1>
-    } else if (props.dataType == 'vehicles') {
-        carouselTitle = <h1 className='carouselTitle'>Featured Vehicles</h1>
-    } else if (props.dataType == 'films') {
-        carouselTitle = <h1 className='carouselTitle'>Featured Films</h1>
+    if (props.source == 'Films') {
+        if (props.dataType == 'people') {
+            carouselTitle = <h1 className='carouselTitle'>Featured Characters</h1>
+        } else if (props.dataType == 'species') {
+            carouselTitle = <h1 className='carouselTitle'>Featured Species</h1>
+        } else if (props.dataType == 'planets') {
+            carouselTitle = <h1 className='carouselTitle'>Featured Planets</h1>
+        } else if (props.dataType == 'starships') {
+            carouselTitle = <h1 className='carouselTitle'>Featured Starships</h1>
+        } else if (props.dataType == 'vehicles') {
+            carouselTitle = <h1 className='carouselTitle'>Featured Vehicles</h1>
+        } else if (props.dataType == 'films') {
+            carouselTitle = <h1 className='carouselTitle'>Featured Films</h1>
+        }
     }
+
+    else if (props.source == 'People') {
+        if (props.dataType == 'films') {
+            carouselTitle = <h1 className='carouselTitle'>Featured in these Films</h1>
+        } else if (props.dataType == 'species') {
+            carouselTitle = <h1 className='carouselTitle'>Part of these Species</h1>
+        } else if (props.dataType == 'starships') {
+            carouselTitle = <h1 className='carouselTitle'>Piloted Starships</h1>
+        } else if (props.dataType == 'vehicles') {
+            carouselTitle = <h1 className='carouselTitle'>Piloted Vehicles</h1>
+        }       
+    }
+
+    
   
   
     if (shownItems.length === 0) {

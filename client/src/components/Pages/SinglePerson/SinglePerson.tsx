@@ -126,7 +126,7 @@ function SinglePerson() {
       {
         filmData.length > 0
         ? <div className="filmNavigation">
-            <Carousel {...{dataList: filmData, dataType: 'films'}} />
+            <Carousel {...{dataList: filmData, dataType: 'films', source: 'People'}} />
           </div>
         : <div></div>
       }
@@ -134,7 +134,7 @@ function SinglePerson() {
       {
         speciesData.length > 0
         ? <div className="speciesNavigation">
-            <Carousel {...{dataList: speciesData, dataType: 'species'}} />
+            <Carousel {...{dataList: speciesData, dataType: 'species', source: 'People'}} />
           </div>
         : <div></div>
       }
@@ -142,7 +142,7 @@ function SinglePerson() {
       {
         starshipData.length > 0
         ? <div className="starshipNavigation"> 
-            <Carousel {...{dataList: starshipData, dataType: 'starships'}} />
+            <Carousel {...{dataList: starshipData, dataType: 'starships', source: 'People'}} />
           </div>
         : <div></div>
       }
@@ -150,7 +150,7 @@ function SinglePerson() {
       {
         vehicleData.length > 0
         ? <div className="vehicleNavigation">
-            <Carousel {...{dataList: vehicleData, dataType: 'vehicles'}} />
+            <Carousel {...{dataList: vehicleData, dataType: 'vehicles', source: 'People'}} />
           </div>
         : <div></div>
       }

@@ -49,6 +49,38 @@ app.get('/films', async(req,res) => {
     }
 })
 
+app.get('/films/featured', async(req,res) => {
+    try {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+        
+        if (req.query.data && req.query.data.length > 0) {
+            let data = req.query.data;
+            console.log("==================");
+            console.log(data);
+    
+            let resData = [];
+    
+            for (let i = 0; i < data.length; i++) {
+                let dataObject =  await Film.findOne({ title: data[i] });
+                resData.push(dataObject);
+            }
+            console.log(resData);
+            res.json(resData);
+        }
+        else {
+            res.json([]);
+        }
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 app.get('/people', async(req,res) => {
 
     try {

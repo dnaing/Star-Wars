@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Grid } from '@mui/material';
 
 import './Carousel.css';
+import FilmCard from '../FilmCard/FilmCard';
 
 interface Props {
     dataList: any;
@@ -46,7 +47,7 @@ function Carousel(props: Props) {
     }, [currentPage]);
 
     useEffect(() => {
-        // console.log(shownItems);
+        console.log(shownItems);
     }, [shownItems]);
 
     function toNextPage() {
@@ -78,6 +79,8 @@ function Carousel(props: Props) {
         carouselTitle = <h1 className='carouselTitle'>Featured Starships</h1>
     } else if (props.dataType == 'vehicles') {
         carouselTitle = <h1 className='carouselTitle'>Featured Vehicles</h1>
+    } else if (props.dataType == 'films') {
+        carouselTitle = <h1 className='carouselTitle'>Featured Films</h1>
     }
   
   
@@ -96,13 +99,25 @@ function Carousel(props: Props) {
             {carouselTitle}
 
             <div className='carouselItems'>
-                <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
-                {shownItems.map((theItem, index) => (
-                    <Grid item xs={2} sm={4} md={4} key={theItem._id}>
-                    <GeneralCard {...{object: theItem, imageURL: "https://storage.cloud.google.com/starwars_" + props.dataType + "_imgs/" + theItem.name.replace(/[ /]+/g, '') + ".jpg", type: props.dataType}} />
-                    </Grid>
-                ))}
-                </Grid> 
+                {
+                    props.dataType != "films"
+                    ? <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
+                        {shownItems.map((theItem, index) => (
+                          <Grid item xs={2} sm={4} md={4} key={theItem._id}>
+                            <GeneralCard {...{object: theItem, imageURL: "https://storage.cloud.google.com/starwars_" + props.dataType + "_imgs/" + theItem.name.replace(/[ /]+/g, '') + ".jpg", type: props.dataType}} />
+                          </Grid>
+                        ))}
+                      </Grid>
+
+                    : <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
+                        {shownItems.map((theItem, index) => (
+                          <Grid item xs={2} sm={4} md={4} key={theItem._id}>
+                            <FilmCard {...{filmObject: theItem, imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + theItem.episode_id + ".jpg"}} />
+                          </Grid>
+                        ))}
+                      </Grid>
+                }
+                
             </div>
 
             <div className='carouselButtons'>

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import "./SinglePerson.css";
 import axios from 'axios';
+import Carousel from '../../Carousel/Carousel';
 
 function SinglePerson() {
 
@@ -11,15 +12,71 @@ function SinglePerson() {
   const { people, imageURL } = location.state;
   const hostName = 'http://localhost:4000';
 
-  useEffect(() => {
+  let [filmData, setFilmData] = useState<any[]>([]);
+  let [speciesData, setSpeciesData] = useState<any[]>([]);
+  let [starshipData, setStarshipData] = useState<any[]>([]);
+  let [vehicleData, setVehicleData] = useState<any[]>([]);
 
+  useEffect(() => {
+    if (people) {
       axios.get(hostName + '/planets/' + people.homeworld)
       .then((res) => {
           setHomeworldData(res.data);
       })
-  
-  }, []);
+    }
+  }, [people]);
 
+  useEffect(() => {
+    if (people) {
+      axios.get(hostName + '/films/featured', {
+        params: {
+          data: people.films
+        }
+      })
+      .then((res) => {
+          setFilmData(res.data);
+      })
+    }
+  }, [people]);
+
+  useEffect(() => {
+    if (people) {
+      axios.get(hostName + '/species/featured', {
+        params: {
+          data: people.species
+        }
+      })
+      .then((res) => {
+          setSpeciesData(res.data);
+      })
+    }
+  }, [people]);
+
+  useEffect(() => {
+    if (people) {
+      axios.get(hostName + '/starships/featured', {
+        params: {
+          data: people.starships
+        }
+      })
+      .then((res) => {
+          setStarshipData(res.data);
+      })
+    }
+  }, [people]);
+
+  useEffect(() => {
+    if (people) {
+      axios.get(hostName + '/vehicles/featured', {
+        params: {
+          data: people.vehicles
+        }
+      })
+      .then((res) => {
+          setVehicleData(res.data);
+      })
+    }
+  }, [people]);
 
   if (people == null || homeworldData.length == 0) {
     return (
@@ -29,7 +86,7 @@ function SinglePerson() {
     )
   }
 
-  console.log(homeworldData);
+  // console.log(homeworldData);
 
   return (
     <div>
@@ -62,6 +119,42 @@ function SinglePerson() {
         </div>
       </div>
 
+
+
+      
+      
+      {
+        filmData.length > 0
+        ? <div className="filmNavigation">
+            <Carousel {...{dataList: filmData, dataType: 'films'}} />
+          </div>
+        : <div></div>
+      }
+
+      {
+        speciesData.length > 0
+        ? <div className="speciesNavigation">
+            <Carousel {...{dataList: speciesData, dataType: 'species'}} />
+          </div>
+        : <div></div>
+      }
+      
+      {
+        starshipData.length > 0
+        ? <div className="starshipNavigation"> 
+            <Carousel {...{dataList: starshipData, dataType: 'starships'}} />
+          </div>
+        : <div></div>
+      }
+      
+      {
+        vehicleData.length > 0
+        ? <div className="vehicleNavigation">
+            <Carousel {...{dataList: vehicleData, dataType: 'vehicles'}} />
+          </div>
+        : <div></div>
+      }
+      
     </div>
   )
 }

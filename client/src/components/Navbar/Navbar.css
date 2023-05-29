@@ -129,7 +129,7 @@
     .navbar-logo {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 40;
       transform: translate(10%, 60%);
       transition: all 0.2s ease-out;
     }

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-// import { Button } from '../Button/Button';
+
 import './Navbar.css';
 
-// import navBarLogo from '../../assets/images/jedi_order.png';
+import navBarLogo from '../../assets/images/jedi_order.png';
 
 function NavBar() {
 
@@ -33,8 +33,9 @@ function NavBar() {
 
           {/* Navbar logo */}
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            Star Wars Compendium 
-            {/* <i className='fab fa-typo3'/> */}
+            Star Wars Codex
+            <i className='fab fa-typo3'/>
+            {/* <img src={navBarLogo} alt='navbar logo'/> */}
           </Link>
 
           {/* Navbar hamburger menu */}
@@ -74,14 +75,7 @@ function NavBar() {
                 Vehicles
               </Link>
             </li>
-            {/* <li className='nav-item'>
-              <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-                Sign Up
-              </Link>
-            </li> */}
           </ul>
-
-          {/* {button & <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}
         </div>
       </nav>
     </div>

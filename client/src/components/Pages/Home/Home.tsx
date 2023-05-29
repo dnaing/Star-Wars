@@ -79,9 +79,8 @@ function Home() {
           <div className='hero-container'>
             <img className='welcome-hero' src={welcomeImage} alt='Welcome Hero'/>
             <div className='welcome-text'>
-              <h1 className='heading'>STAR WARS COMPENDIUM</h1>
-              <p>Here you can find all sorts of information about the first 6 Star Wars movies</p>
-              {/* Button here */}
+              <h1 className='heading'>STAR WARS CODEX</h1>
+              <p>Your online guide to everything and everyone within the first 6 Star Wars movies</p>
               <Button variant="contained" onClick={scrollToContent}>GET STARTED</Button>
             </div>
           </div>

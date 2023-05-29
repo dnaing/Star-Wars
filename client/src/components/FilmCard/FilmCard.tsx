@@ -31,13 +31,6 @@ function FilmCard(props: Props) {
 		hiddenElements.forEach((element) => observer.observe(element));
 	}, []);
 
-	// const navigate = useNavigate();
-	// function handleClick(filmObject: any) {
-	// 	// console.log("Card clicked with name of " + filmObject.title);
-	// 	navigate(`/films/${filmObject.episode_id}`);
-	// }
-
-
 	function intToRomanNum(num: number) {
 		switch(num) {
 			case 1:
@@ -75,7 +68,7 @@ function FilmCard(props: Props) {
           alt={props.filmObject.title}
           />
           <CardContent>
-            <div className='card-content'>
+            <div className='card-content-film'>
             Episode {intToRomanNum(props.filmObject.episode_id)}: {props.filmObject.title}
             </div>
           </CardContent>

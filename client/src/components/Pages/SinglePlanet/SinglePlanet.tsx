@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './SinglePlanet.css';
+import axios from 'axios';
+import Carousel from '../../Carousel/Carousel';
 
 function SinglePlanet() {
   const location = useLocation();
   const { planets, imageURL } = location.state;
+  const hostName = 'http://localhost:4000';
+
+  let [filmData, setFilmData] = useState<any[]>([]);
+  let [peopleData, setPeopleData] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (planets) {
+      axios.get(hostName + '/films/featured', {
+        params: {
+          data: planets.films
+        }
+      })
+      .then((res) => {
+          setFilmData(res.data);
+      })
+    }
+  }, [planets]);
+
+  useEffect(() => {
+    if (planets) {
+      axios.get(hostName + '/people/featured', {
+        params: {
+          data: planets.residents
+        }
+      })
+      .then((res) => {
+          setPeopleData(res.data);
+      })
+    }
+  }, [planets]);
 
 
   if (planets == null) {
@@ -38,6 +70,23 @@ function SinglePlanet() {
           <img id="planetimg" src={imageURL}></img>
         </div>
       </div>
+
+
+      {
+        filmData.length > 0
+        ? <div className="filmNavigation">
+            <Carousel {...{dataList: filmData, dataType: 'films', source: 'Planets'}} />
+          </div>
+        : <div></div>
+      }
+
+      {
+        peopleData.length > 0
+        ? <div className="peopleNavigation">
+            <Carousel {...{dataList: peopleData, dataType: 'people', source: 'Planets'}} />
+          </div>
+        : <div></div>
+      }
 
     </div>
   )

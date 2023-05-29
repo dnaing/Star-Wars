@@ -106,6 +106,14 @@ function Carousel(props: Props) {
         }
     }
 
+    else if (props.source == 'Planets') {
+        if (props.dataType == 'films') {
+            carouselTitle = <h1 className='carouselTitle'>Featured in these Films</h1>
+        } else if (props.dataType == 'people') {
+            carouselTitle = <h1 className='carouselTitle'>Residents</h1>
+        }
+    }
+
     
   
     if (shownItems.length === 0) {

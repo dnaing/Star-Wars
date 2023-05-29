@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './Navbar.css';
 
-import navBarLogo from '../../assets/images/jedi_order.png';
 
 function NavBar() {
 
@@ -33,9 +32,8 @@ function NavBar() {
 
           {/* Navbar logo */}
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            Star Wars Codex
-            <i className='fab fa-typo3'/>
-            {/* <img src={navBarLogo} alt='navbar logo'/> */}
+            The Star Wars Codex
+            <i style={{paddingLeft: '15px'}} className="fa-solid fa-book-journal-whills"></i>
           </Link>
 
           {/* Navbar hamburger menu */}

@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './SingleStarship.css';
+import axios from 'axios';
+import Carousel from '../../Carousel/Carousel';
 
 function SingleStarship() {
   const location = useLocation();
   const { starships, imageURL } = location.state;
+  const hostName = 'http://localhost:4000';
+
+  let [filmData, setFilmData] = useState<any[]>([]);
+  let [peopleData, setPeopleData] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (starships) {
+      axios.get(hostName + '/films/featured', {
+        params: {
+          data: starships.films
+        }
+      })
+      .then((res) => {
+          setFilmData(res.data);
+      })
+    }
+  }, [starships]);
+
+  useEffect(() => {
+    if (starships) {
+      axios.get(hostName + '/people/featured', {
+        params: {
+          data: starships.pilots
+        }
+      })
+      .then((res) => {
+          setPeopleData(res.data);
+      })
+    }
+  }, [starships]);
 
   if (starships == null) {
     return (
@@ -41,6 +73,22 @@ function SingleStarship() {
           <img id="starshipimg" src={imageURL}></img>
         </div>
       </div>
+
+      {
+        filmData.length > 0
+        ? <div className="filmNavigation">
+            <Carousel {...{dataList: filmData, dataType: 'films', source: 'Starships'}} />
+          </div>
+        : <div></div>
+      }
+
+      {
+        peopleData.length > 0
+        ? <div className="peopleNavigation">
+            <Carousel {...{dataList: peopleData, dataType: 'people', source: 'Starships'}} />
+          </div>
+        : <div></div>
+      }
 
     </div>
   )

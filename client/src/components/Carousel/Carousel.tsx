@@ -114,13 +114,14 @@ function Carousel(props: Props) {
         }
     }
 
-    else if (props.source == 'Starships') {
+    else if (props.source == 'Starships' || props.source == 'Vehicles') {
         if (props.dataType == 'films') {
             carouselTitle = <h1 className='carouselTitle'>Featured in these Films</h1>
         } else if (props.dataType == 'people') {
             carouselTitle = <h1 className='carouselTitle'>Pilots</h1>
         }
     }
+
 
     
   

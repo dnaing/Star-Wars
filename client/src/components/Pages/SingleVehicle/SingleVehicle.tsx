@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './SingleVehicle.css';
+import axios from 'axios';
+import Carousel from '../../Carousel/Carousel';
 
 function SingleVehicle() {
   const location = useLocation();
   const { vehicles, imageURL } = location.state;
+  const hostName = 'http://localhost:4000';
+
+  let [filmData, setFilmData] = useState<any[]>([]);
+  let [peopleData, setPeopleData] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (vehicles) {
+      axios.get(hostName + '/films/featured', {
+        params: {
+          data: vehicles.films
+        }
+      })
+      .then((res) => {
+          setFilmData(res.data);
+      })
+    }
+  }, [vehicles]);
+
+  useEffect(() => {
+    if (vehicles) {
+      axios.get(hostName + '/people/featured', {
+        params: {
+          data: vehicles.pilots
+        }
+      })
+      .then((res) => {
+          setPeopleData(res.data);
+      })
+    }
+  }, [vehicles]);
 
   if (vehicles == null) {
     return (
@@ -44,6 +76,23 @@ function SingleVehicle() {
           <img id="vehicleimg" src={imageURL}></img>
         </div>
       </div>
+
+
+      {
+        filmData.length > 0
+        ? <div className="filmNavigation">
+            <Carousel {...{dataList: filmData, dataType: 'films', source: 'Vehicles'}} />
+          </div>
+        : <div></div>
+      }
+
+      {
+        peopleData.length > 0
+        ? <div className="peopleNavigation">
+            <Carousel {...{dataList: peopleData, dataType: 'people', source: 'Vehicles'}} />
+          </div>
+        : <div></div>
+      }
 
     </div>
   )

@@ -10,6 +10,7 @@ import { CircularProgress } from '@mui/material';
 function SinglePerson() {
 
   let [homeworldData, setHomeworldData] = useState<any[]>([]);
+  let [useLink, setUseLink] = useState(true);
   const location = useLocation();
   const { people, imageURL } = location.state;
   const hostName = 'http://localhost:4000';
@@ -23,7 +24,13 @@ function SinglePerson() {
     if (people) {
       axios.get(hostName + '/planets/' + people.homeworld)
       .then((res) => {
-          setHomeworldData(res.data);
+        if (res.data.length == 0) {
+          setUseLink(false);
+          setHomeworldData(["PLACEHOLDER"]);
+        }
+        else {
+            setHomeworldData(res.data);
+        }
       })
     }
   }, [people]);
@@ -80,7 +87,7 @@ function SinglePerson() {
     }
   }, [people]);
 
-  if (people == null) {
+  if (people == null || homeworldData.length == 0) {
     return (
       <div>
         <div className="loading">
@@ -106,20 +113,20 @@ function SinglePerson() {
             <p>Hair Color: {people.hair_color}</p>
             <p>Skin Color: {people.skin_color}</p>
             <p>Eye Color: {people.eye_color}</p>
-            {
-              homeworldData.length > 0
-              ? <p>Home World:{' '} 
-                <Link to={`/planets/${homeworldData.at(0).name.replace(/\s+/g, '')}`} 
-                    state={ { planets: homeworldData.at(0), 
-                              imageURL: "https://storage.cloud.google.com/starwars_planets_imgs/" + homeworldData.at(0).name.replace(/\s+/g, '') + ".jpg" 
-                            } 
-                          } style={{ textDecoration: 'none' }}>
+            <div>
+              {useLink
+                  ? <p>Home World:{' '}
+                  <Link to={`/planets/${homeworldData.at(0).name.replace(/\s+/g, '')}`} 
+                        state={ { planets: homeworldData.at(0), 
+                                  imageURL: "https://storage.cloud.google.com/starwars_planets_imgs/" + homeworldData.at(0).name.replace(/\s+/g, '') + ".jpg" 
+                                } 
+                              } style={{ textDecoration: 'none' }}>
                     {people.homeworld}
-                </Link>
-                </p>
-             : <p>Home World: unknown</p>
-            }
-
+                  </Link>
+                  </p>
+                  : <p>Home World: {people.homeworld}</p>
+              }
+            </div>
           </div>
         </div>
 

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import "./SingleSpecies.css";
 import axios from 'axios';
+import Carousel from '../../Carousel/Carousel';
 
 function SingleSpecies() {
 
@@ -12,22 +13,51 @@ function SingleSpecies() {
   const { species, imageURL } = location.state;
   const hostName = 'http://localhost:4000';
 
+  let [filmData, setFilmData] = useState<any[]>([]);
+  let [peopleData, setPeopleData] = useState<any[]>([]);
+
 
   useEffect(() => {
+    if (species) {
+      axios.get(hostName + '/planets/' + species.homeworld)
+      .then((res) => {
+          if (res.data.length == 0) {
+              setUseLink(false);
+              setHomeworldData(["PLACEHOLDER"]);
+          }
+          else {
+              setHomeworldData(res.data);
+          }
+          
+      })
+    }
+  }, [species]);
 
-    axios.get(hostName + '/planets/' + species.homeworld)
-    .then((res) => {
-        if (res.data.length == 0) {
-            setUseLink(false);
-            setHomeworldData(["PLACEHOLDER"]);
+  useEffect(() => {
+    if (species) {
+      axios.get(hostName + '/films/featured', {
+        params: {
+          data: species.films
         }
-        else {
-            setHomeworldData(res.data);
-        }
-        
-    })
+      })
+      .then((res) => {
+          setFilmData(res.data);
+      })
+    }
+  }, [species]);
 
-  }, []);
+  useEffect(() => {
+    if (species) {
+      axios.get(hostName + '/people/featured', {
+        params: {
+          data: species.people
+        }
+      })
+      .then((res) => {
+          setPeopleData(res.data);
+      })
+    }
+  }, [species]);
 
 
   if (species == null || homeworldData.length == 0) {
@@ -76,6 +106,24 @@ function SingleSpecies() {
           <img id="speciesimg" src={imageURL}></img>
         </div>
       </div>
+
+
+
+      {
+        filmData.length > 0
+        ? <div className="filmNavigation">
+            <Carousel {...{dataList: filmData, dataType: 'films', source: 'Species'}} />
+          </div>
+        : <div></div>
+      }
+
+      {
+        peopleData.length > 0
+        ? <div className="peopleNavigation">
+            <Carousel {...{dataList: peopleData, dataType: 'people', source: 'Species'}} />
+          </div>
+        : <div></div>
+      }
 
     </div>
   )

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './SingleStarship.css';
+import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
+import { CircularProgress } from '@mui/material';
 
 function SingleStarship() {
   const location = useLocation();
@@ -42,7 +44,9 @@ function SingleStarship() {
   if (starships == null) {
     return (
       <div>
-        LOADING
+        <div className="loading">
+          <CircularProgress size="15rem"/>
+        </div>
       </div>
     )
   }

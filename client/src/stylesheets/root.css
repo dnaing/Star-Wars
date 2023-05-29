@@ -25,3 +25,18 @@
     width: 10%;
     padding-left: 0.5%;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+}
+
+.loadingModal {
+    display: block;
+    background-image: linear-gradient(to right, rgb(70, 70, 70) , rgb(0, 0, 0));
+    margin: 1%;
+    border-radius: 20px;
+    height: 20%;
+}

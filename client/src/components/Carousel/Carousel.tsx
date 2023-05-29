@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import GeneralCard from '../GeneralCard/GeneralCard';
 import { Button } from 'react-bootstrap';
-import { Grid } from '@mui/material';
+import { CircularProgress, Grid } from '@mui/material';
 
 import './Carousel.css';
 import FilmCard from '../FilmCard/FilmCard';
@@ -44,11 +44,11 @@ function Carousel(props: Props) {
         let startIndex = currentPage * itemsPerPage;
         let endIndex = startIndex + itemsPerPage;
         setShownItems(props.dataList.slice(startIndex, endIndex));
-        console.log(shownItems);
+        // console.log(shownItems);
     }, [currentPage]);
 
     useEffect(() => {
-        console.log(shownItems);
+        // console.log(shownItems);
     }, [shownItems]);
 
     function toNextPage() {
@@ -128,7 +128,7 @@ function Carousel(props: Props) {
     if (shownItems.length === 0) {
         return (
             <div>
-                LOADING CAROUSEL ITEMS
+                <CircularProgress size="5rem"/>
             </div>
         )
     }

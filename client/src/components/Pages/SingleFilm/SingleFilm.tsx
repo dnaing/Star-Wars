@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import "./SingleFilm.css";
-import { Grid } from '@mui/material';
+import "../../../stylesheets/root.css"
+import { CircularProgress, Grid } from '@mui/material';
 import FilmCard from '../../FilmCard/FilmCard';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
@@ -99,7 +100,9 @@ function SingleFilm() {
       vehicleData.length == 0) {
     return (
       <div>
-        LOADING
+        <div className="loading">
+          <CircularProgress size="15rem"/>
+        </div>
       </div>
     )
   }

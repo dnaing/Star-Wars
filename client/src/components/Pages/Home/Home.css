@@ -6,7 +6,7 @@ p {
     font-size: 2rem;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    text-underline-offset: 20%;
+    text-underline-offset: 20%;   
 }
 
 @keyframes slide-to-left {

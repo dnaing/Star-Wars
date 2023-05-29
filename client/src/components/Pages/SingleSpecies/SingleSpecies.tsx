@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import "./SingleSpecies.css";
+import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
+import { CircularProgress } from '@mui/material';
 
 function SingleSpecies() {
 
@@ -11,6 +13,7 @@ function SingleSpecies() {
   let [useLink, setUseLink] = useState(true);
   const location = useLocation();
   const { species, imageURL } = location.state;
+  console.log(species);
   const hostName = 'http://localhost:4000';
 
   let [filmData, setFilmData] = useState<any[]>([]);
@@ -63,7 +66,9 @@ function SingleSpecies() {
   if (species == null || homeworldData.length == 0) {
     return (
       <div>
-        LOADING
+        <div className="loading">
+          <CircularProgress size="15rem"/>
+        </div>
       </div>
     )
   }

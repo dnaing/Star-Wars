@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './SinglePlanet.css';
+import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
+import { CircularProgress } from '@mui/material';
 
 function SinglePlanet() {
   const location = useLocation();
   const { planets, imageURL } = location.state;
+  console.log(planets);
   const hostName = 'http://localhost:4000';
 
   let [filmData, setFilmData] = useState<any[]>([]);
@@ -41,9 +44,12 @@ function SinglePlanet() {
 
 
   if (planets == null) {
+    console.log("HELLO");
     return (
       <div>
-        LOADING
+        <div className="loading">
+          <CircularProgress size="15rem"/>
+        </div>
       </div>
     )
   }

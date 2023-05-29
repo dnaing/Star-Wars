@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import "./SinglePerson.css";
+import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
+import { CircularProgress } from '@mui/material';
 
 function SinglePerson() {
 
@@ -78,10 +80,12 @@ function SinglePerson() {
     }
   }, [people]);
 
-  if (people == null || homeworldData.length == 0) {
+  if (people == null) {
     return (
       <div>
-        LOADING
+        <div className="loading">
+          <CircularProgress size="15rem"/>
+        </div>
       </div>
     )
   }
@@ -102,15 +106,20 @@ function SinglePerson() {
             <p>Hair Color: {people.hair_color}</p>
             <p>Skin Color: {people.skin_color}</p>
             <p>Eye Color: {people.eye_color}</p>
-            <p>Home World:{' '}  
-            <Link to={`/planets/${homeworldData.at(0).name.replace(/\s+/g, '')}`} 
-                  state={ { planets: homeworldData.at(0), 
-                            imageURL: "https://storage.cloud.google.com/starwars_planets_imgs/" + homeworldData.at(0).name.replace(/\s+/g, '') + ".jpg" 
-                          } 
-                        } style={{ textDecoration: 'none' }}>
-              {people.homeworld}
-            </Link>
-            </p>
+            {
+              homeworldData.length > 0
+              ? <p>Home World:{' '} 
+                <Link to={`/planets/${homeworldData.at(0).name.replace(/\s+/g, '')}`} 
+                    state={ { planets: homeworldData.at(0), 
+                              imageURL: "https://storage.cloud.google.com/starwars_planets_imgs/" + homeworldData.at(0).name.replace(/\s+/g, '') + ".jpg" 
+                            } 
+                          } style={{ textDecoration: 'none' }}>
+                    {people.homeworld}
+                </Link>
+                </p>
+             : <p>Home World: unknown</p>
+            }
+
           </div>
         </div>
 

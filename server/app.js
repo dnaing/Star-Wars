@@ -329,7 +329,7 @@ app.get('/planets/:id', async(req,res) => {
             const planet = await Planet.find({ name: planetName });
             res.json(planet);
         }
-        else {
+        else if (planetName == "unknown") {
             res.json([]);
         }
     }

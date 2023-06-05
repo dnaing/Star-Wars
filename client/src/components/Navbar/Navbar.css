@@ -11,11 +11,8 @@
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    /* position: fixed; */
     top: 0;
-    /* overflow:hidden; */
-    /* overflow-y: scroll; */
-  }
+}
   
   .navbar-container {
     display: flex;
@@ -24,142 +21,134 @@
     height: 80px;
     max-width: 1500px;
     overflow: hidden;
-  }
+}
   
+.navbar-logo {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(10%, 60%);
+  transition: all 0.2s ease-out;
+}
+  
+.fa-typo3 {
+  margin-left: 0.5rem;
+  font-size: 1.8rem;
+}
+  
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 80vw;
+  /* justify-content: end; */
+  margin-left: 30rem;
+}
+  
+.nav-item {
+  height: 80px;
+}
+  
+.nav-links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  height: 100%;
+}
+  
+.nav-links:hover {
+  border-bottom: 4px solid #fff;
+  transition: all 0.2s ease-out;
+}
+  
+.fa-bars {
+  color: #fff;
+}
+  
+.nav-links-mobile {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+}
+  
+@media screen and (max-width: 1120px) {
+  .NavbarItems {
+    position: relative;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    margin-left: 0rem;
+    overflow-y: scroll;
+  }
+
+  .nav-menu.active {
+    background: #242222;
+    height: 100vh;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    overflow-y: scroll;
+  }
+
+  body.nav-menu-active {
+    overflow: hidden;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-links:hover {
+    background-color: #fff;
+    color: #242424;
+    border-radius: 0;
+  }
+
   .navbar-logo {
-    color: #fff;
-    /* justify-self: start; */
-    /* margin-left: 20px; */
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1.5rem;
-    /* display: flex; */
-    /* align-items: center; */
     position: absolute;
     top: 0;
-    left: 0;
+    left: 40;
     transform: translate(10%, 60%);
     transition: all 0.2s ease-out;
   }
-  
-  .fa-typo3 {
-    margin-left: 0.5rem;
-    font-size: 1.8rem;
-  }
-  
-  .nav-menu {
-    display: grid;
-    grid-template-columns: repeat(6, auto);
-    grid-gap: 10px;
-    list-style: none;
-    text-align: center;
-    width: 80vw;
-    justify-content: end;
-    margin-left: 15rem;
-  }
-  
-  .nav-item {
-    height: 80px;
-    /* position: relative; */
-  }
-  
-  .nav-links {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 1rem 2rem;
-    height: 100%;
-  }
-  
-  .nav-links:hover {
-    border-bottom: 4px solid #fff;
-    transition: all 0.2s ease-out;
-  }
-  
-  .fa-bars {
-    color: #fff;
-  }
-  
-  .nav-links-mobile {
-    display: none;
-  }
-  
+
   .menu-icon {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 45%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 2;
   }
-  
-  @media screen and (max-width: 1120px) {
-    .NavbarItems {
-      position: relative;
-    }
 
-
- 
-    .nav-menu {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 90vh;
-      position: absolute;
-      top: 80px;
-      left: -100%;
-      opacity: 1;
-      transition: all 0.5s ease;
-      margin-left: 0rem;
-      overflow-y: scroll;
-      /* overflow: hidden; */
-    }
-  
-    .nav-menu.active {
-      background: #242222;
-      left: 0;
-      opacity: 1;
-      transition: all 0.5s ease;
-      z-index: 1;
-      overflow-y: scroll;
-      /* overflow: hidden; */
-    }
-
-    body.nav-menu-active {
-      overflow: hidden;
-    }
-  
-    .nav-links {
-      text-align: center;
-      padding: 2rem;
-      width: 100%;
-      display: table;
-    }
-  
-    .nav-links:hover {
-      background-color: #fff;
-      color: #242424;
-      border-radius: 0;
-    }
-  
-    .navbar-logo {
-      position: absolute;
-      top: 0;
-      left: 40;
-      transform: translate(10%, 60%);
-      transition: all 0.2s ease-out;
-    }
-  
-    .menu-icon {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translate(-100%, 45%);
-      font-size: 1.8rem;
-      cursor: pointer;
-      z-index: 2;
-    }
-  
-    .fa-times {
-      color: #fff;
-      font-size: 2rem;
-    }
-  
+  .fa-times {
+    color: #fff;
+    font-size: 2rem;
   }
+
+}

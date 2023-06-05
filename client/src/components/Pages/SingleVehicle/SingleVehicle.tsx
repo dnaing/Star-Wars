@@ -6,6 +6,8 @@ import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
 import { CircularProgress } from '@mui/material';
+import { IconButton } from '@mui/material';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
 function SingleVehicle() {
   const location = useLocation();
@@ -14,6 +16,10 @@ function SingleVehicle() {
 
   let [filmData, setFilmData] = useState<any[]>([]);
   let [peopleData, setPeopleData] = useState<any[]>([]);
+
+  function scrollToTop() {
+    window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
+  }
 
   useEffect(() => {
     if (vehicles) {
@@ -97,6 +103,10 @@ function SingleVehicle() {
           </div>
         : <div></div>
       }
+
+      <IconButton id='to-top-button' onClick={scrollToTop}>
+        <ExpandLessRoundedIcon/>
+      </IconButton>
 
     </div>
   )

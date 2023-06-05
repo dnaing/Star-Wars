@@ -6,6 +6,8 @@ import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
 import { CircularProgress } from '@mui/material';
+import { IconButton } from '@mui/material';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
 function SinglePerson() {
 
@@ -19,6 +21,10 @@ function SinglePerson() {
   let [speciesData, setSpeciesData] = useState<any[]>([]);
   let [starshipData, setStarshipData] = useState<any[]>([]);
   let [vehicleData, setVehicleData] = useState<any[]>([]);
+
+  function scrollToTop() {
+    window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
+  }
 
   useEffect(() => {
     if (people) {
@@ -170,6 +176,10 @@ function SinglePerson() {
           </div>
         : <div></div>
       }
+
+      <IconButton id='to-top-button' onClick={scrollToTop}>
+        <ExpandLessRoundedIcon/>
+      </IconButton>
       
     </div>
   )

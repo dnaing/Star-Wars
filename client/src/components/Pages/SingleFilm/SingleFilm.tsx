@@ -3,11 +3,12 @@ import { useLocation } from 'react-router-dom';
 
 import "./SingleFilm.css";
 import "../../../stylesheets/root.css"
-import { CircularProgress, Grid } from '@mui/material';
+import { CircularProgress, Grid, IconButton } from '@mui/material';
 import FilmCard from '../../FilmCard/FilmCard';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
 import Carousel from '../../Carousel/Carousel';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
 function SingleFilm() {
 
@@ -20,6 +21,10 @@ function SingleFilm() {
   let [planetData, setPlanetData] = useState<any[]>([]);
   let [starshipData, setStarshipData] = useState<any[]>([]);
   let [vehicleData, setVehicleData] = useState<any[]>([]);
+
+  function scrollToTop() {
+    window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
+  }
 
   // Get featured character data
   useEffect(() => {
@@ -147,6 +152,10 @@ function SingleFilm() {
       <div className="vehicleNavigation">
         <Carousel {...{dataList: vehicleData, dataType: 'vehicles', source: 'Films'}} />
       </div>
+
+      <IconButton id='to-top-button' onClick={scrollToTop}>
+        <ExpandLessRoundedIcon/>
+      </IconButton>
 
     </div>
   )

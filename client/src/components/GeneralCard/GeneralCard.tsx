@@ -30,8 +30,6 @@ function GeneralCard(props: Props) {
 		hiddenElements.forEach((element) => observer.observe(element));
 	}, []);
 
-
-
   return (
 		<>
       <div className='card-container hidden-2'>

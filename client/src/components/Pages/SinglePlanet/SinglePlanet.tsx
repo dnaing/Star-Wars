@@ -49,7 +49,6 @@ function SinglePlanet() {
 
 
   if (planets == null) {
-    console.log("HELLO");
     return (
       <div>
         <div className="loading">

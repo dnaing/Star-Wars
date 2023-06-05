@@ -34,7 +34,6 @@ db.on('error', (error) => console.error(error));
 // Define routes
 app.get('/films', async(req,res) => {
     try {
-        // console.log(req.query);
         const films = await Film.find();
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -59,16 +58,14 @@ app.get('/films/featured', async(req,res) => {
         
         if (req.query.data && req.query.data.length > 0) {
             let data = req.query.data;
-            console.log("==================");
-            console.log(data);
-    
+            
             let resData = [];
     
             for (let i = 0; i < data.length; i++) {
                 let dataObject =  await Film.findOne({ title: data[i] });
                 resData.push(dataObject);
             }
-            console.log(resData);
+            
             res.json(resData);
         }
         else {
@@ -137,16 +134,14 @@ app.get('/people/featured', async(req,res) => {
         
         if (req.query.data && req.query.data.length > 0) {
             let data = req.query.data;
-            console.log("==================");
-            console.log(data);
-    
+            
             let resData = [];
     
             for (let i = 0; i < data.length; i++) {
                 let dataObject =  await Character.findOne({ name: data[i] });
                 resData.push(dataObject);
             }
-            console.log(resData);
+
             res.json(resData);
         }
         else {
@@ -210,16 +205,14 @@ app.get('/species/featured', async(req,res) => {
         
         if (req.query.data && req.query.data.length > 0) {
             let data = req.query.data;
-            console.log("==================");
-            console.log(data);
-    
+            
             let resData = [];
     
             for (let i = 0; i < data.length; i++) {
                 let dataObject =  await Species.findOne({ name: data[i] });
                 resData.push(dataObject);
             }
-            console.log(resData);
+            
             res.json(resData);
         }
         else {
@@ -290,16 +283,14 @@ app.get('/planets/featured', async(req,res) => {
         
         if (req.query.data && req.query.data.length > 0) {
             let data = req.query.data;
-            console.log("==================");
-            console.log(data);
-    
+            
             let resData = [];
     
             for (let i = 0; i < data.length; i++) {
                 let dataObject =  await Planet.findOne({ name: data[i] });
                 resData.push(dataObject);
             }
-            console.log(resData);
+            
             res.json(resData);
         }
         else {
@@ -322,8 +313,7 @@ app.get('/planets/:id', async(req,res) => {
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
 
         const planetName = req.params.id;
-        // console.log(planetName);
-
+        
         if (planetName != "unknown") {
             // get single planet data from mongodb
             const planet = await Planet.find({ name: planetName });
@@ -429,16 +419,14 @@ app.get('/starships/featured', async(req,res) => {
         
         if (req.query.data && req.query.data.length > 0) {
             let data = req.query.data;
-            console.log("==================");
-            console.log(data);
-    
+            
             let resData = [];
     
             for (let i = 0; i < data.length; i++) {
                 let dataObject =  await Starship.findOne({ name: data[i] });
                 resData.push(dataObject);
             }
-            console.log(resData);
+            
             res.json(resData);
         }
         else {
@@ -524,16 +512,14 @@ app.get('/vehicles/featured', async(req,res) => {
         
         if (req.query.data && req.query.data.length > 0) {
             let data = req.query.data;
-            console.log("==================");
-            console.log(data);
-    
+            
             let resData = [];
     
             for (let i = 0; i < data.length; i++) {
                 let dataObject =  await Vehicle.findOne({ name: data[i] });
                 resData.push(dataObject);
             }
-            console.log(resData);
+            
             res.json(resData);
         }
         else {

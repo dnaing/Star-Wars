@@ -44,12 +44,8 @@ function Carousel(props: Props) {
         let startIndex = currentPage * itemsPerPage;
         let endIndex = startIndex + itemsPerPage;
         setShownItems(props.dataList.slice(startIndex, endIndex));
-        // console.log(shownItems);
+        
     }, [currentPage]);
-
-    useEffect(() => {
-        // console.log(shownItems);
-    }, [shownItems]);
 
     function toNextPage() {
         if (currentPage == lastPage - 1) {

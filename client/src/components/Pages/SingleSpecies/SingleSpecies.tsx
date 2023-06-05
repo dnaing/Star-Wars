@@ -13,7 +13,6 @@ function SingleSpecies() {
   let [useLink, setUseLink] = useState(true);
   const location = useLocation();
   const { species, imageURL } = location.state;
-  console.log(species);
   const hostName = 'http://localhost:4000';
 
   let [filmData, setFilmData] = useState<any[]>([]);

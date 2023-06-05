@@ -10,7 +10,6 @@ import { CircularProgress } from '@mui/material';
 function SinglePlanet() {
   const location = useLocation();
   const { planets, imageURL } = location.state;
-  console.log(planets);
   const hostName = 'http://localhost:4000';
 
   let [filmData, setFilmData] = useState<any[]>([]);

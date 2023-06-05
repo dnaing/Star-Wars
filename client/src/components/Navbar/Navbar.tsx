@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
@@ -24,6 +24,19 @@ function NavBar() {
   };
 
   window.addEventListener('resize', showButton);
+
+  const navMenu = document.querySelector('.nav-menu');
+
+  
+  useEffect(() => {
+    if (click == true) {
+      document.body.classList.toggle('nav-menu-active');
+    }
+    else {
+      document.body.classList.remove('nav-menu-active');
+    }
+  }, [click]);
+  
 
   return (
     <div className='overarching-container'>

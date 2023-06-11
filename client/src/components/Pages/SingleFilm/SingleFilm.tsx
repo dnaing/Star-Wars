@@ -9,12 +9,13 @@ import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
 import Carousel from '../../Carousel/Carousel';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+import hostName from '../../Variables/variables';
 
 function SingleFilm() {
 
   const location = useLocation();
   const { film, imageURL } = location.state;
-  const hostName = 'http://localhost:4000';
+
 
   let [peopleData, setPeopleData] = useState<any[]>([]);
   let [speciesData, setSpeciesData] = useState<any[]>([]);

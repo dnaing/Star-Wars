@@ -8,11 +8,11 @@ import Carousel from '../../Carousel/Carousel';
 import { CircularProgress } from '@mui/material';
 import { IconButton } from '@mui/material';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+import hostName from '../../Variables/variables';
 
 function SingleVehicle() {
   const location = useLocation();
   const { vehicles, imageURL } = location.state;
-  const hostName = 'http://localhost:4000';
 
   let [filmData, setFilmData] = useState<any[]>([]);
   let [peopleData, setPeopleData] = useState<any[]>([]);

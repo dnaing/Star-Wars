@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+import hostName from '../../Variables/variables';
 
 import './Starships.css';
 import '../../../stylesheets/root.css';
@@ -24,7 +25,6 @@ function Starships() {
     let [starshipData, setStarshipData] = useState<any[]>([]);
     const [sortOption, setSortOption] = useState('alpha');
     const [sortOrdering, setSortOrdering] = useState('ascending');
-    const hostName = 'http://localhost:4000';
 
     useEffect(() => {
 

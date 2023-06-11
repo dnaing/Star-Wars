@@ -22,7 +22,7 @@ mongoose.connect(dbURI)
         app.use(cors({
             origin: 'http://localhost:3000'
         }));
-        app.listen(4000, () => console.log("Server Started"));
+        app.listen(8080, '35.236.104.1', () => console.log("Server Started"));
     })
     .catch((error) => console.error(error));
 

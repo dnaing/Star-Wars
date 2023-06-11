@@ -8,11 +8,11 @@ import Carousel from '../../Carousel/Carousel';
 import { CircularProgress } from '@mui/material';
 import { IconButton } from '@mui/material';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+import hostName from '../../Variables/variables';
 
 function SinglePlanet() {
   const location = useLocation();
   const { planets, imageURL } = location.state;
-  const hostName = 'http://localhost:4000';
 
   let [filmData, setFilmData] = useState<any[]>([]);
   let [peopleData, setPeopleData] = useState<any[]>([]);

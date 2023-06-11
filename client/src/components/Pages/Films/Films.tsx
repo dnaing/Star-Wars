@@ -3,8 +3,8 @@ import {FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChang
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import Button from '@mui/material/Button';
-
 import FilmCard from '../../FilmCard/FilmCard';
+import hostName from '../../Variables/variables';
 
 import './Films.css';
 import '../../../stylesheets/root.css';
@@ -22,7 +22,7 @@ function Films() {
     let [filmData, setFilmData] = useState<any[]>([]);
     const [filmDataOrig, setFilmDataOrig] = useState<any[]>([]);
     const [sortOption, setSortOption] = useState('chronological');
-    const hostName = 'http://localhost:4000';
+
 
     
     useEffect(() => {

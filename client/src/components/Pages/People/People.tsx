@@ -3,6 +3,7 @@ import {Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Sel
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
+import hostName from '../../Variables/variables';
 
 import './People.css';
 import '../../../stylesheets/root.css';
@@ -13,7 +14,6 @@ function People() {
     let [peopleData, setPeopleData] = useState<any[]>([]);
     const [sortOption, setSortOption] = useState('alpha');
     const [sortOrdering, setSortOrdering] = useState('ascending');
-    const hostName = 'http://localhost:4000';
 
     function handleChange(event: SelectChangeEvent) {
         setSortOption(event.target.value as string);

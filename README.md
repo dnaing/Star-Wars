@@ -12,3 +12,6 @@ INSTRUCTIONS
 4. Open up a second terminal and move into the client directory. In this directory, run the command "npm start"
 5. A browser tab will open up and The Star Wars Codex will now be up and running
 6. Have Fun!
+
+Public URL
+https://orbital-wording-384223.wl.r.appspot.com/

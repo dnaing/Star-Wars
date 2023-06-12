@@ -20,7 +20,7 @@ mongoose.connect(dbURI)
     .then((result) => {
         console.log("Connected to Star Wars Database for reading");
         app.use(cors({
-            origin: 'http://localhost:3000'
+            origin: ['http://localhost:3000', 'https://orbital-wording-384223.wl.r.appspot.com'],
         }));
         app.listen(8080, '35.236.104.1', () => console.log("Server Started"));
     })

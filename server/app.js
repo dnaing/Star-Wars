@@ -5,6 +5,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const fs = require('fs');
+const https = require('https');
 const Film = require('./schemas/films');
 const Character = require('./schemas/characters');
 const Species = require('./schemas/species');
@@ -14,6 +16,14 @@ const Vehicle = require('./schemas/vehicles');
 
 const app = express();
 
+const options = {
+    key: fs.readFileSync("server.key"),
+    cert: fs.readFileSync("server.cert"),
+};
+
+const server = https.createServer(options, app);
+
+
 // Connect to MongoDB Database
 const dbURI = 'mongodb+srv://dereknaing01:DarkChaosLord123@starwarsdatabase.gejidxc.mongodb.net/StarWarsDatabase?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
@@ -22,7 +32,8 @@ mongoose.connect(dbURI)
         app.use(cors({
             origin: ['http://localhost:3000', 'https://orbital-wording-384223.wl.r.appspot.com'],
         }));
-        app.listen(8080, '35.236.104.1', () => console.log("Server Started"));
+        // for local testing use app.listen(4000) 
+        server.listen(8443, '10.168.0.4', () => console.log("Server Started"));
     })
     .catch((error) => console.error(error));
 

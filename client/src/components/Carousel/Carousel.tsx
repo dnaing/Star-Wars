@@ -141,7 +141,7 @@ function Carousel(props: Props) {
                     ? <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
                         {shownItems.map((theItem, index) => (
                           <Grid item xs={2} sm={4} md={4} key={theItem._id}>
-                            <GeneralCard {...{object: theItem, imageURL: "https://storage.cloud.google.com/starwars_" + props.dataType + "_imgs/" + theItem.name.replace(/[ /]+/g, '') + ".jpg", type: props.dataType}} />
+                            <GeneralCard {...{object: theItem, imageURL: "https://storage.googleapis.com/starwars_" + props.dataType + "_imgs/" + theItem.name.replace(/[ /]+/g, '') + ".jpg", type: props.dataType}} />
                           </Grid>
                         ))}
                       </Grid>
@@ -149,7 +149,7 @@ function Carousel(props: Props) {
                     : <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 20 }} >
                         {shownItems.map((theItem, index) => (
                           <Grid item xs={2} sm={4} md={4} key={theItem._id}>
-                            <FilmCard {...{filmObject: theItem, imageURL: "https://storage.cloud.google.com/starwars_films_imgs/episode" + theItem.episode_id + ".jpg"}} />
+                            <FilmCard {...{filmObject: theItem, imageURL: "https://storage.googleapis.com/starwars_films_imgs/episode" + theItem.episode_id + ".jpg"}} />
                           </Grid>
                         ))}
                       </Grid>

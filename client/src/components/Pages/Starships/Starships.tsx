@@ -175,7 +175,7 @@ function Starships() {
           <Grid container rowSpacing={{ xs: 2.5, sm: 2.5, md: 5 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 16 }} >
               {Array.from(starshipData).map((starshipItem, index) => (
               <Grid item xs={2} sm={4} md={4} key={starshipItem._id}>
-                  <GeneralCard {...{object: starshipItem, imageURL: "https://storage.cloud.google.com/starwars_starships_imgs/" + starshipItem.name.replace(/\s+/g, '') + ".jpg", type:"starships"}} />
+                  <GeneralCard {...{object: starshipItem, imageURL: "https://storage.googleapis.com/starwars_starships_imgs/" + starshipItem.name.replace(/\s+/g, '') + ".jpg", type:"starships"}} />
               </Grid>
           ))}
           </Grid>   

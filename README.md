@@ -14,4 +14,4 @@ INSTRUCTIONS
 6. Have Fun!
 
 Public URL
-https://orbital-wording-384223.wl.r.appspot.com/
+http://thestarwarscodex.com/

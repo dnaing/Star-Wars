@@ -1,0 +1,16 @@
+Domain bought from SquareSpace (Autorenew every year ~$15
+
+Images taken from Google Cloud Storage Buckets for free
+
+Server hosted 24/7 on GCP Compute Engine
+
+Client hosted by GCP
+
+ADDITIONAL NOTES FOR SERVER CONFIGURATION Server is currently being ran on Google Cloud with pm2. Use certbot renew in order to renew backend certificates when expired. Use pm2 restart app.js to restart the server after renewing the certificates.
+
+pm2 list - shows status of the application
+pm2 restart app.js
+pm2 start app.js
+pm2 stop app.js
+
+Backend URl : https://backend.thestarwarscodex.com:8443

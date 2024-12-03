@@ -16,9 +16,14 @@ const Vehicle = require('./schemas/vehicles');
 
 const app = express();
 
+// const options = {
+//     key: fs.readFileSync("server.key"),
+//     cert: fs.readFileSync("server.cert"),
+// };
+
 const options = {
-    key: fs.readFileSync("server.key"),
-    cert: fs.readFileSync("server.cert"),
+    key: fs.readFileSync("/etc/letsencrypt/live/backend.thestarwarscodex.com/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/backend.thestarwarscodex.com/fullchain.pem"),
 };
 
 const server = https.createServer(options, app);

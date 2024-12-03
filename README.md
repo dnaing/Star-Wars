@@ -13,5 +13,8 @@ INSTRUCTIONS
 5. A browser tab will open up and The Star Wars Codex will now be up and running
 6. Have Fun!
 
+ADDITIONAL NOTES FOR SERVER CONFIGURATION
+Server is currently being ran on Google Cloud with pm2. Use certbot renew in order to renew backend certificates when expired. Use pm2 restart app.js to restart the server after renewing the certificates.
+
 Public URL
-https://orbital-wording-384223.wl.r.appspot.com/
+http://thestarwarscodex.com/

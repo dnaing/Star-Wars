@@ -38,7 +38,7 @@ mongoose.connect(dbURI)
             origin: ['http://localhost:3000', 'https://orbital-wording-384223.wl.r.appspot.com'],
         }));
         // for local testing use app.listen(4000) 
-        server.listen(8443, '10.168.0.4', () => console.log("Server Started"));
+        server.listen(8443, '10.138.0.4', () => console.log("Server Started"));
     })
     .catch((error) => console.error(error));
 

@@ -27,7 +27,7 @@ const server = https.createServer(options, app);
 
 
 // Connect to MongoDB Database
-const dbURI = 'mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@starwarsdatabase.gejidxc.mongodb.net/StarWarsDatabase?retryWrites=true&w=majority';
+const dbURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@starwarsdatabase.gejidxc.mongodb.net/StarWarsDatabase?retryWrites=true&w=majority`;
 mongoose.connect(dbURI)
     .then((result) => {
         console.log("Connected to Star Wars Database for reading");

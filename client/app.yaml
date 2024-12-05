@@ -1,12 +1,10 @@
-runtime: nodejs20  # Use Node.js version 20
-
-entrypoint: npm start  # Ensure the correct start command is being used for your app
-
+runtime: nodejs20
 handlers:
-  - url: /.*  # Catch all URLs
-    script: auto  # Automatically route to your app
-    secure: always  # Force HTTPS for all traffic
-
-  - url: ^/(?!www\..*)  # If the URL doesn't start with "www", redirect
-    redirect: https://www.thestarwarscodex.com
-    status_code: 301  # Permanent redirect
+# Serve all static files with url ending with a file extension
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+# Catch all handler to index.html
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html

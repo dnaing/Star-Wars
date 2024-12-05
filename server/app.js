@@ -14,12 +14,9 @@ const Planet = require('./schemas/planets');
 const Starship = require('./schemas/starships');
 const Vehicle = require('./schemas/vehicles');
 
-const app = express();
+require('dotenv').config();  // Load environment variables from .env file
 
-// const options = {
-//     key: fs.readFileSync("server.key"),
-//     cert: fs.readFileSync("server.cert"),
-// };
+const app = express();
 
 const options = {
     key: fs.readFileSync("/etc/letsencrypt/live/backend.thestarwarscodex.com/privkey.pem"),
@@ -30,14 +27,15 @@ const server = https.createServer(options, app);
 
 
 // Connect to MongoDB Database
-const dbURI = 'mongodb+srv://dereknaing01:DarkChaosLord123@starwarsdatabase.gejidxc.mongodb.net/StarWarsDatabase?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@starwarsdatabase.gejidxc.mongodb.net/StarWarsDatabase?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
     .then((result) => {
         console.log("Connected to Star Wars Database for reading");
         app.use(cors({
             origin: ['http://localhost:3000', 'https://orbital-wording-384223.wl.r.appspot.com'],
         }));
-        // for local testing use app.listen(4000) 
+        // for local testing use 
+        // app.listen(4000) 
         server.listen(8443, '10.138.0.4', () => console.log("Server Started"));
     })
     .catch((error) => console.error(error));

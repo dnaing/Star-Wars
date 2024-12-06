@@ -1,4 +1,4 @@
-import { FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
@@ -66,7 +66,13 @@ function Species() {
 
 
     if (speciesData.length === 0) {
-        return <div className='loading'>Loading Species Data...</div>;
+        return (
+            <div>
+              <div className="loading">
+                <CircularProgress size="15rem"/>
+              </div>
+            </div>
+        )
     }
 
 

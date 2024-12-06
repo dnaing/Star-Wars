@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import Button from '@mui/material/Button';
@@ -44,7 +44,13 @@ function Films() {
     }, [sortOption]);
 	
 	if (filmData.length === 0) {
-        return <div className='loading'>Loading Film Data...</div>;
+    return (
+      <div>
+        <div className="loading">
+          <CircularProgress size="15rem"/>
+        </div>
+      </div>
+    )
   }
 
     return (  

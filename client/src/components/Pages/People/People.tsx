@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {Button, CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
@@ -67,7 +67,13 @@ function People() {
 
 
     if (peopleData.length === 0) {
-        return <div className='loading'>Loading People Data...</div>;
+        return (
+            <div>
+              <div className="loading">
+                <CircularProgress size="15rem"/>
+              </div>
+            </div>
+        )
     }
 
     return (  

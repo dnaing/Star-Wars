@@ -117,19 +117,26 @@ function SingleFilm() {
   return (
     <div> 
       <div className="screen">
-        <div className="leftsidefilm">
-          <div className="innerleftsidefilm">
-            <h1>{film.title}</h1>
+
+        <h1>{film.title}</h1>
+
+        <div className="screen-info">
+
+         
+          <div className="leftsidefilm">
             <p>Directed By: {film.director}</p>
             <p>Produced By: {film.producer}</p>
             <p>Release Date: {film.release_date}</p>
             <p id='opening'>{film.opening_crawl}</p>
           </div>
+      
+          <img id="filming" src={imageURL}></img>
+         
+
         </div>
 
-        <div className="rightsidefilm">
-          <img id="filmimg" src={imageURL}></img>
-        </div>
+        
+
       </div>
 
       {/* Insert routings */}

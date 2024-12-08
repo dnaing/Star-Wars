@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import "./SingleFilm.css";
+import styles from "./SingleFilm.module.css";
 import "../../../stylesheets/root.css"
-import { CircularProgress, Grid, IconButton } from '@mui/material';
-import FilmCard from '../../FilmCard/FilmCard';
+import { CircularProgress, IconButton } from '@mui/material';
+
 import axios from 'axios';
-import GeneralCard from '../../GeneralCard/GeneralCard';
+
 import Carousel from '../../Carousel/Carousel';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import hostName from '../../Variables/variables';
 
 function SingleFilm() {
+
+  console.log(styles);
 
   const location = useLocation();
   const { film, imageURL } = location.state;
@@ -99,11 +101,11 @@ function SingleFilm() {
   }, [film]); 
 
   if (film == null || 
-      peopleData.length == 0 || 
-      speciesData.length == 0 || 
-      planetData.length == 0 ||
-      starshipData.length == 0 ||
-      vehicleData.length == 0) {
+      peopleData.length === 0 || 
+      speciesData.length === 0 || 
+      planetData.length === 0 ||
+      starshipData.length === 0 ||
+      vehicleData.length === 0) {
     return (
       <div>
         <div className="loading">
@@ -116,21 +118,21 @@ function SingleFilm() {
 
   return (
     <div> 
-      <div className="screen">
+      <div className={styles.screen}>
 
         <h1>{film.title}</h1>
 
-        <div className="screen-info">
+        <div className={styles['screen-info']}>
 
          
-          <div className="leftsidefilm">
+          <div className={styles.leftsidefilm}>
             <p>Directed By: {film.director}</p>
             <p>Produced By: {film.producer}</p>
             <p>Release Date: {film.release_date}</p>
-            <p id='opening'>{film.opening_crawl}</p>
+            <p id={styles['opening']}>{film.opening_crawl}</p>
           </div>
       
-          <img id="filming" src={imageURL}></img>
+          <img id={styles['filmimg']} src={imageURL} alt="Star Wars film poster"></img>
          
 
         </div>

@@ -35,7 +35,7 @@
     font-size: 1.2rem;
 }
 
-#filming {
+#filmimg {
     width: 20%;
     height: 20%;
     padding-right: 4%;
@@ -56,7 +56,7 @@
         padding-right: 4%;
     }
   
-    #filming {
+    #filmimg {
       width: 40%;
       height: auto;
       order: -1;

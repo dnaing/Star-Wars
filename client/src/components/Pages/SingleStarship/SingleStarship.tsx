@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import './SingleStarship.css';
+import styles from './SingleStarship.module.css';
 import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
@@ -47,7 +47,7 @@ function SingleStarship() {
     }
   }, [starships]);
 
-  if (starships == null) {
+  if (starships === null) {
     return (
       <div>
         <div className="loading">
@@ -60,10 +60,12 @@ function SingleStarship() {
   return (
     <div>
       
-      <div className="screen">
-        <div className="leftsidestarship">
-          <div className="innerleftsidestarship">
-            <h1>{starships.name}</h1>
+      <div className={styles.screen}>
+
+        <h1>{starships.name}</h1>
+
+        <div className={styles['screen-info']}>
+          <div className={styles.leftsidestarship}>
             <p>Model: {starships.model}</p>
             <p>Manufacturer: {starships.manufacturer}</p>
             <p>Starship Class: {starships.starship_class}</p>
@@ -77,11 +79,10 @@ function SingleStarship() {
             <p>Hyperdrive Rating: {starships.hyperdrive_rating}</p>
             <p>MGLT: {starships.MGLT} maximum megalights per hour</p>
           </div>
+
+          <img id={styles.starshipimg} src={imageURL} alt="Visual of the starship"></img>
         </div>
 
-        <div className="rightsidestarship">
-          <img id="starshipimg" src={imageURL}></img>
-        </div>
       </div>
 
       {

@@ -80,7 +80,7 @@ function Home() {
             <div className='welcome-text'>
               <h1 className='heading'>THE STAR WARS CODEX</h1>
               <p>Your online guide to everything and everyone within the first 6 Star Wars movies</p>
-              <Button variant="contained" onClick={scrollToContent}>GET STARTED</Button>
+              <Button variant="contained" onClick={scrollToContent}><p>GET STARTED</p></Button>
             </div>
           </div>
 
@@ -93,8 +93,6 @@ function Home() {
               <p>Learn more about the Star Wars prequel and original trilogies</p>
               <Button variant="contained" onClick={() => handleSubmit('films')}>EXPLORE</Button>
             </div>
-            
-            
           </div>
 
           {/* Container for the People hero banner */}
@@ -125,7 +123,7 @@ function Home() {
             <div className='planets-text hidden'>
               <h1 className='heading'>PLANETS</h1>
               <p>The Star Wars universe is massive and full of all kinds of planets</p>
-              <p>Learn more about these many fascinating planets found throughout the galaxy</p>
+              <p>Learn more about these many fascinating planets found in the galaxy</p>
               <Button variant="contained" onClick={() => handleSubmit('planets')}>EXPLORE</Button>
             </div>
           </div>
@@ -136,7 +134,7 @@ function Home() {
             <div className='starships-text hidden'>
               <h1 className='heading'>STARSHIPS</h1>
               <p>Star ships are used to traverse the ever so massive Star Wars universe</p>
-              <p>Learn more about these high-speed starships used to blitz across space</p>
+              <p>Learn more about these high-speed starships used to blitz through space</p>
               <Button variant="contained" onClick={() => handleSubmit('starships')}>EXPLORE</Button>
             </div>
           </div>
@@ -146,8 +144,8 @@ function Home() {
             <img className='vehicles-hero' src={vehiclesImage} alt='Vehicles Hero'/>
             <div className='vehicles-text hidden'>
               <h1 className='heading'>VEHICLES</h1>
-              <p>There are many vehicles in the Star Wars universe that come in many shapes and forms</p>
-              <p>Learn more about these spectacular vehicles used to travel and get around places</p>
+              <p>There are many vehicles in the Star Wars universe</p>
+              <p>Learn more about these spectacular vehicles used to travel places</p>
               <Button variant="contained" onClick={() => handleSubmit('vehicles')}>EXPLORE</Button>
             </div>
           </div>

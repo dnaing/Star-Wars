@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import Button from '@mui/material/Button';
 import ResponsiveButton from '../../ResponsiveButton/ResponsiveButton';
 
 import '../../Navbar/Navbar.css';

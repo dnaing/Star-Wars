@@ -21,7 +21,7 @@ function GeneralCard(props: Props) {
 				entry.target.classList.add('materialize');
 			} 
 			else {
-				entry.target.classList.remove('materialize');
+				// entry.target.classList.remove('materialize');
 			}
 		});
 		});

@@ -29,6 +29,8 @@ function SingleFilm() {
     window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
   }
 
+  scrollToTop();
+
   // Get featured character data
   useEffect(() => {
     if (film) {

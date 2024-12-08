@@ -21,6 +21,8 @@ function SingleVehicle() {
     window.scrollBy({ top: -100000, left: 0, behavior: 'smooth' });
   }
 
+  scrollToTop();
+
   useEffect(() => {
     if (vehicles) {
       axios.get(hostName + '/films/featured', {

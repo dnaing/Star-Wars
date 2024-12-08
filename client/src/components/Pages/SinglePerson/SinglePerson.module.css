@@ -6,7 +6,7 @@
 }
 
 .screen h1 {
-    color: whitesmoke;
+    color: white;
     font-size: 2rem; /* Adjust font size as needed */
     padding-top: 2%;
 }
@@ -18,29 +18,22 @@
     width: 100%;
 }
 
-.leftsidefilm {
+.leftsideperson {
     display: flex;
     flex-direction: column;
-    /* padding-left: 4%;
-    padding-top: 4%;
-    padding-right: 8%; */
     padding: 2%;
     width: 90%;
-    order: 0;
+    order: 0
 }
 
-#opening {
-    font-size: 1.3rem;
-    font-style: italic;
-}
 
-.leftsidefilm p {
+.leftsideperson p {
     font-size: 1.2rem;
 }
 
-#filmimg {
-    width: 20%;
-    height: 20%;
+#personimg {
+    width: 22%;
+    height: 22%;
     padding-right: 4%;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -55,27 +48,26 @@
       gap: 0px;
     }
 
-    #filmimg {
+    #personimg {
       width: 40%;
       height: auto;
       order: -1;
       padding: 0;
     }
 
-    .leftsidefilm {
+    .leftsideperson {
         align-items: center;
         justify-content: center;
     }
 }
 
 @media (width <= 1200px) {
-    #opening {
-        font-size: 1.1rem;
-        font-style: italic;
-    }
-    
-    .leftsidefilm p {
+   
+    .leftsideperson p {
         font-size: 1rem;
     }
-    
+ 
 }
+
+
+

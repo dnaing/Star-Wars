@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import "./SinglePerson.css";
+import styles from "./SinglePerson.module.css";
 import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
@@ -31,7 +31,7 @@ function SinglePerson() {
     if (people) {
       axios.get(hostName + '/planets/' + people.homeworld)
       .then((res) => {
-        if (res.data.length == 0) {
+        if (res.data.length === 0) {
           setUseLink(false);
           setHomeworldData(["PLACEHOLDER"]);
         }
@@ -94,7 +94,7 @@ function SinglePerson() {
     }
   }, [people]);
 
-  if (people == null || homeworldData.length == 0) {
+  if (people === null || homeworldData.length === 0) {
     return (
       <div>
         <div className="loading">
@@ -109,10 +109,13 @@ function SinglePerson() {
   return (
     <div>
       
-      <div className="screen">
-        <div className="leftsideperson">
-          <div className="innerleftsideperson">
-            <h1>{people.name}</h1>
+      <div className={styles.screen}>
+
+        <h1>{people.name}</h1>
+
+        <div className={styles['screen-info']}>
+
+          <div className={styles.leftsideperson}>
             <p>Gender: {people.gender}</p>
             <p>Birth Year: {people.birth_year}</p>
             <p>Height: {people.height} cm</p>
@@ -135,17 +138,15 @@ function SinglePerson() {
               }
             </div>
           </div>
-        </div>
 
-        <div className="rightsideperson">
-          <img id="personimg" src={imageURL}></img>
+          
+          <img id={styles.personimg} src={imageURL} alt="Visual of characer"></img>
+        
         </div>
+        
+
       </div>
 
-
-
-      
-      
       {
         filmData.length > 0
         ? <div className="filmNavigation">

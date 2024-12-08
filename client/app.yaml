@@ -1,4 +1,5 @@
-runtime: nodejs20
+runtime: nodejs22
+instance_class: F1
 handlers:
 # Serve all static files with url ending with a file extension
 - url: /(.*\..+)$
@@ -8,3 +9,24 @@ handlers:
 - url: /.*
   static_files: build/index.html
   upload: build/index.html
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 5
+  min_pending_latency: 30ms
+  max_pending_latency: automatic
+
+inbound_services:
+- warmup
+
+liveness_check:
+  path: /health
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+
+readiness_check:
+  path: /readiness
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2

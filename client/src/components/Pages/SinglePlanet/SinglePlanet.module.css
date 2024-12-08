@@ -1,0 +1,70 @@
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(70, 70, 70) , rgb(0, 0, 0));
+}
+
+.screen h1 {
+    color: white;
+    font-size: 2rem; /* Adjust font size as needed */
+    padding-top: 2%;
+}
+
+.screen-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Optional: Adds space between elements */
+    width: 100%;
+}
+
+.leftsideplanet {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    width: 90%;
+    order: 0
+}
+
+.leftsideplanet p {
+    font-size: 1.2rem;
+}
+
+#planetimg {
+    width: 32%;
+    height: 32%;
+    padding-right: 6%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    order: 1;
+}
+
+/* Media Query for Smaller Screens */
+@media (width <= 900px) {
+    .screen-info {
+      flex-direction: column; /* Stacks elements vertically */
+      align-items: center; /* Centers them in the column layout */
+      gap: 0px;
+    }
+
+    #planetimg {
+      width: 40%;
+      height: auto;
+      order: -1;
+      padding: 0;
+    }
+
+    .leftsideplanet {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (width <= 1200px) {
+   
+    .leftsideplanet p {
+        font-size: 1rem;
+    }
+ 
+}
+

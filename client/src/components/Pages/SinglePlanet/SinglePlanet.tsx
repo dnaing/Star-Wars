@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import './SinglePlanet.css';
+import styles from './SinglePlanet.module.css';
 import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
@@ -48,7 +48,7 @@ function SinglePlanet() {
   }, [planets]);
 
 
-  if (planets == null) {
+  if (planets === null) {
     return (
       <div>
         <div className="loading">
@@ -61,10 +61,13 @@ function SinglePlanet() {
   return (
     <div>
       
-      <div className="screen">
-        <div className="leftsideplanet">
-          <div className="innerleftsideplanet">
-            <h1>{planets.name}</h1>
+      <div className={styles.screen}>
+
+        <h1>{planets.name}</h1>
+
+        <div className={styles['screen-info']}>
+
+          <div className={styles.leftsideplanet}>
             <p>Diameter: {planets.diameter} kilometers</p>
             <p>Population: {planets.population}</p>
             <p>Terrain: {planets.terrain}</p>
@@ -74,11 +77,14 @@ function SinglePlanet() {
             <p>Rotation Period: {planets.rotation_period} hours to complete a single rotation on its axis</p>
             <p>Orbital Period: {planets.orbital_period} days to complete a single orbit of its local star</p>
           </div>
+
+          <img id={styles.planetimg} src={imageURL} alt="Visual of the planet"></img>
+
         </div>
 
-        <div className="rightsideplanet">
-          <img id="planetimg" src={imageURL}></img>
-        </div>
+        
+        
+
       </div>
 
 

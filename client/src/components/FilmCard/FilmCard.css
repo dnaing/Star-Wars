@@ -36,3 +36,11 @@
     opacity: 1;
     animation: appear 1s ease-in-out;
 }
+
+@media (width <= 500px) {
+
+    .card-content-film {
+        font-size: 0.6rem;
+    }
+
+}

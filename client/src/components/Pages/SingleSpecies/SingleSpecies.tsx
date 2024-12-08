@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import "./SingleSpecies.css";
+import styles from "./SingleSpecies.module.css";
 import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
@@ -29,7 +29,7 @@ function SingleSpecies() {
     if (species) {
       axios.get(hostName + '/planets/' + species.homeworld)
       .then((res) => {
-          if (res.data.length == 0) {
+          if (res.data.length === 0) {
               setUseLink(false);
               setHomeworldData(["PLACEHOLDER"]);
           }
@@ -68,7 +68,7 @@ function SingleSpecies() {
   }, [species]);
 
 
-  if (species == null || homeworldData.length == 0) {
+  if (species === null || homeworldData.length === 0) {
     return (
       <div>
         <div className="loading">
@@ -83,10 +83,15 @@ function SingleSpecies() {
   return (
     <div>
       
-      <div className="screen">
-        <div className="leftsidespecies">
-          <div className="innerleftsidespecies">
-            <h1>{species.name}</h1>
+      <div className={styles.screen}>
+
+        <h1>{species.name}</h1>
+
+
+
+        <div className={styles['screen-info']}>
+
+          <div className={styles.leftsidespecies}>
             <p>Classification: {species.classification}</p>
             <p>Designation: {species.designation}</p>
             <p>Average Height: {species.average_height} cm</p>
@@ -110,11 +115,11 @@ function SingleSpecies() {
               }
             </div>
           </div>
+
+          <img id={styles.speciesimg} src={imageURL} alt="Visual of the species"></img>
+
         </div>
 
-        <div className="rightsidespecies">
-          <img id="speciesimg" src={imageURL}></img>
-        </div>
       </div>
 
 

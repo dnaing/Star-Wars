@@ -20,7 +20,7 @@
     width: 100%;
 }
 
-.leftsideperson {
+.leftsidevehicle {
     display: flex;
     flex-direction: column;
     padding: 2%;
@@ -28,14 +28,13 @@
     order: 0
 }
 
-
-.leftsideperson p {
+.leftsidevehicle p {
     font-size: 1.2rem;
 }
 
-#personimg {
-    width: 22%;
-    height: 22%;
+#vehicleimg {
+    width: 50%;
+    height: 50%;
     padding-right: 4%;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -50,14 +49,14 @@
       gap: 0px;
     }
 
-    #personimg {
-      width: 50%;
+    #vehicleimg {
+      width: 60%;
       height: auto;
       order: -1;
       padding: 0;
     }
 
-    .leftsideperson {
+    .leftsidevehicle {
         align-items: center;
         justify-content: center;
     }
@@ -65,11 +64,9 @@
 
 @media (width <= 1200px) {
    
-    .leftsideperson p {
+    .leftsidevehicle p {
         font-size: 1rem;
     }
  
 }
-
-
 

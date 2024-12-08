@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import './SingleVehicle.css';
+import styles from './SingleVehicle.module.css';
 import "../../../stylesheets/root.css";
 import axios from 'axios';
 import Carousel from '../../Carousel/Carousel';
@@ -60,10 +60,13 @@ function SingleVehicle() {
   return (
     <div>
       
-      <div className="screen">
-        <div className="leftsidevehicle">
-          <div className="innerleftsidevehicle">
-            <h1>{vehicles.name}</h1>
+      <div className={styles.screen}>
+
+        <h1>{vehicles.name}</h1>
+
+        <div className={styles['screen-info']}>
+
+          <div className={styles.leftsidevehicle}>
             <p>Model: {vehicles.model}</p>
             <p>Manufacturer: {vehicles.manufacturer}</p>
             <p>Vehicle Class: {vehicles.vehicle_class}</p>
@@ -73,18 +76,19 @@ function SingleVehicle() {
             <p>Crew: {vehicles.crew}</p>
             <p>Passengers: {vehicles.passengers}</p>
 
-            {vehicles.cargo_capacity == "none"
+            {vehicles.cargo_capacity === "none"
             ? <p>Cargo Capacity: 0 kilograms</p>
             : <p>Cargo Capacity: {vehicles.cargo_capacity} kilograms</p>
             }
             
             <p>Consumables: {vehicles.consumables}</p>
           </div>
+
+          <img id={styles.vehicleimg} src={imageURL} alt="Visual of the vehicle"></img>
+
+
         </div>
 
-        <div className="rightsidevehicle">
-          <img id="vehicleimg" src={imageURL}></img>
-        </div>
       </div>
 
 

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import Button from '@mui/material/Button';
+import ResponsiveButton from '../../ResponsiveButton/ResponsiveButton';
 
 import '../../Navbar/Navbar.css';
 import './Home.css';
@@ -80,7 +81,7 @@ function Home() {
             <div className='welcome-text'>
               <h1 className='heading'>THE STAR WARS CODEX</h1>
               <p>Your online guide to everything and everyone within the first 6 Star Wars movies</p>
-              <Button variant="contained" onClick={scrollToContent}><p>GET STARTED</p></Button>
+              <ResponsiveButton variant="contained" onClick={scrollToContent}>GET STARTED</ResponsiveButton>
             </div>
           </div>
 
@@ -91,7 +92,7 @@ function Home() {
               <h1 className='heading'>FILMS</h1>
               <p>The first 6 Star Wars movies are legendary works of fiction</p>
               <p>Learn more about the Star Wars prequel and original trilogies</p>
-              <Button variant="contained" onClick={() => handleSubmit('films')}>EXPLORE</Button>
+              <ResponsiveButton variant="contained" onClick={() => handleSubmit('films')}>EXPLORE</ResponsiveButton>
             </div>
           </div>
 
@@ -102,7 +103,7 @@ function Home() {
               <h1 className='heading'>PEOPLE</h1>
               <p>Star Wars is full of amazing characters that truly give it life</p>
               <p>Learn more about these various characters found throughout the galaxy </p>
-              <Button variant="contained" onClick={() => handleSubmit('people')}>EXPLORE</Button>
+              <ResponsiveButton variant="contained" onClick={() => handleSubmit('people')}>EXPLORE</ResponsiveButton>
             </div>
           </div>
 
@@ -113,7 +114,7 @@ function Home() {
               <h1 className='heading'>SPECIES</h1>
               <p>Star Wars is filled with all kinds of species</p>
               <p>Learn more about the many diverse species found throughout the universe</p>
-              <Button variant="contained" onClick={() => handleSubmit('species')}>EXPLORE</Button>
+              <ResponsiveButton variant="contained" onClick={() => handleSubmit('species')}>EXPLORE</ResponsiveButton>
             </div>
           </div>
 
@@ -124,7 +125,7 @@ function Home() {
               <h1 className='heading'>PLANETS</h1>
               <p>The Star Wars universe is massive and full of all kinds of planets</p>
               <p>Learn more about these many fascinating planets found in the galaxy</p>
-              <Button variant="contained" onClick={() => handleSubmit('planets')}>EXPLORE</Button>
+              <ResponsiveButton variant="contained" onClick={() => handleSubmit('planets')}>EXPLORE</ResponsiveButton>
             </div>
           </div>
 
@@ -135,7 +136,7 @@ function Home() {
               <h1 className='heading'>STARSHIPS</h1>
               <p>Star ships are used to traverse the ever so massive Star Wars universe</p>
               <p>Learn more about these high-speed starships used to blitz through space</p>
-              <Button variant="contained" onClick={() => handleSubmit('starships')}>EXPLORE</Button>
+              <ResponsiveButton variant="contained" onClick={() => handleSubmit('starships')}>EXPLORE</ResponsiveButton>
             </div>
           </div>
 
@@ -146,7 +147,7 @@ function Home() {
               <h1 className='heading'>VEHICLES</h1>
               <p>There are many vehicles in the Star Wars universe</p>
               <p>Learn more about these spectacular vehicles used to travel places</p>
-              <Button variant="contained" onClick={() => handleSubmit('vehicles')}>EXPLORE</Button>
+              <ResponsiveButton variant="contained" onClick={() => handleSubmit('vehicles')}>EXPLORE</ResponsiveButton>
             </div>
           </div>
              

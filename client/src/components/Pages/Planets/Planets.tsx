@@ -30,7 +30,7 @@ function Planets() {
 
     useEffect(() => {
 
-      if (sortOption == 'alpha') {
+      if (sortOption === 'alpha') {
           axios.get(hostName + '/planets', {
               params: {
                   sortType: 'Alpha',
@@ -41,7 +41,7 @@ function Planets() {
               setPlanetData(res.data);
           })
       }
-      else if (sortOption == 'population') {
+      else if (sortOption === 'population') {
           axios.get(hostName + '/planets', {
               params: {
                   sortType: 'Population',
@@ -52,7 +52,7 @@ function Planets() {
               setPlanetData(res.data);
           })
       }
-      else if (sortOption == 'size') {
+      else if (sortOption === 'size') {
           axios.get(hostName + '/planets', {
               params: {
                   sortType: 'Size',
@@ -63,7 +63,7 @@ function Planets() {
               setPlanetData(res.data);
           })            
       }
-      else if (sortOption == 'rotation') {
+      else if (sortOption === 'rotation') {
         axios.get(hostName + '/planets', {
             params: {
                 sortType: 'Rotation',
@@ -74,7 +74,7 @@ function Planets() {
             setPlanetData(res.data);
         })            
       }
-      else if (sortOption == 'orbital') {
+      else if (sortOption === 'orbital') {
         axios.get(hostName + '/planets', {
             params: {
                 sortType: 'Orbital',

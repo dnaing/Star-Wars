@@ -28,7 +28,7 @@ function Species() {
 
     useEffect(() => {
 
-      if (sortOption == 'alpha') {
+      if (sortOption === 'alpha') {
           axios.get(hostName + '/species', {
               params: {
                   sortType: 'Alpha',
@@ -39,7 +39,7 @@ function Species() {
               setSpeciesData(res.data);
           })
       }
-      else if (sortOption == 'height') {
+      else if (sortOption === 'height') {
           axios.get(hostName + '/species', {
               params: {
                   sortType: 'Height',
@@ -50,7 +50,7 @@ function Species() {
               setSpeciesData(res.data);
           })
       }
-      else if (sortOption == 'lifespan') {
+      else if (sortOption === 'lifespan') {
           axios.get(hostName + '/species', {
               params: {
                   sortType: 'Lifespan',

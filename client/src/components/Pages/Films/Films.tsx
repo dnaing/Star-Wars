@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
-import Button from '@mui/material/Button';
 import FilmCard from '../../FilmCard/FilmCard';
 import hostName from '../../Variables/variables';
 
@@ -41,7 +40,7 @@ function Films() {
         } else {
             setFilmData(filmDataOrig);
         }
-    }, [sortOption]);
+    }, [sortOption, filmDataOrig]);
 	
 	if (filmData.length === 0) {
     return (
@@ -57,22 +56,26 @@ function Films() {
 
       <div>
 
-        <div className='sort-options'>
-          <FormControl fullWidth variant="filled">
-            <InputLabel id="demo-simple-select-label"><p style={{color:'white'}}>Order By:</p></InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={sortOption}
-              label="Sort By:"
-              onChange={handleChange}
-			        style={{color: 'white', backgroundColor: 'gray'}}
-            >
-              <MenuItem value={'chronological'}>Chronological Order</MenuItem>
-              <MenuItem value={'release'}>Release Order</MenuItem>
-            </Select>
-          </FormControl>
+        <div className='sort-options-container'>
+          <div className='sort-options'>
+            <FormControl fullWidth variant="filled">
+              <InputLabel id="demo-simple-select-label"><p style={{color:'white'}}>Order By:</p></InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sortOption}
+                label="Sort By:"
+                onChange={handleChange}
+                style={{color: 'white', backgroundColor: 'gray'}}
+              >
+                <MenuItem value={'chronological'}>Chronological Order</MenuItem>
+                <MenuItem value={'release'}>Release Order</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
         </div>
+
+        
 
         <div className='film-cards-grid'>
           <Grid container rowSpacing={{ xs: 5, sm: 5, md: 10 }} columnSpacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} justifyContent="center" alignItems="center">

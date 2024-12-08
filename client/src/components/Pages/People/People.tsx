@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Button, CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import axios from 'axios';
 import GeneralCard from '../../GeneralCard/GeneralCard';
@@ -29,7 +29,7 @@ function People() {
 
     useEffect(() => {
 
-        if (sortOption == 'alpha') {
+        if (sortOption === 'alpha') {
             axios.get(hostName + '/people', {
                 params: {
                     sortType: 'Alpha',
@@ -40,7 +40,7 @@ function People() {
                 setPeopleData(res.data);
             })
         }
-        else if (sortOption == 'height') {
+        else if (sortOption === 'height') {
             axios.get(hostName + '/people', {
                 params: {
                     sortType: 'Height',
@@ -51,7 +51,7 @@ function People() {
                 setPeopleData(res.data);
             })
         }
-        else if (sortOption == 'mass') {
+        else if (sortOption === 'mass') {
             axios.get(hostName + '/people', {
                 params: {
                     sortType: 'Mass',

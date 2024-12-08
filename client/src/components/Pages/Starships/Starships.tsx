@@ -28,7 +28,7 @@ function Starships() {
 
     useEffect(() => {
 
-      if (sortOption == 'alpha') {
+      if (sortOption === 'alpha') {
           axios.get(hostName + '/starships', {
               params: {
                   sortType: 'Alpha',
@@ -39,7 +39,7 @@ function Starships() {
               setStarshipData(res.data);
           })
       }
-      else if (sortOption == 'cost') {
+      else if (sortOption === 'cost') {
           axios.get(hostName + '/starships', {
               params: {
                   sortType: 'Cost',
@@ -50,7 +50,7 @@ function Starships() {
               setStarshipData(res.data);
           })
       }
-      else if (sortOption == 'atmosphere') {
+      else if (sortOption === 'atmosphere') {
         axios.get(hostName + '/starships', {
             params: {
                 sortType: 'Atmosphere',
@@ -61,7 +61,7 @@ function Starships() {
             setStarshipData(res.data);
         })
       }
-      else if (sortOption == 'space') {
+      else if (sortOption === 'space') {
         axios.get(hostName + '/starships', {
             params: {
                 sortType: 'Space',
@@ -72,7 +72,7 @@ function Starships() {
             setStarshipData(res.data);
         })
       }
-      else if (sortOption == 'length') {
+      else if (sortOption === 'length') {
         axios.get(hostName + '/starships', {
             params: {
                 sortType: 'Length',
@@ -83,7 +83,7 @@ function Starships() {
             setStarshipData(res.data);
         })
       }
-      else if (sortOption == 'crew') {
+      else if (sortOption === 'crew') {
         axios.get(hostName + '/starships', {
             params: {
                 sortType: 'Crew',
@@ -94,7 +94,7 @@ function Starships() {
             setStarshipData(res.data);
         })
       }
-      else if (sortOption == 'passenger') {
+      else if (sortOption === 'passenger') {
         axios.get(hostName + '/starships', {
             params: {
                 sortType: 'Passenger',
@@ -105,7 +105,7 @@ function Starships() {
             setStarshipData(res.data);
         })
       }
-      else if (sortOption == 'cargo') {
+      else if (sortOption === 'cargo') {
         axios.get(hostName + '/starships', {
             params: {
                 sortType: 'Cargo',
